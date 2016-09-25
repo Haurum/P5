@@ -1,0 +1,23 @@
+This is BibTeX, Version 0.99dThe top-level auxiliary file: Rapport.aux
+The style file: bibtex/harvard.bst
+A level-1 auxiliary file: formalia/forside.aux
+A level-1 auxiliary file: formalia/titelblad.aux
+A level-1 auxiliary file: formalia/forord.aux
+A level-1 auxiliary file: intro/indledning.aux
+A level-1 auxiliary file: intro/analysis.aux
+A level-1 auxiliary file: kontekst/implementation.aux
+A level-1 auxiliary file: kontekst/tests.aux
+A level-1 auxiliary file: formalia/discussion.aux
+A level-1 auxiliary file: formalia/konklusion.aux
+A level-1 auxiliary file: formalia/futurework.aux
+A level-1 auxiliary file: appendiks/appendiks1.aux
+url: is an unknown function---line 320 of file bibtex/harvard.bst
+Database file #1: bibtex/litteratur.bib
+Warning--I didn't find a database entry for "Sebesta"
+Warning--empty year in es
+Warning--empty year in es
+Warning--empty year in es
+1 is an integer literal, not a string, for entry es
+while executing---line 1485 of file bibtex/harvard.bst
+Warning--empty  in es
+(There were 2 error messages)
