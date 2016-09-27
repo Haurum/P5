@@ -70,8 +70,8 @@ namespace KTLib
 
             try
             {
-                this.sensor.ColorStream.OpenNextFrame(33);//(ImageStreamType.Video, 2, ImageResolution.Resolution640x480, ImageType.Color);
-                this.sensor.DepthStream.OpenNextFrame(33);
+                this.sensor.ColorStream.OpenNextFrame(66);//(ImageStreamType.Video, 2, ImageResolution.Resolution640x480, ImageType.Color);
+                this.sensor.DepthStream.OpenNextFrame(66);
             }
             catch (InvalidOperationException)
             {
@@ -81,9 +81,9 @@ namespace KTLib
 
             this.sensor.DepthFrameReady += new EventHandler<DepthImageFrameReadyEventArgs>(nui_DepthFrameReady);
             this.sensor.ColorFrameReady += new EventHandler<ColorImageFrameReadyEventArgs>(nui_ColorFrameReady);
-            //this.sensor.ElevationAngle = 10;
-            //theta = this.sensor.ElevationAngle * Math.PI / 180;
-            theta = 10 * Math.PI / 180;
+            this.sensor.ElevationAngle = 5;
+            theta = this.sensor.ElevationAngle * Math.PI / 180;
+            //theta = 10 * Math.PI / 180;
         }
 
         float tanTmax, tanPmax;

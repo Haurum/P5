@@ -13,6 +13,7 @@ using KTLib;
 using Emgu.CV;
 using Emgu.CV.Structure;
 using System.Drawing.Imaging;
+using System.Diagnostics;
 
 namespace TrackerXNA
 {
@@ -45,11 +46,20 @@ namespace TrackerXNA
         /// </summary>
         protected override void Initialize()
         {
+            foreach (GraphicsAdapter ga in GraphicsAdapter.Adapters)
+            {
+                Debug.WriteLine("test");
+                Debug.WriteLine(ga.DeviceName);
+                Debug.WriteLine(ga.Description);
+                Debug.WriteLine(ga.IsDefaultAdapter);
+            }
             IsFixedTimeStep = false;
             IsMouseVisible = true;
 
             graphics.PreferredBackBufferHeight = 720;
             graphics.PreferredBackBufferWidth = 1280;
+            //graphics.PreferredBackBufferWidth = 640;
+            //graphics.PreferredBackBufferHeight = 480;
             graphics.ApplyChanges();
 
             kinect = new KinectInterface(GraphicsDevice);
@@ -99,7 +109,7 @@ namespace TrackerXNA
                 this.Exit();
 
 
-            kview.Update();
+            //kview.Update();
             trackerMan.Update();
 
             
@@ -126,7 +136,7 @@ namespace TrackerXNA
             if (!kinect.Ready)
                 return;
 
-            kview.Draw();
+            //kview.Draw();
 
             spriteBatch.Begin();
             //spriteBatch.Draw(kinect.DepthFrameTex,  Vector2.Zero, null, Color.White, 0f, Vector2.Zero, 0.5f,  SpriteEffects.None, 0f);
@@ -134,12 +144,13 @@ namespace TrackerXNA
             
             int w = 300;
             int h = w*kinect.DepthFrameTex.Height/kinect.DepthFrameTex.Width;
-            drawW(kinect.DepthFrameTex, 0, 0, 300);
+            //drawW(kinect.DepthFrameTex, 0, 0, 300);
             //drawW(kinect.ColorFrameTex, 300, 0, 300);
             //drawW(trackerMan.detector.debugOut.ToTex(GraphicsDevice), 300, 0, 300);
             //drawW(kinect.FullDepth.PyrDown().ToTex(GraphicsDevice), 300, 0, 300);
-            drawW(trackerMan.DisplayOut.ToTex(GraphicsDevice), 0, h, 600);
-            spriteBatch.DrawString(font1, kinect.FPS.ToString(), new Vector2(600, 0), Color.Red);
+            //drawW(trackerMan.DisplayOut.ToTex(GraphicsDevice), 0, h, 600);
+            drawW(trackerMan.DisplayOut.ToTex(GraphicsDevice), 0, h, 1200);
+            //spriteBatch.DrawString(font1, kinect.FPS.ToString(), new Vector2(600, 0), Color.Red);
 
             spriteBatch.End();
 

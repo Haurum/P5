@@ -226,7 +226,8 @@ namespace TrackerXNA
                 //drawBall(ball.Position.ToV3(), ball.Radius);
                 drawBall(pos, ball.Radius);
 
-                drawTracksFancy(trackMan.ActiveBall);
+                drawTracks(trackMan.ActiveBall);
+                //drawTracksFancy(trackMan.ActiveBall);
             }
 
             GraphicsDevice.Viewport = prevPort;

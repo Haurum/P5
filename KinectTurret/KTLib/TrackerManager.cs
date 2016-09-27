@@ -7,6 +7,7 @@ using Emgu.CV;
 using Emgu.CV.Util;
 using Emgu.CV.Structure;
 using Microsoft.Xna.Framework;
+using System.Diagnostics;
 
 namespace KTLib
 {
@@ -69,6 +70,7 @@ namespace KTLib
                 double predictSec = 2;
                 for (double t = 0; t < predictSec; t += 0.01)
                 {
+
                     var tsamp = DateTime.Now.AddSeconds(t);
                     Vector2 unproj;
 
@@ -79,12 +81,14 @@ namespace KTLib
                     {
                         unproj *= 0.5f;
 
-
+                        Debug.Write("X: " + unproj.X);
+                        Debug.Write("Y: " + unproj.Y);
                         System.Drawing.PointF pt = new System.Drawing.PointF(unproj.X, unproj.Y);
                         //depthMaskOverlay.Draw(new Cross2DF(pt, 10, 10), new Bgr(0, 0, 255), 3);
                         line.Add(new System.Drawing.Point((int)unproj.X, (int)unproj.Y));
                         //line.Add(new System.Drawing.Point((int)(t*100), (int)(t*100) - 100));
                     }
+                    
                 }
                 DisplayOut.DrawPolyline(line.ToArray(), false, new Bgr(0, 0, 255), 2);
 
