@@ -298,3 +298,4 @@ paket-files/
 __pycache__/
 *.pyc
 Rapport/Rapport.tex
+Rapport/Rapport.pdf
