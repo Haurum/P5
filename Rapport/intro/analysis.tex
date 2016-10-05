@@ -1,11 +1,11 @@
 \chapter{Analysis}
 \label{chap:Analysis}
-From the analysis chapter it should be possible to derive the requirements for the smart dumpster, Dumpsty. The user stories will be initial and will help make the user requirements for the project. After the user requirements the information from the user stories will be analysed in greater detail, depicting three different phases of the process: Throwing, detecting/tracking and catching. These three phases will be the inspiration for the system requirements. 
+From the analysis chapter it should be possible to derive the requirements for the smart waste bin, Dumpsty. The user stories will be initial and will help make the user requirements for the project. After the user requirements the information from the user stories will be analysed in greater detail, depicting three different phases of the process: Throwing, detecting/tracking and catching. These three phases will be the inspiration for the system requirements. 
 The analysis chapter will end up with a problem statement for the project. 
 
-\section{User stories}
-\label{sec:User stories}
-As mentioned before the user stories should help make the user requirements for the project, two user stories have been made that showcase the use of Dumpsty.
+\section{User story}
+\label{sec:User story}
+As mentioned before the user stories should help make the user requirements for the project, one user story have been made that showcase the use of Dumpsty.
 
 Benjamin is a software engineer who is tired of wasting his precious time on the job with walking back and forth from the waste bin in his office, and therefore wants to be able to throw his trash in the general direction of the bin instead. His aim when throwing the trash isn’t that of a trained basketball player, so he often has to pick up the litter after throwing it at the bin. \newline
 Benjamin wishes that the waste bin could move and collect the trash for him, so that he can throw his trash in the general direction of the bin, and the bin could then place itself in a way, that allows it to catch the trash before it lands on the floor. This would optimize the time Benjamin uses each day on collecting the trash he did not land in the waste bin.\newline
@@ -15,24 +15,36 @@ If Benjamin and another person from his office throws trash to the waste bin at 
 
 \section{User requirements}
 \label{sec:User requirements}
+The user requirements of the project have been conducted from the section \ref{sec:User story}. User requirements are simple requirements written in a natural language, which should help everyone get an understanding of the requirements for the project.
+
+\begin{itemize}
+\item The waste bin must be able to move itself to the colliding position of the trash within a certain time limit, with a certain precision.
+\item The trash is always thrown from a designated side, according to the camera sensor.
+\item The waste bin will always start from a designated position, according to the camera sensor.
+\item Multiple trash thrown at the waste bin will not be considered.
+\item The camera sensor must be able to identify a specific object, which would be considered as the trash in this report.
+\item The waste bin should only consider trash thrown within a certain perimeter of itself, according to the attained maximum speed of the robot.
+\end{itemize}
 
 \section{System capabilities}
 \label{sec:System capabilities}
+This section will define the required capabilities of the system, which will include the functionality and hardware needed to fulfill the tasks of the embedded system. This is divided into three different categories, which are the subsections of the section. These categories, along with the user requirements, will define the system requirements for the project.
 
 \subsection{Throwing}
 \label{sec:ThrowingAnalysis}
+To make it easier for the sensor to detect and track the thrown object. The object should be round of shape and in a clear colour such as red. This will help the sensor because it the object will stand out from other objects. \newline
+The ball should be thrown as slow as possible, to give the sensor and waste bin more time to detect, track and calculated the collision point for the object and the waste bin. This could be done by throwing an underhand throw or bouncing the ball at the area of the waste bin.
 
 \subsection{Detecting and tracking}
 \label{sec:Detecting and trackingAnalysis}
+Detecting and tracking are a very essential part and is considered as one phase. For detecting the sensor should be able to recognize the specified object within it's field of view. The waste bins area and the area in front of the waste bin should be monitored by the sensor. \newline When the object have been detected, it should then be tracked by the sensor. The sensor should track the speed of the object and the direction it is heading in. This should be used to calculate the objects collision with the waste bins area.
 
 \subsection{Catching}
 \label{sec:CatchingAnalysis}
-
-\section{System requirements}
-\label{sec:System requirements}
-
-\section{Chapter Summary}
-\label{sec:Chapter Summary}
+The catching phase of the project is for the waste bin to calculate the objects collision within the waste bins area, and the movement to the designated collision point. The waste bin gets information about the flying object from the sensor and uses the given information to calculate the collision point. What data the waste bin gets from the sensor and how the calculation is done, will be explained in later chapters. 
 
 \section{Problem statement}
 \label{sec:Problem statement}
+Based on the above analysis and its limitations a problem statement for the project has been constructed:
+
+\textit{How can an embedded system control a waste bin to detect, track and catch a thrown object within a designated perimeter?}
