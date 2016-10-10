@@ -23,6 +23,13 @@ In order to ensure that the sensor detect where the object is, the object has to
 
 \section{Catching}
 \label{sec:catchingTheory}
+Catching concerns estimating where the thrown object will fall, and then moving the robot to that location before the objects lands to successfully catch the thrown object. In order to achieve the aforementioned objective, the following steps must be completed:
+
+Tracking the projectile trajectory to estimate a location to catch or intercept the thrown object. The tracking is a continuous process and the the estimated location is transmitted to the robot repeatedly in intervals in the order of milliseconds. As the estimated location is transmitted to the robot, it will move accordingly to its relative position to the estimated location, this assumes some form coordinating system to enable the robot to move accurately. This could include first estimating whether or not the robot will even be able to reach the location before the object lands, or just move towards it regardless. It could also consider its own dimensions, as the bucket it will use to catch the robot puts restraints on how low a position the object can be, before the robot must in place to catch it, otherwise it will collide with the side of the bucket. 
+
+(As a note, could include a formula of time it takes to turn, and its forward speed.)
+
+Moving to the location includes time to turn the robot, and the time for its wheels to power it towards the location. As the robot will continuously receive input as to the location of the thrown object will present considerations as to which degree of precision is required and to prevent jittering the robot as it makes course corrections within very small intervals. For instance if the wheels take a proportionally large amount of time to turn, and the input received informs the robot to turn every 30 ms just 1 degree which is equal to pi divided by 180 in radians, would substantially slow the robot, depending on the size of the bucket and the precision of the estimation some imprecision can perhaps be afforded. 
 
 \section{Trajectory prediction}
 \label{sec:Trajectory prediction}
