@@ -13,26 +13,26 @@
 \contentsline {section}{\numberline {3.1}Field of view}{7}{section.3.1}
 \contentsline {section}{\numberline {3.2}Throwing}{7}{section.3.2}
 \contentsline {section}{\numberline {3.3}Detecting and tracking}{7}{section.3.3}
-\contentsline {section}{\numberline {3.4}Catching}{7}{section.3.4}
-\contentsline {section}{\numberline {3.5}Trajectory prediction}{7}{section.3.5}
-\contentsline {chapter}{\chapternumberline {4}Hardware}{9}{chapter.4}
-\contentsline {section}{\numberline {4.1}Sensors}{9}{section.4.1}
-\contentsline {subsection}{\numberline {4.1.1}Microsoft Kinect}{9}{subsection.4.1.1}
-\contentsline {section}{\numberline {4.2}LEGO NXT Gyroscope}{9}{section.4.2}
-\contentsline {section}{\numberline {4.3}LEGO NXT Servo motor}{9}{section.4.3}
-\contentsline {section}{\numberline {4.4}Arduino}{9}{section.4.4}
-\contentsline {subsection}{\numberline {4.4.1}Arduino WifiShield}{9}{subsection.4.4.1}
-\contentsline {subsection}{\numberline {4.4.2}Arduino MotorShield}{9}{subsection.4.4.2}
-\contentsline {chapter}{\chapternumberline {5}System requirements}{11}{chapter.5}
-\contentsline {chapter}{\chapternumberline {6}Design}{13}{chapter.6}
-\contentsline {section}{\numberline {6.1}The robot}{13}{section.6.1}
-\contentsline {section}{\numberline {6.2}Throwing}{13}{section.6.2}
-\contentsline {section}{\numberline {6.3}Detecting and tracking}{13}{section.6.3}
-\contentsline {section}{\numberline {6.4}Catching}{13}{section.6.4}
-\contentsline {chapter}{\chapternumberline {7}Implementation}{15}{chapter.7}
-\contentsline {chapter}{\chapternumberline {8}Tests}{17}{chapter.8}
-\contentsline {chapter}{\chapternumberline {9}Discussion}{19}{chapter.9}
-\contentsline {chapter}{\chapternumberline {10}Conclusion}{21}{chapter.10}
-\contentsline {chapter}{\chapternumberline {11}Future work}{23}{chapter.11}
-\contentsline {chapter}{Bibliography}{25}{section*.6}
-\contentsline {appendix}{\chapternumberline {A}Appendix}{27}{appendix.A}
+\contentsline {section}{\numberline {3.4}Catching}{8}{section.3.4}
+\contentsline {section}{\numberline {3.5}Trajectory prediction}{8}{section.3.5}
+\contentsline {chapter}{\chapternumberline {4}Hardware}{11}{chapter.4}
+\contentsline {section}{\numberline {4.1}Sensors}{11}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}Microsoft Kinect}{11}{subsection.4.1.1}
+\contentsline {section}{\numberline {4.2}LEGO NXT Gyroscope}{11}{section.4.2}
+\contentsline {section}{\numberline {4.3}LEGO NXT Servo motor}{11}{section.4.3}
+\contentsline {section}{\numberline {4.4}Arduino}{11}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}Arduino WifiShield}{11}{subsection.4.4.1}
+\contentsline {subsection}{\numberline {4.4.2}Arduino MotorShield}{11}{subsection.4.4.2}
+\contentsline {chapter}{\chapternumberline {5}System requirements}{13}{chapter.5}
+\contentsline {chapter}{\chapternumberline {6}Design}{15}{chapter.6}
+\contentsline {section}{\numberline {6.1}The robot}{15}{section.6.1}
+\contentsline {section}{\numberline {6.2}Throwing}{15}{section.6.2}
+\contentsline {section}{\numberline {6.3}Detecting and tracking}{15}{section.6.3}
+\contentsline {section}{\numberline {6.4}Catching}{15}{section.6.4}
+\contentsline {chapter}{\chapternumberline {7}Implementation}{17}{chapter.7}
+\contentsline {chapter}{\chapternumberline {8}Tests}{19}{chapter.8}
+\contentsline {chapter}{\chapternumberline {9}Discussion}{21}{chapter.9}
+\contentsline {chapter}{\chapternumberline {10}Conclusion}{23}{chapter.10}
+\contentsline {chapter}{\chapternumberline {11}Future work}{25}{chapter.11}
+\contentsline {chapter}{Bibliography}{27}{section*.6}
+\contentsline {appendix}{\chapternumberline {A}Appendix}{29}{appendix.A}
