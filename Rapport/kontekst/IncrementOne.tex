@@ -1,0 +1,46 @@
+\chapter{First increment}
+\label{chap:First Increment}
+Test om: Bounce, predefined area
+Skal komme væk fra accelerotmeter og gyroscope. 
+
+\section{Requirements}
+\label{sec:i1Requirements}
+The requirements which will be considered in this increment is mark with a blue colour.
+
+\begin{itemize}
+\item The trash bin should catch the trash if the user throws it towards the trash bin and within a predefined area
+\begin{itemize}
+\item \textcolor{blue}{The robots predefined area should be calculated from the hardware limitations of the motors’ speed}
+\end{itemize}
+\item The robot should know where it is positioned
+\begin{itemize}
+\item \textcolor{blue}{The robot should have a starting position, from where it should be able to calculate it's current position}
+\end{itemize}
+\item The robot should be able to detect and track the thrown trash
+\begin{itemize}
+\item \textcolor{blue}{The thrown trash should be detected and tracked by a Microsoft Kinect}
+\item The Kinect should send the coordinates of the impact point of the trash to the robot
+\end{itemize}
+\item The robot should know where the the thrown trash will land
+\begin{itemize}
+\item Trajectory prediction should be used to calculate impact point of the thrown trash
+%\item \textcolor{red}{The trajectory prediction should include a bounce prediction}
+%\item \textcolor{red}{The bounce-shot should be thrown from a designated side of the camera}
+%\item \textcolor{red}{The bounce-shot should bounce into the predefined area where the robot should catch the trash within }
+\end{itemize}
+\item The robot should be able to move the trash bin, such that the thrown trash lands inside the bin
+\begin{itemize}
+\item \textcolor{blue}{The robot should be able to turn, drive forward and drive backwards with a certain speed}
+\item Multiple trash thrown should not be considered
+\end{itemize}
+\end{itemize}
+
+
+\section{System design}
+\label{sec:i1System Design}
+
+\section{Implementation}
+\label{sec:i1Implementation}
+
+\section{Evaluation}
+\label{sec:i1Evaluation}

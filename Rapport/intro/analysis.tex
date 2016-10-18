@@ -18,12 +18,8 @@ If Benjamin and another person from his office throws trash to the waste bin at 
 The user requirements of the project have been conducted from the section \ref{sec:User story}. User requirements are simple requirements written in a natural language, which should help everyone get an understanding of the requirements for the project.
 
 \begin{itemize}
-\item The waste bin must be able to move itself to the colliding position of the trash within a certain time limit, with a certain precision.
-\item The trash is always thrown from a designated side, according to the camera sensor.
-\item The waste bin will always start from a designated position, according to the camera sensor.
-\item Multiple trash thrown at the waste bin will not be considered.
-\item The camera sensor must be able to identify a specific object, which would be considered as the trash in this report.
-\item The waste bin should only consider trash thrown within a certain perimeter of itself, according to the attained maximum speed of the robot.
+\item The trash bin must be able to move itself to the colliding position of the trash within a certain time limit, with a certain precision.
+\item The trash bin should only consider trash thrown within a certain perimeter of itself.
 \end{itemize}
 
 \section{System capabilities}
@@ -43,8 +39,18 @@ Detecting and tracking are a very essential part and is considered as one phase.
 \label{sec:CatchingAnalysis}
 The catching phase of the project is for the waste bin to calculate the objects collision within the waste bins area, and the movement to the designated collision point. The waste bin gets information about the flying object from the sensor and uses the given information to calculate the collision point. What data the waste bin gets from the sensor and how the calculation is done, will be explained in later chapters. 
 
-\section{Problem statement}
+\section{Problem statement \& requirements}
 \label{sec:Problem statement}
 Based on the above analysis and its limitations a problem statement for the project has been constructed:
 
 \textit{How can an embedded system control a waste bin to detect, track and catch a thrown object within a designated perimeter?}
+
+The requirements for in this chapter is the requirements for the project, if there was no hardware or time constraints:
+
+\begin{itemize}
+\item The trash bin should catch the trash if the user throws it towards the trash bin and within a predefined area. 
+\item The robot should know where it is positioned
+\item The robot should be able to detect and track the thrown thrash
+\item The robot should know where the the thrown thrash will land
+\item The robot should be able to move the trash bin, such that the thrown thrash lands inside the bin.
+\end{itemize}

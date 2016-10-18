@@ -1,6 +1,4 @@
-This is BibTeX, Version 0.99d (TeX Live 2015)
-Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
-The top-level auxiliary file: Rapport.aux
+This is BibTeX, Version 0.99dThe top-level auxiliary file: Rapport.aux
 The style file: bibtex/harvard.bst
 A level-1 auxiliary file: formalia/forside.aux
 A level-1 auxiliary file: formalia/titelblad.aux
@@ -9,8 +7,7 @@ A level-1 auxiliary file: intro/indledning.aux
 A level-1 auxiliary file: intro/analysis.aux
 A level-1 auxiliary file: kontekst/Theory.aux
 A level-1 auxiliary file: kontekst/Hardware.aux
-A level-1 auxiliary file: kontekst/SystemRequirements.aux
-A level-1 auxiliary file: kontekst/Design.aux
+A level-1 auxiliary file: kontekst/IncrementOne.aux
 A level-1 auxiliary file: kontekst/implementation.aux
 A level-1 auxiliary file: kontekst/tests.aux
 A level-1 auxiliary file: formalia/discussion.aux
@@ -20,51 +17,26 @@ A level-1 auxiliary file: appendiks/appendiks1.aux
 url: is an unknown function---line 320 of file bibtex/harvard.bst
 Database file #1: bibtex/litteratur.bib
 Warning--I didn't find a database entry for "Sebesta"
+Warning--empty year in a
+Warning--empty year in a
+1 is an integer literal, not a string, for entry a
+while executing---line 1485 of file bibtex/harvard.bst
+Warning--empty  in a
+Warning--empty year in ams
+Warning--empty year in ams
+1 is an integer literal, not a string, for entry ams
+while executing---line 1485 of file bibtex/harvard.bst
+Warning--empty  in ams
+Warning--empty year in Servo
+Warning--empty year in Servo
+Warning--empty year in Servo
+1 is an integer literal, not a string, for entry Servo
+while executing---line 1485 of file bibtex/harvard.bst
+Warning--empty  in Servo
 Warning--empty year in es
 Warning--empty year in es
 Warning--empty year in es
 1 is an integer literal, not a string, for entry es
 while executing---line 1485 of file bibtex/harvard.bst
 Warning--empty  in es
-You've used 1 entry,
-            2921 wiz_defined-function locations,
-            633 strings with 5429 characters,
-and the built_in function-call counts, 372 in all, are:
-= -- 30
-> -- 11
-< -- 2
-+ -- 4
-- -- 3
-* -- 27
-:= -- 63
-add.period$ -- 5
-call.type$ -- 1
-change.case$ -- 2
-chr.to.int$ -- 1
-cite$ -- 6
-duplicate$ -- 21
-empty$ -- 31
-format.name$ -- 5
-if$ -- 67
-int.to.chr$ -- 1
-int.to.str$ -- 1
-missing$ -- 0
-newline$ -- 15
-num.names$ -- 5
-pop$ -- 11
-preamble$ -- 1
-purify$ -- 2
-quote$ -- 0
-skip$ -- 11
-stack$ -- 0
-substring$ -- 2
-swap$ -- 4
-text.length$ -- 0
-text.prefix$ -- 0
-top$ -- 0
-type$ -- 11
-warning$ -- 4
-while$ -- 3
-width$ -- 0
-write$ -- 22
-(There were 2 error messages)
+(There were 5 error messages)
