@@ -35,5 +35,5 @@
 \contentsline {chapter}{\chapternumberline {8}Discussion}{21}{chapter.8}
 \contentsline {chapter}{\chapternumberline {9}Conclusion}{23}{chapter.9}
 \contentsline {chapter}{\chapternumberline {10}Future work}{25}{chapter.10}
-\contentsline {chapter}{Bibliography}{27}{section*.6}
+\contentsline {chapter}{Bibliography}{27}{section*.7}
 \contentsline {appendix}{\chapternumberline {A}Appendix}{29}{appendix.A}
