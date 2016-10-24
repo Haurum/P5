@@ -68,7 +68,7 @@ namespace KTLib
             {
                 List<System.Drawing.Point> line = new List<System.Drawing.Point>();
                 double predictSec = 2;
-                for (double t = 0; t < predictSec; t += 0.01)
+                for (double t = 0; t < predictSec; t += 0.1 /*0.01*/)
                 {
 
                     var tsamp = DateTime.Now.AddSeconds(t);
@@ -80,9 +80,8 @@ namespace KTLib
                         )
                     {
                         unproj *= 0.5f;
-
-                        Debug.Write("X: " + unproj.X);
-                        Debug.Write("Y: " + unproj.Y);
+                        Vector3 v3 = ActiveBall.ProjFit.PredictPos(tsamp).ToV3();
+                        Debug.WriteLine("T: " + tsamp.Millisecond.ToString() + " X: " + v3.X + " Y: " + v3.Y + " Z: " + v3.Z);
                         System.Drawing.PointF pt = new System.Drawing.PointF(unproj.X, unproj.Y);
                         //depthMaskOverlay.Draw(new Cross2DF(pt, 10, 10), new Bgr(0, 0, 255), 3);
                         line.Add(new System.Drawing.Point((int)unproj.X, (int)unproj.Y));
@@ -90,6 +89,7 @@ namespace KTLib
                     }
                     
                 }
+                Debug.WriteLine("");
                 DisplayOut.DrawPolyline(line.ToArray(), false, new Bgr(0, 0, 255), 2);
 
                 foreach (var f in ActiveBall.Frames)

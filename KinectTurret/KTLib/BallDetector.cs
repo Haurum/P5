@@ -44,9 +44,9 @@ namespace KTLib
 
         public List<Ball3D> Detect(KinectInterface kinect)
         {
-            float threshDepth = 4.2f;
-            float expectedRadius = 0.0255f;
-            float radThres = 0.005f;
+            float threshDepth = 2.7f;
+            float expectedRadius = 0.0155f;
+            float radThres = 0.0075f;
 
             var balls = new List<Ball3D>();
             

@@ -186,7 +186,7 @@ namespace KTLib
     public class BallTracker
     {
 
-        const double distThresh = 0.200; //.1
+        const double distThresh = 2.500; //.1
         const double timeThresh = 2.0; //.5
         const double timeThresh2 = 0.25;
         const int minPointForInterp = 5;
