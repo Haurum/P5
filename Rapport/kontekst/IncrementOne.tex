@@ -47,7 +47,7 @@ Test have been made to ensure that the robot is provided the most time for the c
 
 With the results from the throwing tests, the group could conclude that a normal throw wouldn't serve the robot enough time to catch the ball, else the predefined area for the robot had to be very small, due to the limitations of the motors. As mentioned in the \ref{sec:LEGO NXT Servo motor} section, the group calculated the robot's speed to be ~87 RPM, which simply isn't enough to catch trash from a 3 or 5 meter distance. The robot would be able to catch trash within 280mm of itself, given the 1.1 second run time, for the 3 meter throw, and therefore nowhere near sufficient enough. 
 
-The group decided after several tests to let the trash (still a table tennis ball) be bounced on the floor before it had to be catched, which would give the robot extra time to get to the collision point of the ball. This provided in nearly the amount the double amount of time for the throw to be catched, providing an average of 2s from a 3 meter throw and 2.15s from a 5m throw.
+The group decided after several tests to let the trash (still a table tennis ball) be bounced on the floor before it had to be catched, which would give the robot extra time to get to the collision point of the ball. This provided nearly double the amount of time for the throw to be catched, providing an average of 2 seconds from a 3 meter throw and 2.15 seconds from a 5 meter throw.
 
 \subsection{Predefined area}
 \label{sec:i1Predefined area}
@@ -62,6 +62,8 @@ The robots predefined area, is a field where the robot should catch the ball wit
 
 \subsection{Microsoft Kinect}
 \label{sec:i1Microsoft Kinect}
+To detect the thrown object, the Kinect has to use one of it's cameras, more specifically the depth sensor in this case. The depth sensor uses a range of infrared speckles, which draw a pattern in the room. Every cluster of speckles can be identified from each other, which makes the kinect able to differentiate between objects in the room. The depth of the specific object can be determined by the use of two cameras, as both cameras can identify the speckles at the object, it can triangulate the distance between the cameras and the object. This speckle pattern technology will only work indoor, and limits the use to only one kinect, as the speckles can be washed out by other lightsources.
+\citep{kw}
 
 \subsection{Trajectory prediction}
 \label{sec:Trajectory prediction}

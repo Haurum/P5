@@ -43,4 +43,6 @@ Warning--empty year in es
 1 is an integer literal, not a string, for entry es
 while executing---line 1485 of file bibtex/harvard.bst
 Warning--empty  in es
-(There were 6 error messages)
+1 is an integer literal, not a string, for entry kw
+while executing---line 1485 of file bibtex/harvard.bst
+(There were 7 error messages)

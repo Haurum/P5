@@ -1,4 +1,4 @@
-\begin{thebibliography}{5}
+\begin{thebibliography}{6}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -39,5 +39,12 @@
 \newblock \textit{Embedded Systems}.
 \newblock \url{https://www.techopedia.com/definition/3636/embedded-system}.
 \newblock Accessed: 25-09-2016.
+
+\bibitem[Wikipedia.com(2016)]{kw}
+\textbf{Wikipedia.com}, \textbf{2016}.
+\newblock Wikipedia.com.
+\newblock \textit{Kinect Wiki}.
+\newblock \url{https://en.wikipedia.org/wiki/Kinect}, 2016.
+\newblock Accessed: 19-10-2016.
 
 \end{thebibliography}
