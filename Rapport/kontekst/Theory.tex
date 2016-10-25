@@ -31,38 +31,3 @@ Tracking the projectile trajectory to estimate a location to catch or intercept 
 (As a note, could include a formula of time it takes to turn, and its forward speed.)
 
 Moving to the location includes time to turn the robot, and the time for its wheels to power it towards the location. As the robot will continuously receive input as to the location of the thrown object will present considerations as to which degree of precision is required and to prevent jittering the robot as it makes course corrections within very small intervals. For instance if the wheels take a proportionally large amount of time to turn, and the input received informs the robot to turn every 30 ms just 1 degree which is equal to pi divided by 180 in radians, would substantially slow the robot, depending on the size of the bucket and the precision of the estimation some imprecision can perhaps be afforded. 
-
-\section{Trajectory prediction}
-\label{sec:Trajectory prediction}
-When the trash, referred to in this section as the projectile, is detected and the tracking of that projectile has started, the trajectory can be predicted. This prediction is limited to the amount of data sent by the sensory camera, meaning that for every camera reading, one detection of the object is gained. The precision of the prediction will increase according to the time a projectile has been tracked. \newline 
-In this project, since the prediction is done indoor, the outdoor weather conditions that might affect the projectile trajectory is not considered. As well, the effects of air resistance, also called drag, will not be considered.
-
-The trajectory of a projectile is the path of a thrown projectile without propulsion, affected by gravity. For calculating a trajectory of a projectile, the initial height, the angle which the projectile is launced from, the speed of the projectile at launch and the gravitational acceleration must be taken into account. \newline 
-The initial height in this project is the height at which the projectile is detected, and the angle and speed at which the projectile is launched will be calculated from the first few trackings after detecting the projectile. The gravitational acceleration is considered as \(9.81m/s^2\), which is the standard near the earths surface. \newline
-In this project we are interested in catching the projectile, and to do that, we need to calculate the distance the projectile travels before hitting the ground, and the amount of time before the projectile hits the ground. This is done with two mathematical formulas: \newline
-\newline 
-\begin{math}
-g: \ the \ gravitational \ acceleration \ (9.81m/s^2)\newline
-\theta: \ the \ angle \ at \ launch 
-v: \ the \ speed \ at \ launch\newline
-y_{0}: \ the \ initial \ height\newline
-d: \ the \ total \ horizontal \ distance \ traveled \ \newline
-t: \ the \ time \ of \ flight\newline
-v_{vert}: \ the \ vertical \ velocity\newline
-v_{hori}: \ the \ horizontal \ velocity\newline
-t_{h}: \ the \ time \ since \ first \ detection\newline
-d_{t}: \ the \ distance \ at \ time \ t\newline
-\end{math}
-
-From these variables we can express the formulas needed to provide the total distance traveled by the projectile, and the amount of time this would take.\newline
-The distance traveled is:
-\[d = \dfrac{v \ cos \ \theta}{g}(v \ sin \ \theta + \sqrt{(v \ sin \ \theta)^2 \ + \ 2gy_{0}})\] \newline
-The time of flight is:
-\[t = \dfrac{d}{v \ cos \ \theta} = \dfrac{v \ sin \ \theta \ + \ \sqrt{(v \ sin \ \theta)^2 \ + \ 2gy_{0}}}{g}\]
-\newline
-
-To calculate a trajectory of the projectile, the altitude and distance of the projectile at any time during the flight must be calculated, according to the initial height ( \(y_{0}\) ):
-\[y = v_{vert}t - \dfrac{1}{2} gt^2\]
-\[d_{t} = v_{hori}t\]
-
-After this section, the projectile can be tracked, and the path for a given projectile can be calculated to a certain degree of correctness. 

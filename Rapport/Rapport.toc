@@ -14,20 +14,23 @@
 \contentsline {section}{\numberline {3.2}Throwing}{7}{section.3.2}
 \contentsline {section}{\numberline {3.3}Detecting and tracking}{7}{section.3.3}
 \contentsline {section}{\numberline {3.4}Catching}{8}{section.3.4}
-\contentsline {section}{\numberline {3.5}Trajectory prediction}{8}{section.3.5}
-\contentsline {chapter}{\chapternumberline {4}Hardware}{11}{chapter.4}
-\contentsline {section}{\numberline {4.1}Sensors}{11}{section.4.1}
-\contentsline {subsection}{\numberline {4.1.1}Microsoft Kinect}{11}{subsection.4.1.1}
-\contentsline {subsection}{\numberline {4.1.2}LEGO NXT Gyroscope}{11}{subsection.4.1.2}
-\contentsline {subsection}{\numberline {4.1.3}LEGO NXT Accelerometer}{11}{subsection.4.1.3}
-\contentsline {section}{\numberline {4.2}LEGO NXT Servo motor}{12}{section.4.2}
-\contentsline {section}{\numberline {4.3}Arduino}{12}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Arduino Wifi Shield}{12}{subsection.4.3.1}
-\contentsline {subsection}{\numberline {4.3.2}Arduino Motor Shield}{12}{subsection.4.3.2}
-\contentsline {section}{\numberline {4.4}Requirements}{13}{section.4.4}
-\contentsline {chapter}{\chapternumberline {5}First increment}{15}{chapter.5}
-\contentsline {section}{\numberline {5.1}Requirements}{15}{section.5.1}
-\contentsline {section}{\numberline {5.2}System design}{15}{section.5.2}
+\contentsline {chapter}{\chapternumberline {4}Hardware}{9}{chapter.4}
+\contentsline {section}{\numberline {4.1}Sensors}{9}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}Microsoft Kinect}{9}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {4.1.2}LEGO NXT Gyroscope}{9}{subsection.4.1.2}
+\contentsline {subsection}{\numberline {4.1.3}LEGO NXT Accelerometer}{9}{subsection.4.1.3}
+\contentsline {section}{\numberline {4.2}LEGO NXT Servo motor}{10}{section.4.2}
+\contentsline {section}{\numberline {4.3}Arduino}{10}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Arduino Wifi Shield}{10}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Arduino Motor Shield}{10}{subsection.4.3.2}
+\contentsline {section}{\numberline {4.4}Requirements}{11}{section.4.4}
+\contentsline {chapter}{\chapternumberline {5}First increment}{13}{chapter.5}
+\contentsline {section}{\numberline {5.1}Requirements}{13}{section.5.1}
+\contentsline {section}{\numberline {5.2}System design}{13}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Throwing}{14}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}Predefined area}{14}{subsection.5.2.2}
+\contentsline {subsection}{\numberline {5.2.3}Microsoft Kinect}{14}{subsection.5.2.3}
+\contentsline {subsection}{\numberline {5.2.4}Trajectory prediction}{14}{subsection.5.2.4}
 \contentsline {section}{\numberline {5.3}Implementation}{16}{section.5.3}
 \contentsline {section}{\numberline {5.4}Evaluation}{16}{section.5.4}
 \contentsline {chapter}{\chapternumberline {6}Implementation}{17}{chapter.6}
