@@ -1,10 +1,10 @@
 #include <WiFi.h>
 
-char ssid[] = "Mark Klochs iPhone";     //  your network SSID (name) 
-char pass[] = "markersej";    // your network password
+char ssid[] = "vugge75storm89tabel";     //  your network SSID (name) 
+char pass[] = "cf2c57dbc4011c54d133b06afa";    // your network password
 int status = WL_IDLE_STATUS;     // the Wifi radio's status
 IPAddress ip;
-WiFiServer server(80);
+WiFiServer server(43);
 WiFiClient client;
 int message;
 
