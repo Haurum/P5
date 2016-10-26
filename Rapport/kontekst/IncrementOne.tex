@@ -100,6 +100,15 @@ To calculate a trajectory of the projectile, the altitude and distance of the pr
 
 After this section, the projectile can be tracked, and the path for a given projectile can be calculated to a certain degree of correctness. 
 
+\subsection{Gyroscope and Accelerometer}
+\label{sec:i1Gyroscope and Accelerometer}
+For the robot to know where it is positioned. The idea is to use the Lego NXT Gyro sensor, which is a gyroscope and the Lego NXT Accelerometer. 
+
+The purpose of the gyroscope is to get the number of degrees the robot have turned, since the program told the gyroscope to record it. In this way it would be possible to know the heading of the robot, from the start location, which would be at 0 degrees. 
+
+The accelerometer will be used to calculate the distance the robot have traveled since it started moving. The speed of the robot and the time the robot have been at that speed should be recorded, which should be done for every speed change of the robot, to capture the distance it have travled.
+(\textcolor{red}{Should look this section over at some point})
+
 \section{Implementation}
 \label{sec:i1Implementation}
 
