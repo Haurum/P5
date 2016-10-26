@@ -33,8 +33,12 @@ void setup() {
 void loop() {
   delay(1000);
   client = server.available();
-  if(client != false){
-    message = client.read();
-    Serial.println(message);
+  if(!client){
+    message = 0;
   }
+  else{
+    message = 1;
+  }
+  Serial.println(message);
+  client.stop();
 }
