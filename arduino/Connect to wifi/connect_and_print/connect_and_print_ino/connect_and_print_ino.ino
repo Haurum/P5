@@ -5,6 +5,7 @@ char pass[] = "test1234";    // your network password
 int status = WL_IDLE_STATUS;     // the Wifi radio's status
 IPAddress ip;
 WiFiServer server(9999);
+WiFiClient client;
 int message;
 
 void setup() {
@@ -31,12 +32,13 @@ void setup() {
 
 void loop() {
   delay(1000);
-  WiFiClient client = server.available();
-  if(client){
-    Serial.println("There is a client");
-    if(client.connected()){
-      Serial.println("Connected to client");
+  client = server.available();
+  if(!client){
+    message = 0;
   }
+  else{
+    message = 1;
   }
+  Serial.println(message);
   client.stop();
 }

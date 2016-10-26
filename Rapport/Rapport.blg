@@ -26,6 +26,11 @@ Warning--empty year in ams
 1 is an integer literal, not a string, for entry ams
 while executing---line 1485 of file bibtex/harvard.bst
 Warning--empty  in ams
+Warning--empty year in aws
+Warning--empty year in aws
+1 is an integer literal, not a string, for entry aws
+while executing---line 1485 of file bibtex/harvard.bst
+Warning--empty  in aws
 Warning--empty year in Servo
 Warning--empty year in Servo
 Warning--empty year in Servo
@@ -38,4 +43,6 @@ Warning--empty year in es
 1 is an integer literal, not a string, for entry es
 while executing---line 1485 of file bibtex/harvard.bst
 Warning--empty  in es
-(There were 5 error messages)
+1 is an integer literal, not a string, for entry kw
+while executing---line 1485 of file bibtex/harvard.bst
+(There were 7 error messages)

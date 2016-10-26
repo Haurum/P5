@@ -16,12 +16,16 @@ namespace WifiTest
         static void Main(string[] args)
         {
             tcpClient.Connect("192.168.0.100", 9999);
-            object data = "Test send";
+            string data = "test";
             const int IntSize = 4;
             byte[] bytedata;
+            Stream stream = tcpClient.GetStream();
 
-            using (MemoryStream ms = new MemoryStream())
+            stream.Write(Encoding.UTF8.GetBytes(data.ToCharArray()), 0, data.Length);
+            tcpClient.Close();
+            /*using (MemoryStream ms = new MemoryStream())
             {
+            
                 BinaryFormatter bf = new BinaryFormatter();
 
                 try { bf.Serialize(ms, data); }
@@ -30,6 +34,7 @@ namespace WifiTest
                 bytedata = ms.ToArray();
             }
             tcpClient.Client.BeginSend(BitConverter.GetBytes(bytedata.Length), 0, IntSize, SocketFlags.None, EndSend, null);
+            tcpClient.Client.BeginSend(bytedata, 0, bytedata.Length, SocketFlags.None, EndSend, null);*/
         }
 
         public static void EndSend(IAsyncResult ar)
