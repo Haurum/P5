@@ -27,18 +27,26 @@
 \contentsline {chapter}{\chapternumberline {5}First increment}{13}{chapter.5}
 \contentsline {section}{\numberline {5.1}Requirements}{13}{section.5.1}
 \contentsline {section}{\numberline {5.2}System design}{13}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}Throwing}{14}{subsection.5.2.1}
-\contentsline {subsection}{\numberline {5.2.2}Predefined area}{14}{subsection.5.2.2}
+\contentsline {subsection}{\numberline {5.2.1}Predefined area}{14}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}Throwing}{14}{subsection.5.2.2}
 \contentsline {subsection}{\numberline {5.2.3}Microsoft Kinect}{14}{subsection.5.2.3}
 \contentsline {subsection}{\numberline {5.2.4}Trajectory prediction}{14}{subsection.5.2.4}
 \contentsline {subsection}{\numberline {5.2.5}Gyroscope and Accelerometer}{15}{subsection.5.2.5}
+\contentsline {subsection}{\numberline {5.2.6}Movement}{16}{subsection.5.2.6}
 \contentsline {section}{\numberline {5.3}Implementation}{16}{section.5.3}
-\contentsline {subsection}{\numberline {5.3.1}Throwing}{16}{subsection.5.3.1}
-\contentsline {subsection}{\numberline {5.3.2}Predefined area}{16}{subsection.5.3.2}
-\contentsline {subsection}{\numberline {5.3.3}Microsoft Kinect}{16}{subsection.5.3.3}
-\contentsline {subsection}{\numberline {5.3.4}Gyroscope and Accelerometer}{16}{subsection.5.3.4}
-\contentsline {section}{\numberline {5.4}Evaluation}{16}{section.5.4}
-\contentsline {chapter}{\chapternumberline {6}Implementation}{19}{chapter.6}
+\contentsline {subsection}{\numberline {5.3.1}Predefined area}{16}{subsection.5.3.1}
+\contentsline {subsection}{\numberline {5.3.2}Throwing}{16}{subsection.5.3.2}
+\contentsline {subsection}{\numberline {5.3.3}Microsoft Kinect}{17}{subsection.5.3.3}
+\contentsline {subsection}{\numberline {5.3.4}Gyroscope and Accelerometer}{17}{subsection.5.3.4}
+\contentsline {subsection}{\numberline {5.3.5}Movement}{17}{subsection.5.3.5}
+\contentsline {section}{\numberline {5.4}Evaluation}{17}{section.5.4}
+\contentsline {chapter}{\chapternumberline {6}Increment two}{19}{chapter.6}
+\contentsline {section}{\numberline {6.1}Requirements}{19}{section.6.1}
+\contentsline {section}{\numberline {6.2}System design}{19}{section.6.2}
+\contentsline {subsection}{\numberline {6.2.1}Wifi Shield}{19}{subsection.6.2.1}
+\contentsline {section}{\numberline {6.3}Implementation}{19}{section.6.3}
+\contentsline {subsection}{\numberline {6.3.1}Wifi Shield}{19}{subsection.6.3.1}
+\contentsline {section}{\numberline {6.4}Evaluation}{20}{section.6.4}
 \contentsline {chapter}{\chapternumberline {7}Tests}{21}{chapter.7}
 \contentsline {chapter}{\chapternumberline {8}Discussion}{23}{chapter.8}
 \contentsline {chapter}{\chapternumberline {9}Conclusion}{25}{chapter.9}

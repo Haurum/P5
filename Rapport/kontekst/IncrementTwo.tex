@@ -1,0 +1,49 @@
+\chapter{Increment two}
+\label{chap:Increment two}
+
+\section{Requirements}
+\label{sec:i2Requirements}
+
+\section{System design}
+\label{sec:i2System design}
+
+\subsection{Wifi Shield}
+\label{sec:Wifi Shield SD}
+When the Kinect have found the coordinates for the collision point of the thrown object, these coordinates should be sent to the robot, for it ot be able to move to the collision point and catch the object. 
+The data should be sent, as earlier mentioned in section \ref{sec: Arduino Wifi Shield}, by the Arduino wifi shiled. The Arduino and the computer running the Kinect program, should be connected to their own network, with the computer sending the data to the wifi shields IP-address.
+
+\section{Implementation}
+\label{sec:i2Implementation}
+
+\subsection{Wifi Shield}
+\label{sec:Wifi Shield Implementation}
+First a private network for the computer running the Kinect program and the Arduino wifi shield were sat up. This was done so that it was possible to port forward the necessary ports on the router, so that the Kinect program could send the data to the wifi shield.
+
+\begin{lstlisting}[caption={Connecting the Wifi shield to the network} label={ws}]
+void setup() {
+  Serial.begin(9600);
+
+  Serial.println("Attempting to connect to WPA network...");
+  status = WiFi.begin(ssid, pass);
+
+  if ( status != WL_CONNECTED) { 
+    Serial.println("Couldn't get a wifi connection");
+    while(true);
+  } 
+  else {
+    server.begin();
+    Serial.println("Connected to network");
+  }
+  ip = WiFi.localIP();
+  Serial.println(ip);
+}
+\end{lstlisting}
+
+Next thing is too connect the wifi shield to the router, which can be seen in listing \ref{ws}. Two char arrays was declared in the top of the program, containing the network name(ssid) and the password(pass).\newline
+To connect the wifi shield to the router, the serial port is opened, to search for the network. The wifi shield will try to find and connect to the network matching name of the ssid. 
+If it couldn't find any networks matching the ssid is will print out "Couldn't get a wifi connection". If the connecting was made it will print out "Connected to network" and print out the ip for the wifi shiled and it is now ready to receive date from the computer.
+
+(\textcolor{red}{The code describing how it receives data is needed here!})
+
+\section{Evaluation}
+\label{sec:i2Evaluation}
