@@ -43,7 +43,7 @@ The following sections describe how the marked requirements in \ref{sec:i1Requir
 
 \subsection{Predefined area}
 \label{sec:i1Predefined area}
-The robots predefined area, is an area where the robot should catch the ball within. This area is being made because of the limitations of the robots motors, so the predefined area is where the robot should be expected to catch the ball within.
+The robots predefined area, is an area where the robot should catch the ball within. This area is being made because of the limitations of the robots motors and is based on motor speed and average time of a throw, so the predefined area is where the robot should be expected to catch the ball within.
 
 \subsection{Throwing}
 \label{sec:i1Throwing}
@@ -96,7 +96,7 @@ For positioning the robot, the Lego NXY Gyro and Accelerometer sensors will be c
 
 \subsection{Movement}
 \label{sec:i1Movement}
-The robot was expected to be able to drive forward and backwards, to enable it to at most turn 180 degrees, since both forward and backward movement would enable this.. The robot was expected to be able to turn whether using one active wheel or make both wheels go counterclockwise each other.
+The robot was expected to be able to drive forward and backwards, to enable it to at most turn 90 degrees from any given angle, since any movement exceeding 90 degrees would be performed by driving backwards and turning from the opposite end of the robot. The robot was expected to be able to turn whether using either one active wheel or make both wheels go counterclockwise each other to turn more swiftly.
 
 
 \section{Implementation}
@@ -109,7 +109,8 @@ For the implementation of the gyroscope and the accelerometer, a test has to be 
 \subsection{Predefined area}
 \label{sec:i1Predefined areaImplementation}
 The robots predefined area will be calculated using the travel time of the ball and the speed of the motors used for the project. 
-As mentioned in  section \ref{sec:i1ThrowingImplementation}, the bouncing throw would have a travel time of 2 - 2.15 seconds, before landing in the predefined area. The predefined area was calculated using the robot itself. The robot was placed marking its starting point, which will always be its starting point. It was set to turn a specific number of degrees and moving forward, after two seconds the robot would stop. The place the robot stops is marked aswell, which lead to the predefined area seen in figure \ref{figure:Predefined area}. The predefined area have an area of of 2851.5cm\begin{math}^2\end{math} which is 0.285m\begin{math}^2\end{math}.
+The predefined area was limited to be strictly in front of the robot as mentioned in movement.
+As mentioned in  section \ref{sec:i1ThrowingImplementation}, the bouncing throw would have a travel time of 2 - 2.15 seconds, before landing in the predefined area. The predefined area was calculated using the robot itself. The robot was placed marking its starting point, which will always be its starting point. It was set to turn a specific number of degrees and move forward, after two seconds the robot would stop. The place the robot stops is marked aswell, which lead to the predefined area seen in figure \ref{figure:Predefined area}. The predefined area have an area of of 2851.5cm\begin{math}^2\end{math} which is 0.285m\begin{math}^2\end{math}.
 
 \begin{figure}[h]
 \centering
@@ -134,9 +135,8 @@ The group decided after several tests to let the trash (still a table tennis bal
 
 \subsection{Movement}
 \label{sec:i1MovementImplementation}
-Movement: The wheels were tested and forward motion was achieved with a speed of [insert speed] centimetres per second. The robot was also able to drive backwards at a lower speed of ….. Insert reason why we didn't turn by moving both wheels counterclockwise each other. 
-
+Movement: The wheels were tested and forward motion was achieved with a speed of [insert speed] centimetres per second. The robot was also able to drive backwards at a lower speed of ….. Insert reason why we didn't turn by moving both wheels counterclockwise each other. It was discovered that the speed at which the robot drives backwards is much slower than its forward moving speed, because of the speed of backwards motion, it was decided to not consider driving backwards at all since the speed is inadequate (prefer tangible example) and since this would also simplify the problem. To solve this issue, it was decided to change the throw to always be in front of the machine, thus ensuring it would never be forced to drive backwards. This does however not take into account if the Kinect projectile prediction predicts the projectile will land behind the machine but this issue only arises if prediction is sufficiently miscalculated which is unlikely (anything else we can say about this? or rephrase).
 
 \section{Evaluation}
 \label{sec:i1Evaluation}
-The requirements stating that the robot should know where it is positioned, will persist through this increment, as no solution has been found. The use of a gyroscope and accelerometer was not the right solution for this project, as the need of precise data would not be supported by sensors with a large amount of jitter. The robots starting position will always determine where the predefined area of the robot is, as the predefined area is defined by the robots position, and it's hardware limitations.
+The requirements stating that the robot should know where it is positioned, will persist through this increment, as no solution has been found. The use of a gyroscope and accelerometer was not the right solution for this project, as the need of precise data would not be supported by sensors with a large amount of jitter. The robots starting position will always determine where the predefined area of the robot is, as the predefined area is defined by the robots position, and it's hardware limitations. The concept of predefined area is entirely based on the rotation speed of motor with wheel circumference and the duration of the throw, if any element the predefined area consists of changes, then so does the predefined area. Movement was not nearly as simple as expected and the implications of the problems encountered in its implementation is not fully solved in increment one.
