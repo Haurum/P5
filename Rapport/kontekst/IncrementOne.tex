@@ -91,12 +91,7 @@ After this section, the projectile can be tracked, and the path for a given proj
 
 \subsection{Gyroscope and Accelerometer}
 \label{sec:i1Gyroscope and Accelerometer}
-For the robot to know where it is positioned. The idea is to use the Lego NXT Gyro sensor, which is a gyroscope and the Lego NXT Accelerometer. 
-
-The purpose of the gyroscope is to get the number of degrees the robot have turned, since the program told the gyroscope to record it. In this way it would be possible to know the heading of the robot, from the start location, which would be at 0 degrees. 
-
-The accelerometer will be used to calculate the distance the robot have traveled since it started moving. The speed of the robot and the time the robot have been at that speed should be recorded, which should be done for every speed change of the robot, to capture the distance it have travled.
-(\textcolor{red}{Should look this section over at some point})
+For positioning the robot, the Lego NXY Gyro and Accelerometer sensors will be considered. These sensors will be used together to position the robot, as the gyroscope will tell the number of degrees the robot has turned, which is relative to the heading of the robot at the start of the recording of data. This heading will be used together with an accelerometer, which can be used to calculate the distance the robot has traveled since the beginning of the recording of data. The time spent and the speed of the robot will be the data of this sensor.
 
 
 \subsection{Movement}
@@ -106,6 +101,10 @@ The robot was expected to be able to drive forward and backwards, to enable it t
 
 \section{Implementation}
 \label{sec:i1Implementation}
+
+\subsection{Gyroscope and Accelerometer in use}
+\label{sec:i1Gyroscope and Accelerometer in use}
+For the implementation of the gyroscope and the accelerometer, a test has to be done, to benchmark the precision of the sensors. For this, the data sent from the Arduino when the sensor has been plugged into the Arduino, was plotted in the Serial Plotter, which is a feature in the Arduino IDE. After various tests, the decision was to find a better alternative to these sensors, as the gyroscope in particular, had a lot of jitter. This jitter would even increase over time, making the use of the robot limited, as any user would have to restart the robot when the use wants to throw anything at the robot.
 
 \subsection{Predefined area}
 \label{sec:i1Predefined areaImplementation}
@@ -140,3 +139,4 @@ Movement: The wheels were tested and forward motion was achieved with a speed of
 
 \section{Evaluation}
 \label{sec:i1Evaluation}
+The requirements stating that the robot should know where it is positioned, will persist through this increment, as no solution has been found. The use of a gyroscope and accelerometer was not the right solution for this project, as the need of precise data would not be supported by sensors with a large amount of jitter. The robots starting position will always determine where the predefined area of the robot is, as the predefined area is defined by the robots position, and it's hardware limitations.
