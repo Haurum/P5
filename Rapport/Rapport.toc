@@ -33,8 +33,7 @@
 \contentsline {subsection}{\numberline {4.3.2}Predefined area}{14}{subsection.4.3.2}
 \contentsline {subsection}{\numberline {4.3.3}Throwing}{15}{subsection.4.3.3}
 \contentsline {subsection}{\numberline {4.3.4}Microsoft Kinect}{15}{subsection.4.3.4}
-\contentsline {subsection}{\numberline {4.3.5}Gyroscope and Accelerometer}{15}{subsection.4.3.5}
-\contentsline {subsection}{\numberline {4.3.6}Movement}{15}{subsection.4.3.6}
+\contentsline {subsection}{\numberline {4.3.5}Movement}{15}{subsection.4.3.5}
 \contentsline {section}{\numberline {4.4}Evaluation}{15}{section.4.4}
 \contentsline {chapter}{\chapternumberline {5}Increment two}{17}{chapter.5}
 \contentsline {section}{\numberline {5.1}Requirements}{17}{section.5.1}
