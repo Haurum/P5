@@ -9,47 +9,43 @@
 \contentsline {subsection}{\numberline {2.3.2}Detecting and tracking}{4}{subsection.2.3.2}
 \contentsline {subsection}{\numberline {2.3.3}Catching}{4}{subsection.2.3.3}
 \contentsline {section}{\numberline {2.4}Problem statement \& requirements}{4}{section.2.4}
-\contentsline {chapter}{\chapternumberline {3}Theory}{7}{chapter.3}
-\contentsline {section}{\numberline {3.1}Field of view}{7}{section.3.1}
-\contentsline {section}{\numberline {3.2}Throwing}{7}{section.3.2}
-\contentsline {section}{\numberline {3.3}Detecting and tracking}{7}{section.3.3}
-\contentsline {section}{\numberline {3.4}Catching}{8}{section.3.4}
-\contentsline {chapter}{\chapternumberline {4}Hardware}{9}{chapter.4}
-\contentsline {section}{\numberline {4.1}Sensors}{9}{section.4.1}
-\contentsline {subsection}{\numberline {4.1.1}Microsoft Kinect}{9}{subsection.4.1.1}
-\contentsline {subsection}{\numberline {4.1.2}LEGO NXT Gyroscope}{9}{subsection.4.1.2}
-\contentsline {subsection}{\numberline {4.1.3}LEGO NXT Accelerometer}{9}{subsection.4.1.3}
-\contentsline {section}{\numberline {4.2}LEGO NXT Servo motor}{10}{section.4.2}
-\contentsline {section}{\numberline {4.3}Arduino}{10}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Arduino Wifi Shield}{10}{subsection.4.3.1}
-\contentsline {subsection}{\numberline {4.3.2}Arduino Motor Shield}{10}{subsection.4.3.2}
-\contentsline {section}{\numberline {4.4}Requirements}{11}{section.4.4}
-\contentsline {chapter}{\chapternumberline {5}First increment}{13}{chapter.5}
-\contentsline {section}{\numberline {5.1}Requirements}{13}{section.5.1}
-\contentsline {section}{\numberline {5.2}System design}{13}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}Predefined area}{14}{subsection.5.2.1}
-\contentsline {subsection}{\numberline {5.2.2}Throwing}{14}{subsection.5.2.2}
-\contentsline {subsection}{\numberline {5.2.3}Microsoft Kinect}{14}{subsection.5.2.3}
-\contentsline {subsection}{\numberline {5.2.4}Trajectory prediction}{14}{subsection.5.2.4}
-\contentsline {subsection}{\numberline {5.2.5}Gyroscope and Accelerometer}{15}{subsection.5.2.5}
-\contentsline {subsection}{\numberline {5.2.6}Movement}{16}{subsection.5.2.6}
-\contentsline {section}{\numberline {5.3}Implementation}{16}{section.5.3}
-\contentsline {subsection}{\numberline {5.3.1}Predefined area}{16}{subsection.5.3.1}
-\contentsline {subsection}{\numberline {5.3.2}Throwing}{16}{subsection.5.3.2}
-\contentsline {subsection}{\numberline {5.3.3}Microsoft Kinect}{17}{subsection.5.3.3}
-\contentsline {subsection}{\numberline {5.3.4}Gyroscope and Accelerometer}{17}{subsection.5.3.4}
-\contentsline {subsection}{\numberline {5.3.5}Movement}{17}{subsection.5.3.5}
-\contentsline {section}{\numberline {5.4}Evaluation}{17}{section.5.4}
-\contentsline {chapter}{\chapternumberline {6}Increment two}{19}{chapter.6}
-\contentsline {section}{\numberline {6.1}Requirements}{19}{section.6.1}
-\contentsline {section}{\numberline {6.2}System design}{19}{section.6.2}
-\contentsline {subsection}{\numberline {6.2.1}Wifi Shield}{19}{subsection.6.2.1}
-\contentsline {section}{\numberline {6.3}Implementation}{19}{section.6.3}
-\contentsline {subsection}{\numberline {6.3.1}Wifi Shield}{19}{subsection.6.3.1}
-\contentsline {section}{\numberline {6.4}Evaluation}{20}{section.6.4}
-\contentsline {chapter}{\chapternumberline {7}Tests}{21}{chapter.7}
-\contentsline {chapter}{\chapternumberline {8}Discussion}{23}{chapter.8}
-\contentsline {chapter}{\chapternumberline {9}Conclusion}{25}{chapter.9}
-\contentsline {chapter}{\chapternumberline {10}Future work}{27}{chapter.10}
-\contentsline {chapter}{Bibliography}{29}{section*.7}
-\contentsline {appendix}{\chapternumberline {A}Appendix}{31}{appendix.A}
+\contentsline {chapter}{\chapternumberline {3}Hardware}{7}{chapter.3}
+\contentsline {section}{\numberline {3.1}Sensors}{7}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Microsoft Kinect}{7}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {3.1.2}LEGO NXT Gyroscope}{7}{subsection.3.1.2}
+\contentsline {subsection}{\numberline {3.1.3}LEGO NXT Accelerometer}{7}{subsection.3.1.3}
+\contentsline {section}{\numberline {3.2}LEGO NXT Servo motor}{8}{section.3.2}
+\contentsline {section}{\numberline {3.3}Arduino}{8}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Arduino Wifi Shield}{8}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}Arduino Motor Shield}{8}{subsection.3.3.2}
+\contentsline {section}{\numberline {3.4}Requirements}{9}{section.3.4}
+\contentsline {chapter}{\chapternumberline {4}First increment}{11}{chapter.4}
+\contentsline {section}{\numberline {4.1}Requirements}{11}{section.4.1}
+\contentsline {section}{\numberline {4.2}System design}{11}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Predefined area}{12}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Throwing}{12}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.3}Microsoft Kinect}{12}{subsection.4.2.3}
+\contentsline {subsection}{\numberline {4.2.4}Trajectory prediction}{12}{subsection.4.2.4}
+\contentsline {subsection}{\numberline {4.2.5}Gyroscope and Accelerometer}{13}{subsection.4.2.5}
+\contentsline {subsection}{\numberline {4.2.6}Movement}{14}{subsection.4.2.6}
+\contentsline {section}{\numberline {4.3}Implementation}{14}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Gyroscope and Accelerometer in use}{14}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Predefined area}{14}{subsection.4.3.2}
+\contentsline {subsection}{\numberline {4.3.3}Throwing}{15}{subsection.4.3.3}
+\contentsline {subsection}{\numberline {4.3.4}Microsoft Kinect}{15}{subsection.4.3.4}
+\contentsline {subsection}{\numberline {4.3.5}Gyroscope and Accelerometer}{15}{subsection.4.3.5}
+\contentsline {subsection}{\numberline {4.3.6}Movement}{15}{subsection.4.3.6}
+\contentsline {section}{\numberline {4.4}Evaluation}{15}{section.4.4}
+\contentsline {chapter}{\chapternumberline {5}Increment two}{17}{chapter.5}
+\contentsline {section}{\numberline {5.1}Requirements}{17}{section.5.1}
+\contentsline {section}{\numberline {5.2}System design}{17}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Wifi Shield}{17}{subsection.5.2.1}
+\contentsline {section}{\numberline {5.3}Implementation}{17}{section.5.3}
+\contentsline {subsection}{\numberline {5.3.1}Wifi Shield}{17}{subsection.5.3.1}
+\contentsline {section}{\numberline {5.4}Evaluation}{18}{section.5.4}
+\contentsline {chapter}{\chapternumberline {6}Tests}{19}{chapter.6}
+\contentsline {chapter}{\chapternumberline {7}Discussion}{21}{chapter.7}
+\contentsline {chapter}{\chapternumberline {8}Conclusion}{23}{chapter.8}
+\contentsline {chapter}{\chapternumberline {9}Future work}{25}{chapter.9}
+\contentsline {chapter}{Bibliography}{27}{section*.7}
+\contentsline {appendix}{\chapternumberline {A}Appendix}{29}{appendix.A}

@@ -91,7 +91,7 @@ After this section, the projectile can be tracked, and the path for a given proj
 
 \subsection{Gyroscope and Accelerometer}
 \label{sec:i1Gyroscope and Accelerometer}
-For positioning the robot, the Lego NXY Gyro and Accelerometer sensors will be considered. These sensors will be used together to position the robot, as the gyroscope will tell the number of degrees the robot has turned, which is relative to the heading of the robot at the start of the recording of data. This heading will be used together with an accelerometer, which can be used to calculate the distance the robot has traveled since the beginning of the recording of data. The time spent and the speed of the robot will be the data of this sensor.
+For positioning the robot, the Lego NXT Gyro and Accelerometer sensors will be considered. These sensors will be used together to position the robot, as the gyroscope will tell the number of degrees the robot has turned, which is relative to the heading of the robot at the start of the recording of data. This heading will be used together with an accelerometer, which can be used to calculate the distance the robot has traveled since the beginning of the recording of data. The time spent and the speed of the robot will be the data of this sensor.
 
 
 \subsection{Movement}
@@ -130,9 +130,6 @@ The group decided after several tests to let the trash (still a table tennis bal
 \subsection{Microsoft Kinect}
 \label{sec:i1Microsoft KinectImplementation}
 
-\subsection{Gyroscope and Accelerometer}
-\label{sec:i1Gyroscope and AccelerometerImplementation}
-
 \subsection{Movement}
 \label{sec:i1MovementImplementation}
 Movement: The wheels were tested and forward motion was achieved with a speed of [insert speed] centimetres per second. The robot was also able to drive backwards at a lower speed of ….. Insert reason why we didn't turn by moving both wheels counterclockwise each other. It was discovered that the speed at which the robot drives backwards is much slower than its forward moving speed, because of the speed of backwards motion, it was decided to not consider driving backwards at all since the speed is inadequate (prefer tangible example) and since this would also simplify the problem. To solve this issue, it was decided to change the throw to always be in front of the machine, thus ensuring it would never be forced to drive backwards. This does however not take into account if the Kinect projectile prediction predicts the projectile will land behind the machine but this issue only arises if prediction is sufficiently miscalculated which is unlikely (anything else we can say about this? or rephrase).
@@ -140,3 +137,7 @@ Movement: The wheels were tested and forward motion was achieved with a speed of
 \section{Evaluation}
 \label{sec:i1Evaluation}
 The requirements stating that the robot should know where it is positioned, will persist through this increment, as no solution has been found. The use of a gyroscope and accelerometer was not the right solution for this project, as the need of precise data would not be supported by sensors with a large amount of jitter. The robots starting position will always determine where the predefined area of the robot is, as the predefined area is defined by the robots position, and it's hardware limitations. The concept of predefined area is entirely based on the rotation speed of motor with wheel circumference and the duration of the throw, if any element the predefined area consists of changes, then so does the predefined area. Movement was not nearly as simple as expected and the implications of the problems encountered in its implementation is not fully solved in increment one.
+
+When considering the the requirement: ”The robot should be able to turn, drive forward and drive backwards”, the group decided to remove the drive backwards part of the requirement as the group has decided to have a fixed starting point, from where the trash bin will always start and therefore didn’t see a reason for the ability to move backwards.
+The other two parts of the requirement are fulfilled.
+
