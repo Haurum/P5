@@ -143,3 +143,29 @@ The robots starting position will always determine where the predefined area of 
 When considering the the requirement: ”The robot should be able to turn, drive forward and drive backwards”, the group decided to remove the drive backwards part of the requirement as the group has decided to have a fixed starting point, from where the trash bin will always start and therefore didn’t see a reason for the ability to move backwards.
 The other two parts of the requirement are fulfilled.
 
+The requirements after finalizing increment one is:
+\begin{itemize}
+\item The trash bin should catch the trash if the user throws it towards the trash bin and within a predefined area
+\begin{itemize}
+	\item \textcolor{green}{The robots predefined area should be calculated from the hardware limitations of the motors’ speed}
+\end{itemize}
+\item The robot should know where it is positioned
+\begin{itemize}
+	\item \textcolor{yellow}{The robot should have a starting position, from where it should be able to calculate it's current position through calculations of wheel rotations}
+	\item \textcolor{green}{The robot's starting point should be placed outside its predefined area, such that it moves forward into the area}
+\end{itemize}
+\item The robot should be able to detect and track the thrown trash
+\begin{itemize}
+	\item \textcolor{green}{The thrown trash should be detected and tracked by a Microsoft Kinect}
+	\item The Kinect should send the coordinates of the impact point of the trash to the robot
+\end{itemize}
+\item The robot should know where the the thrown trash will land
+\begin{itemize}
+	\item \textcolor{green}{Trajectory prediction should be used to calculate impact point of the thrown trash}
+\end{itemize}
+\item The robot should be able to move the trash bin, such that the thrown trash lands inside the bin
+\begin{itemize}
+	\item \textcolor{purple}{The robot should be able to turn and drive forward}
+	\item Multiple trash thrown should not be considered
+\end{itemize}
+\end{itemize}
