@@ -1,7 +1,5 @@
 \chapter{First increment}
 \label{chap:First Increment}
-Test om: Bounce, predefined area
-Skal komme væk fra accelerotmeter og gyroscope. 
 
 \section{Requirements}
 \label{sec:i1Requirements}
@@ -105,7 +103,13 @@ The robot was expected to be able to drive forward and backwards, to enable it t
 
 \subsection{Gyroscope and Accelerometer in use}
 \label{sec:i1Gyroscope and Accelerometer in use}
-For the implementation of the gyroscope and the accelerometer, a test has to be done, to benchmark the precision of the sensors. For this, the data sent from the Arduino when the sensor has been plugged into the Arduino, was plotted in the Serial Plotter, which is a feature in the Arduino IDE. After various tests, the decision was to find a better alternative to these sensors, as the gyroscope in particular, had a lot of jitter. This jitter would even increase over time, making the use of the robot limited, as any user would have to restart the robot when the use wants to throw anything at the robot.
+For the implementation of the gyroscope and the accelerometer, a test has to be done, to benchmark the precision of the sensors. For this, the data sent from the Arduino when the sensor has been plugged into the Arduino, was plotted in the Serial Plotter, which is a feature in the Arduino IDE. 
+
+The accelerometer would not be precise enough to calculate the distance the robot had moved. The accelerometer would give an acceleration, to calculate from an acceleration to a distance, the time had to be multiplied to the acceleration twice. If the acceleration was not precise, this would lead to a big margin of error. 
+
+The gyroscope worked just fine, but when it was not moving, the data seen in the Serial plotter would wander. This meant that when reading data from the gyroscope, either the gyroscope should be reset before reading data or the value would be the difference of when it started reading till it stopped. 
+
+Instead of using the gyroscope and the accelerometer, it was decided to use the motor' encoderes, which can be used to calculate the heading and the distance moved. 
 
 \subsection{Predefined area}
 \label{sec:i1Predefined areaImplementation}

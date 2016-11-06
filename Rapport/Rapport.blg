@@ -5,10 +5,9 @@ A level-1 auxiliary file: formalia/titelblad.aux
 A level-1 auxiliary file: formalia/forord.aux
 A level-1 auxiliary file: intro/indledning.aux
 A level-1 auxiliary file: intro/analysis.aux
-A level-1 auxiliary file: kontekst/Theory.aux
 A level-1 auxiliary file: kontekst/Hardware.aux
 A level-1 auxiliary file: kontekst/IncrementOne.aux
-A level-1 auxiliary file: kontekst/implementation.aux
+A level-1 auxiliary file: kontekst/IncrementTwo.aux
 A level-1 auxiliary file: kontekst/tests.aux
 A level-1 auxiliary file: formalia/discussion.aux
 A level-1 auxiliary file: formalia/konklusion.aux
