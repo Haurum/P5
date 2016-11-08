@@ -43,8 +43,6 @@ void loop() {
   }
   if(readString != ""){
     Serial.println(readString);
-    Serial.println(count);
-    count++;
     readString = "";
   }
 }
