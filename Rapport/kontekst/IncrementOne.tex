@@ -1,5 +1,5 @@
-\chapter{First increment}
-\label{chap:First Increment}
+\chapter{Increment one}
+\label{chap:Increment  one}
 
 \section{Requirements}
 \label{sec:i1Requirements}
@@ -102,7 +102,6 @@ The robot is expected to be able to drive both forward and backwards. The robot 
 
 \subsection{Gyroscope and Accelerometer in use}
 \label{sec:i1Gyroscope and Accelerometer in use}
-<<<<<<< HEAD
 For the implementation of the gyroscope and the accelerometer, a test has to be done, to benchmark the precision of the sensors. For this, the data sent from the Arduino when the sensor has been plugged into the Arduino, was plotted in the Serial Plotter, which is a feature in the Arduino IDE. 
 
 The accelerometer would not be precise enough to calculate the distance the robot had moved. The accelerometer would give an acceleration, to calculate from an acceleration to a distance, the time had to be multiplied to the acceleration twice. If the acceleration was not precise, this would lead to a big margin of error. 
@@ -110,9 +109,7 @@ The accelerometer would not be precise enough to calculate the distance the robo
 The gyroscope worked just fine, but when it was not moving, the data seen in the Serial plotter would wander. This meant that when reading data from the gyroscope, either the gyroscope should be reset before reading data or the value would be the difference of when it started reading till it stopped. 
 
 Instead of using the gyroscope and the accelerometer, it was decided to use the motor' encoderes, which can be used to calculate the heading and the distance moved. 
-=======
-A series of tests of the gyroscope and accelerometer benchmark the precision of the sensors. For this, the data sent from the Arduino by the sensor, was plotted in the Serial Plotter, which is a feature in the Arduino IDE. After various tests, the decision was to find a better alternative to these sensors, as the gyroscope in particular, had a lot of jitter. This jitter would even increase over time, making the use of the robot limited, as any user would have to restart the robot when the user wants to throw anything at the robot.
->>>>>>> origin/master
+
 
 \subsection{Predefined area}
 \label{sec:i1Predefined areaImplementation}
@@ -141,7 +138,7 @@ After conducting another set of tests, this theory proved to be correct. The ave
 
 \subsection{Movement}
 \label{sec:i1MovementImplementation}
-An Arduino Motor Shield is used to enable greater control of the movement of the motors through the motor shields library called Adafruit which is included through #include <AFMotor.h> (unsure how to present this nicely)
+An Arduino Motor Shield is used to enable greater control of the movement of the motors through the motor shields library called Adafruit which is included through \#include <AFMotor.h> (unsure how to present this nicely)
 The Arduino Motor Shield and library enables manipulation of the individual wheels instead of only being able to either rotate forward or backwards on both wheels simultaneously. 
 The wheels were tested and forward motion was achieved with a speed of roughly 23 centimetres per second. It was discovered that the speed at which the robot drives backwards is much slower than its forward moving speed, because of the speed of backwards motion, it was decided to not consider driving backwards at all since the speed were inadequate and since this would also simplify the problem, and could later be solved with different motors. To solve this issue, it was decided to change the throw to always be in front of the machine, thus ensuring it would never be forced to drive backwards. This does however not take into account if the Kinect projectile prediction predicts the projectile will land behind the machine but this issue only arises if prediction is sufficiently miscalculated which is unlikely.
 
