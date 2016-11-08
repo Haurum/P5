@@ -96,7 +96,7 @@ For positioning the robot, the Lego NXT Gyro and Accelerometer sensors will be c
 
 \subsection{Movement}
 \label{sec:i1Movement}
-Since any forward movement exceeding 90 degrees would be inefficient compared to moving backwards, the robot is expected to be able to drive both forward and backwards. The robot is expected to turn using either one active wheel, or using both wheels in a counterclockwise motion in order to turn faster.
+The robot is expected to be able to drive both forward and backwards. The robot is expected to turn using either one active wheel, or using both wheels in a counterclockwise motion in order to turn faster.
 
 
 \section{Implementation}
@@ -133,7 +133,9 @@ After conducting another set of tests, this theory proved to be correct. The ave
 
 \subsection{Movement}
 \label{sec:i1MovementImplementation}
-Movement: The wheels were tested and forward motion was achieved with a speed of [insert speed] centimetres per second. The robot was also able to drive backwards at a lower speed of ….. Insert reason why we didn't turn by moving both wheels counterclockwise each other. It was discovered that the speed at which the robot drives backwards is much slower than its forward moving speed, because of the speed of backwards motion, it was decided to not consider driving backwards at all since the speed is inadequate (prefer tangible example) and since this would also simplify the problem. To solve this issue, it was decided to change the throw to always be in front of the machine, thus ensuring it would never be forced to drive backwards. This does however not take into account if the Kinect projectile prediction predicts the projectile will land behind the machine but this issue only arises if prediction is sufficiently miscalculated which is unlikely (anything else we can say about this? or rephrase).
+An Arduino Motor Shield is used to enable greater control of the movement of the motors through the motor shields library called Adafruit which is included through #include <AFMotor.h> (unsure how to present this nicely)
+The Arduino Motor Shield and library enables manipulation of the individual wheels instead of only being able to either rotate forward or backwards on both wheels simultaneously. 
+The wheels were tested and forward motion was achieved with a speed of roughly 23 centimetres per second. It was discovered that the speed at which the robot drives backwards is much slower than its forward moving speed, because of the speed of backwards motion, it was decided to not consider driving backwards at all since the speed were inadequate and since this would also simplify the problem, and could later be solved with different motors. To solve this issue, it was decided to change the throw to always be in front of the machine, thus ensuring it would never be forced to drive backwards. This does however not take into account if the Kinect projectile prediction predicts the projectile will land behind the machine but this issue only arises if prediction is sufficiently miscalculated which is unlikely.
 
 \section{Evaluation}
 \label{sec:i1Evaluation}
