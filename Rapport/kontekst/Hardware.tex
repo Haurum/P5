@@ -4,26 +4,26 @@ This chapter will describe the hardware considerations for the project, the hard
 
 \section{Sensors}
 \label{sec:Sensors}
-Sensors were used to measure the environment outside the arduino and to enable the arduino to understand the outside environment. The sensors utilized are described below in individual sections. 
+Sensors were used to measure the environment around the arduino and enable the arduino to understand that environment. The sensors utilized are described in individual sections. 
 
 \subsection{Microsoft Kinect}
 \label{sec:Microsoft Kinect}
-The Microsoft Kinect sensor, enables the robot to gather information about flying objects that it can catch. The Kinect is a motion sensing device that is able to gather information about the location of an object, including the depth of an object (how far it is from the sensor), using an infrared camera. By using the depth information, the Kinect is able to semi-accurately locate the object in 3 dimensions.
-By spotting objects multiple positions in these three dimensions, it is possible to calculate the path of the moving object, and thereby predict the position in which it is going to land. This information can be send to the robot, so the robot can move into position to possibly catch the object before it hits the ground.
+The Microsoft Kinect camera sensor enables the robot to gather information about thrown objects. The Kinect is a motion sensing device that is able to gather information about the location of an object, including the depth imaging, used to calculate the distance between the camera and the object, using a speckle pattern from an infrared camera. By using the depth information, the Kinect is able to locate the object in 3 dimensions.
+By spotting object multiple times in three dimensions, it is possible to calculate the path of the moving object, and thereby predict the impact point. This information can be sent to the robot, to enable the robot to move into position to possibly catch the object.
 
 \subsection{LEGO NXT Gyroscope}
 \label{sec:LEGO NXT Gyroscope}
-A gyroscope can be used to measure rotation of the robot. A gyroscope works, by having a spinning disc that creates resistance when the robot is turned. This resistance is measured by the Lego NXT Gyro, and returned as a value representing the number of degrees per second of rotation. 
+A gyroscope can be used to measure the heading of the robot. A gyroscope is constructed as a spinning disc that creates resistance when the robot is turned. This resistance is measured by the Lego NXT Gyro, and returned as a value representing the number of degrees per second of rotation. 
 
 \subsection{LEGO NXT Accelerometer}
 \label{sec:LEGO NXT Accelerometer}
-An Accelerometer is a device that measures the force affecting it. The Lego NXT Accelerometer measures this information, and sends it to the robot, to provide capability for the robot to calculate its acceleration and possibly its location.
+An Accelerometer is a device that measures the force affecting it. The Lego NXT Accelerometer measures this information, and sends it to the robot, to provide capability for the robot to calculate its acceleration. The gyroscope and the accelerometer can in concoction be used to position the robot.
 
 \section{LEGO NXT Servo motor}
 \label{sec:LEGO NXT Servo motor}
-For the robot to be able to move, it would need wheels powered by motors. In this project the LEGO NXT 9v Servo motors has been used, which at full power with no load can reach 170 RPM. These motors has a gear range of 1:48, split on the gear train in the motor. \citep{Servo} This motor includes an optical fork to provide the rotation sensor functionality, which can provide data of motor rotations down to a \(1^{\circ}\) precision.
+For the robot to be able to move, it would need wheels powered by motors. In this project the LEGO NXT 9v Servo motor has been used, which at full power with no load can reach 170 RPM. The motor has a gear range of 1:48 split on the gear train in the motor. \citep{Servo} The motor includes an optical fork to provide data of motor rotations down to a \(1^{\circ}\) precision.
 
-The group decided to do their own calculations for the RPM and a calculation for mm/s for the servo motor. 
+For precision, and to benchmark the specific motors used in this project, a series of tests and measurements has been done on these motors:
 
 The diameter of the wheel: 56mm \newline
 The circumference of the wheel: 56 \begin{math}\cdot \pi \end{math} = 175.929mm
@@ -37,33 +37,31 @@ The motor’s RPM is: (2230 \begin{math} \cdot \end{math} 175.929) \begin{math} 
 
 \section{Arduino}
 \label{sec:Arduino}
-We chose the arduino mega 2560 because we wanted to introduce real time problems and have limited computational power to introduce interesting problems as a learning experience. At the start of the project, we tried a NXT but it would’ve been too simple to work with. We actually ordered an arduino uno for even less memory, but there weren’t any left, so we went with the mega 2560. \citep{a}
+The Arduino Mega 2560 was chosen for this project, as it has limited computational power, which will introduce intereting problems, as well as real-time constraints. \citep{a}
 
-Some specs:\newline
+Arduino Mega 2560 Specifications:\newline
 Flash memory: 256KB (8 used by bootloader)\newline
 SRAM: 8KB\newline
 EEPROM: 4KB\newline
 Clock Speed: 16 MHz\newline
 Weight: 37g
 
-For the making the robot connect to the program for the Microsoft Kinect and controlling the DC motors, an Arduino Wifi Shield and Arduino Motor shield will be used in the project and explained below.
-
 \subsection{Arduino Wifi Shield}
 \label{sec: Arduino Wifi Shield}
-The WifiShield was acquired to enable wifi communication between the Kinect sensor and the arduino mega. Intended use was for the Kinect to send the coordinates of the object or the coordinates of the object when it lands and or bounces to the arduino. The wifi connection is able to transmit data at a rate of 9600 bits a minute, which is equivalent to 1.2 bytes per millisecond. 
+The WifiShield was acquired to enable wifi communication between the Kinect sensor and the Arduino Mega. The intention was to send the coordinates of the objects impact point to the Arduino, without limiting the movement of the robot. The wifi connection is able to transmit data at a rate of 9600 bits a minute. 
 \citep{aws}
 
 \subsection{Arduino Motor Shield}
 \label{sec:Arduino Motor Shield}
-The Arduino Motor Shield is needed for the project to control the two DC motors independently. Without the motor shield the robot would only be able to run forward and backwards with both tires at the same time, not making it possible to turn. 
-To run the motor shield an external power source is needed, in this case two 9V batteries in a serial circuit. \citep{ams}
+The Arduino Motor Shield is needed for the project to control the two DC motors independently. Without the motor shield the robot would only be able to move forward and backwards with both wheels at the same time. 
+The motor shield needs an external power source, as the Arduino cannot provide enough power. To solve this issue, a serial circuit of two 9V batteries is attached to the shield. \citep{ams}
 
 \section{Requirements}
 \label{sec:HWrequirements}
-Considering all the limitations and the capabilities of the hardware for the project, the requirements from the previous chapter will be reviewed and new requirements will be added if necessary. New requirements will be mark with red. 
+Considering all the limitations and the capabilities of the hardware for the project, the requirements from the previous chapter will be reviewed and new requirements will be added if necessary. The new requirements will be mark with red. 
 
 \begin{itemize}
-\item The trash bin should catch the trash if the user throws it towards the trash bin and within a predefined area
+\item When a user throws an object towards the trash bin, within the predefined area, the bin should always catch the object
 \begin{itemize}
 \item \textcolor{red}{The robots predefined area should be calculated from the hardware limitations of the motors’ speed}
 \end{itemize}
@@ -72,21 +70,21 @@ Considering all the limitations and the capabilities of the hardware for the pro
 \item \textcolor{red}{The robot should have a starting position, from where it should be able to calculate it's current position }
 \item \textcolor{red}{The robot's starting point should be placed outside its predefined area, such that it moves forward into the area}
 \end{itemize}
-\item The robot should be able to detect and track the thrown trash
+\item The robot should be able to detect and track the thrown object
 \begin{itemize}
-\item \textcolor{red}{The thrown trash should be detected and tracked by a Microsoft Kinect}
-\item \textcolor{red}{The Kinect should send the coordinates of the impact point of the trash to the robot}
+\item \textcolor{red}{The thrown object should be detected and tracked by a Microsoft Kinect}
+\item \textcolor{red}{The Kinect should send the coordinates of the impact point of the object to the robot}
 \end{itemize}
-\item The robot should know where the the thrown trash will land
+\item The robot should be able to calculate the impact point for the object
 \begin{itemize}
-\item \textcolor{red}{Trajectory prediction should be used to calculate impact point of the thrown trash}
+\item \textcolor{red}{Trajectory prediction should be used to calculate the impact point of the thrown object}
 %\item \textcolor{red}{The trajectory prediction should include a bounce prediction}
 %\item \textcolor{red}{The bounce-shot should be thrown from a designated side of the camera}
 %\item \textcolor{red}{The bounce-shot should bounce into the predefined area where the robot should catch the trash within }
 \end{itemize}
-\item The robot should be able to move the trash bin, such that the thrown trash lands inside the bin
+\item The robot should be able to move the trash bin, such that the thrown object lands inside the bin
 \begin{itemize}
-\item \textcolor{red}{The robot should be able to turn, drive forward and drive backwards}
-\item \textcolor{red}{Multiple trash thrown should not be considered}
+\item \textcolor{red}{The robot should be able to turn and drive forward and backwards}
 \end{itemize}
+\item \textcolor{red}{The robot should be able to receive data from a computer, through a wireless network}
 \end{itemize}

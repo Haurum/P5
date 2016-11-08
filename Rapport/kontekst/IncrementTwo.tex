@@ -4,6 +4,32 @@
 \section{Requirements}
 \label{sec:i2Requirements}
 
+\begin{itemize}
+	\item The trash bin should catch the trash if the user throws it towards the trash bin and within a predefined area
+	\begin{itemize}
+		\item {The robots predefined area should be calculated from the hardware limitations of the motors’ speed}
+	\end{itemize}
+	\item The robot should know where it is positioned
+	\begin{itemize}
+		\item \textcolor{blue}{The robot should have a starting position, from where it should be able to calculate it's current position through calculations of the motory encoders}
+		\item {The robot's starting point should be placed outside its predefined area, such that it moves forward into the area}
+	\end{itemize}
+	\item The robot should be able to detect and track the thrown trash
+	\begin{itemize}
+		\item {The thrown trash should be detected and tracked by a Microsoft Kinect}
+		\item \textcolor{blue}{The Kinect should send the coordinates of the impact point of the trash to the robot}
+	\end{itemize}
+	\item The robot should know where the the thrown trash will land
+	\begin{itemize}
+		\item {Trajectory prediction should be used to calculate impact point of the thrown trash}
+	\end{itemize}
+	\item The robot should be able to move the trash bin, such that the thrown trash lands inside the bin
+	\begin{itemize}
+		\item {The robot should be able to turn and drive forward}
+	\end{itemize}
+	\item \textcolor{blue}{The robot should be able to receive data from a computer, through a wireless network}
+\end{itemize}
+
 \section{System design}
 \label{sec:i2System design}
 
@@ -17,7 +43,7 @@ The data should be sent, as earlier mentioned in section \ref{sec: Arduino Wifi 
 
 \subsection{Wifi Shield}
 \label{sec:Wifi Shield Implementation}
-First a private network for the computer running the Kinect program and the Arduino wifi shield were sat up. This was done so that it was possible to port forward the necessary ports on the router, so that the Kinect program could send the data to the wifi shield.
+To implement the Wifi Shield as part of the Arduino, the router connecting the Wifi Shield with a computer had to be port forwarded. The private network hosted by the D-link router had a specific ssid and password, which had to be explicitly assigned in the Arduino code for the Wifi Shield. The setup in the Arduino code was used to start the connection between the computer and the Wifi Shield, as well as printing the log of the connection \ref{ws}.
 
 \begin{lstlisting}[caption={Connecting the Wifi shield to the network}, label={ws}]
 void setup() {
@@ -39,9 +65,34 @@ void setup() {
 }
 \end{lstlisting}
 
-Next thing is too connect the wifi shield to the router, which can be seen in listing \ref{ws}. Two char arrays was declared in the top of the program, containing the network name(ssid) and the password(pass).\newline
-To connect the wifi shield to the router, the serial port is opened, to search for the network. The wifi shield will try to find and connect to the network matching name of the ssid. 
-If it couldn't find any networks matching the ssid is will print out "Couldn't get a wifi connection". If the connecting was made it will print out "Connected to network" and print out the ip for the wifi shiled and it is now ready to receive date from the computer.
+After connecting the Wifi Shield to the router, the Arduino is ready to receive data. The data will be sent from a laptop, which connects and send data as shown in \ref{cws}. A tcpClient is created and connected to the IP of the WIfi Shield, and the port that has been forwarded. The data sent in the code is a string "test", which is sent as a byte-array, and after sending the data, the tcpClient closes the connection.
+
+\begin{lstlisting}[caption={Connecting the computer to the Wifi Shield}, label={cws}]
+tcpClient.Connect("192.168.0.100", 9999);
+string data = "test";
+const int IntSize = 4;
+byte[] bytedata;
+Stream stream = tcpClient.GetStream();
+
+stream.Write(Encoding.UTF8.GetBytes(data.ToCharArray()), 0, data.Length);
+tcpClient.Close();
+\end{lstlisting}
+
+When both the computer and the Wifi shield has made the connection, and the computer has sent the data, the Arduino can then receive the data. This is done through a Wifi client, from the Arduino Wifi library. When assigning the client to the server.available, the value of the client in an if-statement would be true if any client from the server has data available for reading, or false if no data was available. If a the client is connected, and the client has data available for reading, the next byte will be appended on the string readString, and after all the data available has been read, the full string sent by the client will be printed.
+
+\begin{lstlisting}[caption={Receiving data from the computer}, label={rdc}]
+client = server.available();
+while (client.connected()){
+if (client.available()) {
+char c = client.read(); 
+readString += c;
+}
+}
+if(readString != ""){
+Serial.println(readString);
+readString = "";
+}
+\end{lstlisting}
 
 (\textcolor{red}{The code describing how it receives data is needed here!})
 
