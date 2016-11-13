@@ -1,5 +1,6 @@
 \chapter{Increment one}
-\label{chap:Increment  one}
+\label{chap:Increment one}
+In this chapter the group will go through the requirements of the project and explain how these requirements can and has been implemented. The result of this would be a new set of requirements with some of the same requirements, new requirements and changed requirements.  
 
 \section{Requirements}
 \label{sec:i1Requirements}
@@ -99,6 +100,7 @@ The robot is expected to be able to drive both forward and backwards. The robot 
 
 \section{Implementation}
 \label{sec:i1Implementation}
+This section explains how the marked requirements has been implemented and whether or not the group changed the requirement, as something didn't work out as expected. 
 
 \subsection{Gyroscope and Accelerometer in use}
 \label{sec:i1Gyroscope and Accelerometer in use}
@@ -144,6 +146,9 @@ The wheels were tested and forward motion was achieved with a speed of roughly 2
 
 \section{Evaluation}
 \label{sec:i1Evaluation}
+This section will include a short summary of the chapter, ending up with a new requirement list, based on the how the group implemented the marked requirements from the beginning of the chapter.
+
+
 The requirements stating that the robot should know where it is positioned, will persist through this increment, as no solution was found in this increment. The use of a gyroscope and accelerometer was not the right solution for this project, as the need of precise data would not be supported by sensors with a large amount of jitter. Another way of positioning the robot would be by calculating the distance traveled on each wheel, through the motor encoder in the NXT servo motors. The distance traveled would be calculated by the rotation of the wheel and the circumference of that wheel.
 The robots starting position will always determine where the predefined area of the robot is along with its hardware limitations. The concept of a predefined area is entirely based on the rotation speed of each motor, the wheel circumference and the duration of the throw. If any element that defines the predefined area changes, then so does the predefined area. Movement was not nearly as simple as expected and the implications of the problems encountered in its implementation is not fully solved in this increment.
 
