@@ -19,34 +19,37 @@
 \contentsline {subsection}{\numberline {3.3.1}Arduino Wifi Shield}{8}{subsection.3.3.1}
 \contentsline {subsection}{\numberline {3.3.2}Arduino Motor Shield}{8}{subsection.3.3.2}
 \contentsline {section}{\numberline {3.4}Requirements}{8}{section.3.4}
-\contentsline {chapter}{\chapternumberline {4}Increment one}{11}{chapter.4}
-\contentsline {section}{\numberline {4.1}Requirements}{11}{section.4.1}
-\contentsline {section}{\numberline {4.2}System design}{12}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Predefined area}{12}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}Throwing}{12}{subsection.4.2.2}
-\contentsline {subsection}{\numberline {4.2.3}Microsoft Kinect}{12}{subsection.4.2.3}
-\contentsline {subsection}{\numberline {4.2.4}Trajectory prediction}{12}{subsection.4.2.4}
-\contentsline {subsection}{\numberline {4.2.5}Gyroscope and Accelerometer}{13}{subsection.4.2.5}
-\contentsline {subsection}{\numberline {4.2.6}Movement}{14}{subsection.4.2.6}
-\contentsline {section}{\numberline {4.3}Implementation}{14}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Gyroscope and Accelerometer in use}{14}{subsection.4.3.1}
-\contentsline {subsection}{\numberline {4.3.2}Predefined area}{14}{subsection.4.3.2}
-\contentsline {subsection}{\numberline {4.3.3}Throwing}{14}{subsection.4.3.3}
-\contentsline {subsection}{\numberline {4.3.4}Microsoft Kinect}{15}{subsection.4.3.4}
-\contentsline {subsection}{\numberline {4.3.5}Movement}{15}{subsection.4.3.5}
-\contentsline {section}{\numberline {4.4}Evaluation}{16}{section.4.4}
-\contentsline {chapter}{\chapternumberline {5}Increment two}{19}{chapter.5}
-\contentsline {section}{\numberline {5.1}Requirements}{19}{section.5.1}
-\contentsline {section}{\numberline {5.2}System design}{19}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}Wifi Shield}{19}{subsection.5.2.1}
-\contentsline {subsection}{\numberline {5.2.2}Robot positioning}{20}{subsection.5.2.2}
-\contentsline {section}{\numberline {5.3}Implementation}{20}{section.5.3}
-\contentsline {subsection}{\numberline {5.3.1}Wifi Shield}{20}{subsection.5.3.1}
-\contentsline {subsection}{\numberline {5.3.2}Robot positioning}{21}{subsection.5.3.2}
-\contentsline {section}{\numberline {5.4}Evaluation}{21}{section.5.4}
-\contentsline {chapter}{\chapternumberline {6}Tests}{23}{chapter.6}
-\contentsline {chapter}{\chapternumberline {7}Discussion}{25}{chapter.7}
-\contentsline {chapter}{\chapternumberline {8}Conclusion}{27}{chapter.8}
-\contentsline {chapter}{\chapternumberline {9}Future work}{29}{chapter.9}
-\contentsline {chapter}{Bibliography}{31}{section*.7}
-\contentsline {appendix}{\chapternumberline {A}Appendix}{33}{appendix.A}
+\contentsline {chapter}{\chapternumberline {4}System requirements}{11}{chapter.4}
+\contentsline {chapter}{\chapternumberline {5}System design}{13}{chapter.5}
+\contentsline {chapter}{\chapternumberline {6}Increment one}{15}{chapter.6}
+\contentsline {section}{\numberline {6.1}Requirements}{15}{section.6.1}
+\contentsline {section}{\numberline {6.2}System design}{16}{section.6.2}
+\contentsline {subsection}{\numberline {6.2.1}Predefined area}{16}{subsection.6.2.1}
+\contentsline {subsection}{\numberline {6.2.2}Throwing}{16}{subsection.6.2.2}
+\contentsline {subsection}{\numberline {6.2.3}Microsoft Kinect}{16}{subsection.6.2.3}
+\contentsline {subsection}{\numberline {6.2.4}Trajectory prediction}{16}{subsection.6.2.4}
+\contentsline {subsection}{\numberline {6.2.5}Gyroscope and Accelerometer}{17}{subsection.6.2.5}
+\contentsline {subsection}{\numberline {6.2.6}Movement}{18}{subsection.6.2.6}
+\contentsline {section}{\numberline {6.3}Implementation}{18}{section.6.3}
+\contentsline {subsection}{\numberline {6.3.1}Gyroscope and Accelerometer in use}{18}{subsection.6.3.1}
+\contentsline {subsection}{\numberline {6.3.2}Predefined area}{18}{subsection.6.3.2}
+\contentsline {subsection}{\numberline {6.3.3}Throwing}{18}{subsection.6.3.3}
+\contentsline {subsection}{\numberline {6.3.4}Microsoft Kinect}{19}{subsection.6.3.4}
+\contentsline {subsection}{\numberline {6.3.5}Movement}{19}{subsection.6.3.5}
+\contentsline {section}{\numberline {6.4}Evaluation}{20}{section.6.4}
+\contentsline {chapter}{\chapternumberline {7}Increment two}{23}{chapter.7}
+\contentsline {section}{\numberline {7.1}Requirements}{23}{section.7.1}
+\contentsline {section}{\numberline {7.2}System design}{23}{section.7.2}
+\contentsline {subsection}{\numberline {7.2.1}Wifi Shield}{23}{subsection.7.2.1}
+\contentsline {subsection}{\numberline {7.2.2}Robot positioning}{24}{subsection.7.2.2}
+\contentsline {section}{\numberline {7.3}Implementation}{24}{section.7.3}
+\contentsline {subsection}{\numberline {7.3.1}Wifi Shield}{24}{subsection.7.3.1}
+\contentsline {subsection}{\numberline {7.3.2}Robot positioning}{25}{subsection.7.3.2}
+\contentsline {section}{\numberline {7.4}Evaluation}{25}{section.7.4}
+\contentsline {chapter}{\chapternumberline {8}Implementation}{27}{chapter.8}
+\contentsline {chapter}{\chapternumberline {9}Tests}{29}{chapter.9}
+\contentsline {chapter}{\chapternumberline {10}Discussion}{31}{chapter.10}
+\contentsline {chapter}{\chapternumberline {11}Conclusion}{33}{chapter.11}
+\contentsline {chapter}{\chapternumberline {12}Future work}{35}{chapter.12}
+\contentsline {chapter}{Bibliography}{37}{section*.7}
+\contentsline {appendix}{\chapternumberline {A}Appendix}{39}{appendix.A}
