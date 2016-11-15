@@ -19,7 +19,9 @@
 \contentsline {subsection}{\numberline {3.3.1}Arduino Wifi Shield}{8}{subsection.3.3.1}
 \contentsline {subsection}{\numberline {3.3.2}Arduino Motor Shield}{8}{subsection.3.3.2}
 \contentsline {section}{\numberline {3.4}Requirements}{8}{section.3.4}
-\contentsline {chapter}{\chapternumberline {4}System requirements}{11}{chapter.4}
+\contentsline {chapter}{\chapternumberline {4}Design specification}{11}{chapter.4}
+\contentsline {section}{\numberline {4.1}System requirements}{11}{section.4.1}
+\contentsline {section}{\numberline {4.2}Delimitations}{12}{section.4.2}
 \contentsline {chapter}{\chapternumberline {5}System design}{13}{chapter.5}
 \contentsline {chapter}{\chapternumberline {6}Increment one}{15}{chapter.6}
 \contentsline {section}{\numberline {6.1}Requirements}{15}{section.6.1}
