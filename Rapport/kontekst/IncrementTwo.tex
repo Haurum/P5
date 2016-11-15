@@ -34,12 +34,12 @@ The requirement marked with blue will be considered throughout this chapter.
 
 \section{System design}
  \label{sec:i2System design} 
-In this section, the way the marked requirement are supposed to be fulfilled will be described and explained.  
+In this section, the marked requirements should be fulfilled and will be described and explained.  
 
 \subsection{Wifi Shield}
 \label{sec:Wifi Shield SD}
-When the Kinect have found the coordinates for the collision point of the thrown object, these coordinates should be sent to the robot, for it ot be able to move to the collision point and catch the object. 
-The data should be sent, as earlier mentioned in section \ref{sec: Arduino Wifi Shield}, by the Arduino wifi shiled. The Arduino and the computer running the Kinect program, should be connected to their own network, with the computer sending the data to the wifi shields IP-address.
+When the Kinect have found the coordinates for the collision point of the thrown object, these coordinates should be sent to the robot, for it to be able to move to the collision point and catch the object. 
+The data should be sent, as earlier mentioned in section \ref{sec: Arduino Wifi Shield}, by the Arduino wifi shield. The Arduino and the computer running the Kinect program, should be connected to their own network, with the computer sending data to the wifi shields IP-address.
 
 \subsection{Robot positioning}
 \label{sec:Robot positioning System Design}
@@ -76,7 +76,7 @@ void setup() {
 }
 \end{lstlisting}
 
-After connecting the Wifi Shield to the router, the Arduino is ready to receive data. The data will be sent from a laptop, which connects and send data as shown in \ref{cws}. A tcpClient is created and connected to the IP of the WIfi Shield, and the port that has been forwarded. The data sent in the code is a string "test", which is sent as a byte-array, and after sending the data, the tcpClient closes the connection.
+After connecting the Wifi Shield to the router, the Arduino is ready to receive data. The data will be sent from a laptop, which connects and sends data as shown in \ref{cws}. A tcpClient is created and connected to the IP of the Wifi Shield, and the port that has been forwarded. The data sent in the code is a string "test", which is sent as a byte-array, and after sending the data, the tcpClient closes the connection.
 
 \begin{lstlisting}[caption={Connecting the computer to the Wifi Shield}, label={cws}]
 tcpClient.Connect("192.168.0.100", 9999);
@@ -89,7 +89,7 @@ stream.Write(Encoding.UTF8.GetBytes(data.ToCharArray()), 0, data.Length);
 tcpClient.Close();
 \end{lstlisting}
 
-When both the computer and the Wifi shield has made the connection, and the computer has sent the data, the Arduino can then receive the data. This is done through a Wifi client, from the Arduino Wifi library. When assigning the client to the server.available, the value of the client in an if-statement would be true if any client from the server has data available for reading, or false if no data was available. If a the client is connected, and the client has data available for reading, the next byte will be appended on the string readString, and after all the data available has been read, the full string sent by the client will be printed.
+When both the computer and the Wifi shield has made the connection, and the computer has sent the data, the Arduino can then receive the data. This is done through a Wifi client, from the Arduino Wifi library. When assigning the client to the server.available, the value of the client in an if-statement would be true if any client from the server has data available for reading, or false if no data was available. If a client is connected, and the client has data available for reading, the next byte will be appended on the string readString, and after all the data available has been read, the full string sent by the client will be printed.
 
 \begin{lstlisting}[caption={Receiving data from the computer}, label={rdc}]
 client = server.available();
@@ -110,4 +110,4 @@ readString = "";
 
 \section{Evaluation}
 \label{sec:i2Evaluation}
-This section will include a short summary of the chapter and end up with an updated requirement list, showing changes from the first requirement list in the chapter. 
+This section will include a short summary of the chapter and conclude with an updated requirement list, showing changes from the first requirement list in the chapter. 
