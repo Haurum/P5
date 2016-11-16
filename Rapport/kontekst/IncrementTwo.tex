@@ -110,7 +110,6 @@ if(readString != ""){
 In the top of the Arduino program, a lot of variables were declared, which can be seen in listing \ref{declarations}. The two volatile integers leftTotal and rightTotal are used to count the number of degrees the motor have turned. leftTotal and rightTotal are volatile integers because the value of the variables can be changed by other things than the code, which in this case is the motors. \newline
 motorLeftRun and motorRighRun are booleans used to check whether the motors are running or not. \newline
 The variable called heading have the value of the robot's heading, which in this project will be the degrees the robot's direction is pointing away from the y-axis of its predefined area. Then robot's current position will be saved as coordinates in the variables posX and posY. \newline
-UNSIGNED INT TID - ER IKKE BRUGT \newline
 Several integers are declared which will get further explanation later in the section. 
 Also in the top of the program some identifiers have been defined and the necessary libraries have been included to the program.  
 
@@ -146,6 +145,54 @@ motorRightRun = false;
 leftTemp = leftTotal;
 rightTemp = rightTotal;
 \end{lstlisting}
+
+When the arduino program enters the loop function, seen in listing \ref{loop}, the first thing it will do is to check the if-statement at line. This if-statement checks if the robot is at its desired position, which is the coordinate set sent from the Kinect(goalX and goalY). If the robot was at the position it will release both motors and exit the program, else it will skip this if statement and continue in the loop function. \newline
+In lines 9-12 the difference of the desired coordinate and the current coordinate of the robot are calculated and assigned to the variables deltaY and deltaX. With these new variables the heading of which the robot should have to hit the desired point. The delta heading are calculated using the goalHeading and the current heading of the robot.\newline
+In lines 14 - 23 the if-else statement checks if the robot is on the right heading. If the robot's heading is less than -0.1 it will release the right motor and drive forward with the left, making the robot turn right. The robot will do the same check for 0.1 and will release the left motor and drive forward on the right, making the robot turn left. If the robot is on its right heading, it will drive forward, towards it desired point. \newline
+In lines 25-35 two new integers, currentLeft and currentRight, are assigned the values of leftTotal and rightTotal. Then the distance of how much the wheels have moved since last time it was looped through is calculated. This is done by taking the difference of currentLeft and leftTemp times DISTPRDEGREE, which was defined at the beginning of the program, the same is done with currentRight and tempRight. Then leftTemp and rightTemp are assigned the values of currentLeft and currentRight. \newline
+The distance the robot have moved is the average of how much the two motors have moved, so the the distances of the two motors are added together and divided by two. With the distance, the robots new current position is calculated assigned to the values posX and posY, and the new heading for the robot.
+ 
+
+\begin{lstlisting}[caption={The loop function}, label={loop}]
+void loop() {
+  if(round(posX) <= goalX + margin && round(posX) >= goalX - margin &&     round(posY) <= goalY + margin && round(posY) >= goalY - margin){
+    motorLeft.run(RELEASE);
+    motorRight.run(RELEASE);
+    delay(50);
+    exit(0);
+  }
+  
+  double deltaX = goalX - posX;
+  double deltaY = goalY - posY;
+  double goalHeading = atan(deltaX/deltaY);
+  double deltaHeading = goalHeading - heading;
+
+  if(deltaHeading < -0.1){
+    motorLeft.run(FORWARD);
+    motorRight.run(RELEASE);
+  }else if(deltaHeading > 0.1){
+    motorLeft.run(RELEASE);
+    motorRight.run(FORWARD);
+  }else{
+    motorLeft.run(FORWARD);
+    motorRight.run(FORWARD);
+  }
+  
+  delay(10);
+  int currentLeft = leftTotal;
+  int currentRight = rightTotal;
+  double deltaLeft = (currentLeft - leftTemp) * DISTPRDEGREE;
+  double deltaRight = (currentRight - rightTemp) * DISTPRDEGREE;
+  leftTemp = currentLeft;
+  rightTemp = currentRight;
+  double dist = (deltaLeft + deltaRight) / 2.0;
+  posX += (dist * sin(heading));
+  posY += (dist * cos(heading));
+  heading += (atan((deltaRight - deltaLeft) / WHEELDIST));
+}
+\end{lstlisting}
+
+
 
 \section{Evaluation}
 \label{sec:i2Evaluation}

@@ -13,7 +13,6 @@ volatile int rightTotal = 0;
 bool motorLeftRun = false;
 bool motorRightRun = false;
 double heading = 0.0, posX = 0.0, posY = 0.0;
-unsigned int tid;
 int leftTemp, rightTemp, goalX = 230, goalY = 330, margin = 10, loopcount = 0, signalCount = 0;
 
 #include <AFMotor.h>
@@ -44,12 +43,6 @@ void setup() {
 }
 
 void loop() {
-  loopcount++;
-  if(loopcount % 5 == 0 && signalCount < 5){
-    signalCount++;
-    goalX += -50;
-    goalY += 10;
-  }
   if(round(posX) <= goalX + margin && round(posX) >= goalX - margin && round(posY) <= goalY + margin && round(posY) >= goalY - margin){
     motorLeft.run(RELEASE);
     motorRight.run(RELEASE);
@@ -59,8 +52,8 @@ void loop() {
   double deltaX = goalX - posX;
   double deltaY = goalY - posY;
   double goalHeading = atan(deltaX/deltaY);
-  
   double deltaHeading = goalHeading - heading;
+  
   if(deltaHeading < -0.1){
     motorLeft.run(FORWARD);
     motorRight.run(RELEASE);

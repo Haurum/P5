@@ -50,11 +50,11 @@
 \contentsline {section}{\numberline {7.3}Implementation}{24}{section.7.3}
 \contentsline {subsection}{\numberline {7.3.1}Wifi Shield}{24}{subsection.7.3.1}
 \contentsline {subsection}{\numberline {7.3.2}Robot positioning}{25}{subsection.7.3.2}
-\contentsline {section}{\numberline {7.4}Evaluation}{26}{section.7.4}
-\contentsline {chapter}{\chapternumberline {8}Implementation}{27}{chapter.8}
-\contentsline {chapter}{\chapternumberline {9}Tests}{29}{chapter.9}
-\contentsline {chapter}{\chapternumberline {10}Discussion}{31}{chapter.10}
-\contentsline {chapter}{\chapternumberline {11}Conclusion}{33}{chapter.11}
-\contentsline {chapter}{\chapternumberline {12}Future work}{35}{chapter.12}
-\contentsline {chapter}{Bibliography}{37}{section*.7}
-\contentsline {appendix}{\chapternumberline {A}Appendix}{39}{appendix.A}
+\contentsline {section}{\numberline {7.4}Evaluation}{27}{section.7.4}
+\contentsline {chapter}{\chapternumberline {8}Implementation}{29}{chapter.8}
+\contentsline {chapter}{\chapternumberline {9}Tests}{31}{chapter.9}
+\contentsline {chapter}{\chapternumberline {10}Discussion}{33}{chapter.10}
+\contentsline {chapter}{\chapternumberline {11}Conclusion}{35}{chapter.11}
+\contentsline {chapter}{\chapternumberline {12}Future work}{37}{chapter.12}
+\contentsline {chapter}{Bibliography}{39}{section*.7}
+\contentsline {appendix}{\chapternumberline {A}Appendix}{41}{appendix.A}
