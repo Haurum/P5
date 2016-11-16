@@ -94,20 +94,58 @@ When both the computer and the Wifi shield has made the connection, and the comp
 \begin{lstlisting}[caption={Receiving data from the computer}, label={rdc}]
 client = server.available();
 while (client.connected()){
-if (client.available()) {
-char c = client.read(); 
-readString += c;
-}
+  if (client.available()) {
+    char c = client.read(); 
+    readString += c;
+  }
 }
 if(readString != ""){
-Serial.println(readString);
-readString = "";
+  Serial.println(readString);
+  readString = "";
 }
 \end{lstlisting}
 
 \subsection{Robot positioning}
 \label{sec:Robot positioning Implementation}
+In the top of the Arduino program, a lot of variables were declared, which can be seen in listing \ref{declarations}. The two volatile integers leftTotal and rightTotal are used to count the number of degrees the motor have turned. leftTotal and rightTotal are volatile integers because the value of the variables can be changed by other things than the code, which in this case is the motors. \newline
+motorLeftRun and motorRighRun are booleans used to check whether the motors are running or not. \newline
+The variable called heading have the value of the robot's heading, which in this project will be the degrees the robot's direction is pointing away from the y-axis of its predefined area. Then robot's current position will be saved as coordinates in the variables posX and posY. \newline
+UNSIGNED INT TID - ER IKKE BRUGT \newline
+Several integers are declared which will get further explanation later in the section. 
+Also in the top of the program some identifiers have been defined and the necessary libraries have been included to the program.  
 
+\begin{lstlisting}[caption={The defined and declared variables}, label={declarations}]
+volatile int leftTotal = 0;
+volatile int rightTotal = 0;
+bool motorLeftRun = false;
+bool motorRightRun = false;
+double heading = 0.0, posX = 0.0, posY = 0.0;
+unsigned int tid;
+int leftTemp, rightTemp, goalX = 230, goalY = 330, margin = 10, loopcount = 0, signalCount = 0;
+\end{lstlisting}
+
+An arduino program is split up into a setup function and a loop function, where the code in the loop function should describe the robot's behaviour. The setup function are run once for every power up or reset of the Arduino board.
+The setup function can be found in listing \ref{setup}. Two pins are setup as inputs for the arduino board and an interrupt is attached to each of them. Every time a change occurs for the input pins, which in this case is every time the motors have turned 1 degree, the functions incrementLeft and incrementRight are called accordingly. The two functions increments the counters leftTotal and rightTotal which are counting the number of degrees the motors have turned. \newline
+Next up the motors are turned on. This is done by setting their speed, which here is set to the highest speed possible, and then both motors are ret to RELEASE, which will stop the motors. Also the booleans motorLeftRun and motorRightRun are set to false. \newline
+At the bottom of the setup funtion, then leftTotal's and the rightTotal's values have been assigned to the temporary variables leftTemp and rightTemp.
+
+\begin{lstlisting}[caption={The setup function}, label={setup}]'
+pinMode(LEFTENCODERPIN, INPUT);
+attachInterrupt(LEFTPINTOINTERRUPT, incrementLeft, CHANGE);
+pinMode(RIGHTENCODERPIN, INPUT);
+attachInterrupt(RIGHTPINTOINTERRUPT, incrementRight, CHANGE);
+
+motorLeft.setSpeed(255);
+motorRight.setSpeed(255);
+
+motorLeft.run(RELEASE);
+motorLeftRun = false;
+motorRight.run(RELEASE);
+motorRightRun = false;
+
+leftTemp = leftTotal;
+rightTemp = rightTotal;
+\end{lstlisting}
 
 \section{Evaluation}
 \label{sec:i2Evaluation}
