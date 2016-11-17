@@ -40,18 +40,67 @@ Detecting and tracking the object are two very essential tasks, but are consider
 \label{sec:CatchingAnalysis}
 The catching phase is the phase in which the trash bin calculates the impact point, and moves to that specific point. The trash bin gets information about the thrown object, in this case the impact point, from the sensor and uses the given information to calculate the impact point. What data the trash bin gets from the sensor and how the calculation is done, will be explained in later chapters. 
 
+\section{Hardware}
+\label{chap:Hardware} 
+The following sections will describe the hardware considerations for the project, the hardware’s capabilities and it’s limitations. The limitations and capabilities will be in consideration when reviewing the requirements later in this chapter, to specify how the hardware can meet the requirements.
+
+\subsection{Sensors}
+\label{sec:Sensors}
+Sensors were used to measure the environment around the arduino and enable the arduino to understand that environment. The sensors utilized are described in individual sections. 
+
+\subsubsection{Microsoft Kinect}
+\label{sec:Microsoft Kinect}
+The Microsoft Kinect camera sensor enables the robot to gather information about thrown objects. The Kinect is a motion sensing device that is able to gather information about the location of an object, including the depth imaging, used to calculate the distance between the camera and the object, using a speckle pattern from an infrared camera. By using the depth information, the Kinect is able to locate the object in 3 dimensions.
+By spotting object multiple times in three dimensions, it is possible to calculate the path of the moving object, and thereby predict the impact point. This information can be sent to the robot, to enable the robot to move into position to possibly catch the object.
+
+\subsubsection{LEGO NXT Gyroscope}
+\label{sec:LEGO NXT Gyroscope}
+A gyroscope can be used to measure the heading of the robot. A gyroscope is constructed as a spinning disc that creates resistance when the robot is turned. This resistance is measured by the Lego NXT Gyro, and returned as a value representing the number of degrees per second of rotation. 
+
+\subsubsection{LEGO NXT Accelerometer}
+\label{sec:LEGO NXT Accelerometer}
+An Accelerometer is a device that measures the force affecting it. The Lego NXT Accelerometer measures this information, and sends it to the robot, to provide capability for the robot to calculate its acceleration. The gyroscope and the accelerometer can in concoction be used to position the robot.
+
+\subsection{LEGO NXT Servo motor}
+\label{sec:LEGO NXT Servo motor}
+For the robot to be able to move, it would need wheels powered by motors. In this project the LEGO NXT 9v Servo motor has been used, which at full power with no load can reach 170 RPM. The motor has a gear range of 1:48 split on the gear train in the motor. \citep{Servo} The motor includes an optical fork to provide data of motor rotations down to a \(1^{\circ}\) precision.
+
+For precision, and to benchmark the specific motors used in this project, a series of tests and measurements has been done on these motors:
+
+The diameter of the wheel: 56mm \newline
+The circumference of the wheel: 56 \begin{math}\cdot \pi \end{math} = 175.929mm
+
+The robot was programmed to drive forward for 10 seconds and was observed to travel a distance of 2550mm, which means it travels with a speed of 255mm/s. \newline
+The motor’s RPM is: (2230 \begin{math} \cdot \end{math} 175.929) \begin{math} \cdot \end{math} 6 = 86.966 RPM.
+
+%The travel time of a normal underhand throw have been measured, and the same for a throw where the object bounces on the ground.\newline
+%The travel time of a thrown object from when it leaves the hand to impact in the predefined area, is about 1.1second. This means that the robot will only be able to catch an object about 280mm away from its start position. \newline
+%If the object is bounced on the ground before it enters the predefined area, and must bounce atleast twice, the travel time of the object, from when the ball leaves the hand to impact in the predefined area, is 2 seconds. This will give the robot a range of 550mm away from its start position.  
+
+\subsection{Arduino}
+\label{sec:Arduino}
+The Arduino Mega 2560 was chosen for this project, as it has limited computational power, which will introduce intereting problems, as well as real-time constraints. \citep{a}
+
+Arduino Mega 2560 Specifications:\newline
+Flash memory: 256KB (8 used by bootloader)\newline
+SRAM: 8KB\newline
+EEPROM: 4KB\newline
+Clock Speed: 16 MHz\newline
+Weight: 37g
+
+\subsubsection{Arduino Wifi Shield}
+\label{sec: Arduino Wifi Shield}
+The WifiShield was acquired to enable wifi communication between the Kinect sensor and the Arduino Mega. The intention was to send the coordinates of the objects impact point to the Arduino, without limiting the movement of the robot. The wifi connection is able to transmit data at a rate of 9600 bits a minute. 
+\citep{aws}
+
+\subsubsection{Arduino Motor Shield}
+\label{sec:Arduino Motor Shield}
+The Arduino Motor Shield is needed for the project to control the two DC motors independently. Without the motor shield the robot would only be able to move forward and backwards with both wheels at the same time. 
+The motor shield needs an external power source, as the Arduino cannot provide enough power. To solve this issue, a serial circuit of two 9V batteries is attached to the shield. \citep{ams}
+
 \section{Problem statement \& requirements}
 \label{sec:Problem statement}
 Based on the above analysis and the limitations of the project, a problem statement for the project has been constructed:
 
 \textit{How can an embedded system control a trash bin to detect, track and catch a thrown object within a designated area?}
 
-The requirements drawn from this chapter, would be the requirements for the project, if the hardware used in this project would be the cause of any limitations:
-
-\begin{itemize}
-\item When a user throws an object towards the trash bin, within the predefined area, the bin should always catch the object.
-\item The robot should know where it is positioned.
-\item The robot should be able to detect and track the thrown object.
-\item The robot should be able to calculate the impact point for the object.
-\item The robot should be able to move the trash bin, such that the thrown object lands inside the bin.
-\end{itemize}
