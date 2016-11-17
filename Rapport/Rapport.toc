@@ -23,9 +23,12 @@
 \contentsline {section}{\numberline {4.1}System requirements}{11}{section.4.1}
 \contentsline {section}{\numberline {4.2}Delimitations}{12}{section.4.2}
 \contentsline {chapter}{\chapternumberline {5}System design}{13}{chapter.5}
-\contentsline {section}{\numberline {5.1}Robot positioning and movement}{13}{section.5.1}
-\contentsline {section}{\numberline {5.2}Connecting Arduino and Kinect}{13}{section.5.2}
-\contentsline {section}{\numberline {5.3}Scheduling}{13}{section.5.3}
+\contentsline {section}{\numberline {5.1}Software choices}{13}{section.5.1}
+\contentsline {section}{\numberline {5.2}Robot design}{13}{section.5.2}
+\contentsline {section}{\numberline {5.3}Arduino program design}{13}{section.5.3}
+\contentsline {section}{\numberline {5.4}Robot positioning and movement}{13}{section.5.4}
+\contentsline {section}{\numberline {5.5}Connecting Arduino and Kinect}{13}{section.5.5}
+\contentsline {section}{\numberline {5.6}Scheduling}{13}{section.5.6}
 \contentsline {chapter}{\chapternumberline {6}Increment one}{15}{chapter.6}
 \contentsline {section}{\numberline {6.1}Requirements}{15}{section.6.1}
 \contentsline {section}{\numberline {6.2}System design}{16}{section.6.2}

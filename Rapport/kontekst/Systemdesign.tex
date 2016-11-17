@@ -1,7 +1,5 @@
 \chapter{System design}
 \label{chap:System design}
-%Hello mark, you suck. balls. 
-
 %Hvad dette chapter skal indeholde:
 %Hvordan positionen på robotten bliver udregnet og evt hvordan den skal kunne bevæge sig?????(referer og citer hvad vi har skrevet i incerement two)
 %Hvordan vi skal have Kinect og Arduino til at snakke sammen(Program i kinect der sender data til wifishield som arduinoet kan bruge)
@@ -12,7 +10,7 @@
 
 \section{Software choices}
 \label{sec:Software choices}
-%Hviket software vi bruger til at udvikle robotten og hvilke libraries vi bruger? SKal vi evt. have en section om Hardware choices?
+%Hviket software vi bruger til at udvikle robotten og hvilke libraries vi bruger? SKal vi evt. have en section om Hardware choices? Skal vi skrive her at vi bruger Arduino's ide og at vi bruger 1.0.3??
 
 \section{Robot design}
 \label{sec:Robot design}
@@ -21,6 +19,21 @@
 \section{Arduino program design}
 \label{sec:Arduino program design}
 %Dette kan indeholde hvad vores program skal kunne gøre og evt. en punktform over hvilke funktioner/tasks som programmet løber i gennem.
+As mentioned in section \ref{sec:Software choices}, the arduino program was developed in the Arduino IDE version 1.0.3. The program will be responsible to move the robot to the collision point, sent by the Kinect, of the object thrown at its predefined area. This is done by the program translating the coordinates from the Kinect, into coordinates know for the robot and move to that specific location
+
+The program have a setup and will loop the behavior of the robot. First the sets up the WiFi connection to the Kinect program, it then waits for the Kinect program to send coordinates for the impact point of the object thrown. When it have received a set of coordinates, it will then translate the coordinates to so it knows where to move to. The next steps, the arduino program will continuously loop through until the program are exited: First it will check if it is at the impact point, if it is, the program is done. Else the robot will start moving, while it keeps adjusting it direction relative to the robots heading. Finally in the loop it will update the robots current position and its heading. All this can be broken down into tasks:
+
+\begin{itemize}
+	\item Make connection to the Kinect
+	\item Wait to receive coordinates from the Kinect
+	\item When the coordinates are received, it will translate these to useful coordinates and then enter the behavioral loop function:
+	\begin{itemize}
+		\item Check if already at the collision point, if it is exit program
+		\item Start moving, adjust direction relative to heading
+		\item Update the its position
+	\end{itemize}
+\end{itemize}
+ 
 
 \section{Robot positioning and movement}
 \label{sec:Robot positioning and movement}
