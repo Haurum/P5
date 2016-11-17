@@ -22,12 +22,13 @@
 \contentsline {section}{\numberline {3.1}System requirements}{7}{section.3.1}
 \contentsline {section}{\numberline {3.2}Delimitations}{8}{section.3.2}
 \contentsline {chapter}{\chapternumberline {4}System design}{9}{chapter.4}
-\contentsline {section}{\numberline {4.1}Software choices}{9}{section.4.1}
-\contentsline {section}{\numberline {4.2}Robot design}{9}{section.4.2}
-\contentsline {section}{\numberline {4.3}Arduino program design}{9}{section.4.3}
-\contentsline {section}{\numberline {4.4}Robot positioning and movement}{9}{section.4.4}
-\contentsline {section}{\numberline {4.5}Connecting Arduino and Kinect}{9}{section.4.5}
-\contentsline {section}{\numberline {4.6}Scheduling}{9}{section.4.6}
+\contentsline {section}{\numberline {4.1}Hardware choices}{9}{section.4.1}
+\contentsline {section}{\numberline {4.2}Software choices}{9}{section.4.2}
+\contentsline {section}{\numberline {4.3}Robot design}{9}{section.4.3}
+\contentsline {section}{\numberline {4.4}Arduino program design}{9}{section.4.4}
+\contentsline {section}{\numberline {4.5}Robot positioning and movement}{9}{section.4.5}
+\contentsline {section}{\numberline {4.6}Connecting Arduino and Kinect}{9}{section.4.6}
+\contentsline {section}{\numberline {4.7}Scheduling}{9}{section.4.7}
 \contentsline {chapter}{\chapternumberline {5}Increment one}{11}{chapter.5}
 \contentsline {section}{\numberline {5.1}Requirements}{11}{section.5.1}
 \contentsline {section}{\numberline {5.2}System design}{12}{section.5.2}
