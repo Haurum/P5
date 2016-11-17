@@ -28,6 +28,7 @@ The requirement marked with blue will be considered throughout this chapter.
 	\item The robot should be able to move the trash bin, such that the thrown trash lands inside the bin
 	\begin{itemize}
 		\item {The robot should be able to turn and drive forward}
+		\item {The robot should be able to recognize the coordinates sent from the Kinect}
 	\end{itemize}
 	\item \textcolor{blue}{The robot should be able to receive data from a computer, through a wireless network}
 \end{itemize}
@@ -45,8 +46,6 @@ The data should be sent, as earlier mentioned in section \ref{sec: Arduino Wifi 
 \label{sec:Robot positioning System Design}
 In the previous chapter, it was decided to use the motor's encoders to calculate the heading of the robot and the distance it has moved. The encoders will keep track of the number of degrees the specific motor have turned, which can be calculated to a distance using the wheels circumference.
 The coordinate set for the collision point of the object and the robots current position, will be used to calculate the heading, which the robot should have to reach the collision point. 
-
-(Hvordan vi oversætter Kinect X/Y til robot X/Y)
 
 \section{Implementation}
 \label{sec:i2Implementation}

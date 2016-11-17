@@ -45,16 +45,18 @@
 \contentsline {chapter}{\chapternumberline {7}Increment two}{23}{chapter.7}
 \contentsline {section}{\numberline {7.1}Requirements}{23}{section.7.1}
 \contentsline {section}{\numberline {7.2}System design}{23}{section.7.2}
-\contentsline {subsection}{\numberline {7.2.1}Wifi Shield}{23}{subsection.7.2.1}
+\contentsline {subsection}{\numberline {7.2.1}Wifi Shield}{24}{subsection.7.2.1}
 \contentsline {subsection}{\numberline {7.2.2}Robot positioning}{24}{subsection.7.2.2}
 \contentsline {section}{\numberline {7.3}Implementation}{24}{section.7.3}
 \contentsline {subsection}{\numberline {7.3.1}Wifi Shield}{24}{subsection.7.3.1}
 \contentsline {subsection}{\numberline {7.3.2}Robot positioning}{25}{subsection.7.3.2}
 \contentsline {section}{\numberline {7.4}Evaluation}{27}{section.7.4}
-\contentsline {chapter}{\chapternumberline {8}Implementation}{29}{chapter.8}
-\contentsline {chapter}{\chapternumberline {9}Tests}{31}{chapter.9}
-\contentsline {chapter}{\chapternumberline {10}Discussion}{33}{chapter.10}
-\contentsline {chapter}{\chapternumberline {11}Conclusion}{35}{chapter.11}
-\contentsline {chapter}{\chapternumberline {12}Future work}{37}{chapter.12}
-\contentsline {chapter}{Bibliography}{39}{section*.7}
-\contentsline {appendix}{\chapternumberline {A}Appendix}{41}{appendix.A}
+\contentsline {chapter}{\chapternumberline {8}Increment three}{29}{chapter.8}
+\contentsline {section}{\numberline {8.1}Connecting Arduino and Kinect}{29}{section.8.1}
+\contentsline {chapter}{\chapternumberline {9}Implementation}{31}{chapter.9}
+\contentsline {chapter}{\chapternumberline {10}Tests}{33}{chapter.10}
+\contentsline {chapter}{\chapternumberline {11}Discussion}{35}{chapter.11}
+\contentsline {chapter}{\chapternumberline {12}Conclusion}{37}{chapter.12}
+\contentsline {chapter}{\chapternumberline {13}Future work}{39}{chapter.13}
+\contentsline {chapter}{Bibliography}{41}{section*.7}
+\contentsline {appendix}{\chapternumberline {A}Appendix}{43}{appendix.A}
