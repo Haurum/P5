@@ -5,9 +5,12 @@ A level-1 auxiliary file: formalia/titelblad.aux
 A level-1 auxiliary file: formalia/forord.aux
 A level-1 auxiliary file: intro/indledning.aux
 A level-1 auxiliary file: intro/analysis.aux
-A level-1 auxiliary file: kontekst/Hardware.aux
+A level-1 auxiliary file: kontekst/DesignSpecification.aux
+A level-1 auxiliary file: kontekst/Systemdesign.aux
 A level-1 auxiliary file: kontekst/IncrementOne.aux
 A level-1 auxiliary file: kontekst/IncrementTwo.aux
+A level-1 auxiliary file: kontekst/IncrementThree.aux
+A level-1 auxiliary file: kontekst/implementation.aux
 A level-1 auxiliary file: kontekst/tests.aux
 A level-1 auxiliary file: formalia/discussion.aux
 A level-1 auxiliary file: formalia/konklusion.aux
@@ -30,6 +33,11 @@ Warning--empty year in aws
 1 is an integer literal, not a string, for entry aws
 while executing---line 1485 of file bibtex/harvard.bst
 Warning--empty  in aws
+Warning--empty year in wg
+Warning--empty year in wg
+1 is an integer literal, not a string, for entry wg
+while executing---line 1485 of file bibtex/harvard.bst
+Warning--empty  in wg
 Warning--empty year in Servo
 Warning--empty year in Servo
 Warning--empty year in Servo
@@ -44,4 +52,4 @@ while executing---line 1485 of file bibtex/harvard.bst
 Warning--empty  in es
 1 is an integer literal, not a string, for entry kw
 while executing---line 1485 of file bibtex/harvard.bst
-(There were 7 error messages)
+(There were 8 error messages)

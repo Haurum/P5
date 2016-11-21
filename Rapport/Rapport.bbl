@@ -1,4 +1,4 @@
-\begin{thebibliography}{6}
+\begin{thebibliography}{7}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -25,6 +25,12 @@
 \newblock \textit{Arduino WiFi Shield}.
 \newblock \url{https://www.arduino.cc/en/Main/ArduinoWiFiShield}.
 \newblock Accessed: 17-10-2016.
+
+\bibitem[Arduino.cc({\natexlab{d}})]{wg}
+\textbf{Arduino.cc}, \textbf{{\natexlab{d}}}.
+\newblock Arduino.cc.
+\newblock \textit{WifiGuide}.
+\newblock \url{https://www.arduino.cc/en/Guide/ArduinoWiFiShield}.
 
 \bibitem[Hurbain()]{Servo}
 \textbf{\textbf{Hurbain}}.
