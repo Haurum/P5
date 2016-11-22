@@ -27,7 +27,7 @@
 \contentsline {subsection}{\numberline {4.1.2}Libraries}{9}{subsection.4.1.2}
 \contentsline {subsubsection}{Motor.h}{9}{section*.11}
 \contentsline {subsubsection}{Wifi.h}{9}{section*.12}
-\contentsline {section}{\numberline {4.2}Robot design}{9}{section.4.2}
+\contentsline {section}{\numberline {4.2}Robot design}{10}{section.4.2}
 \contentsline {section}{\numberline {4.3}Arduino program design}{10}{section.4.3}
 \contentsline {section}{\numberline {4.4}Robot positioning and movement}{11}{section.4.4}
 \contentsline {section}{\numberline {4.5}Connecting Arduino and Kinect}{11}{section.4.5}
