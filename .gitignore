@@ -299,3 +299,9 @@ __pycache__/
 *.pyc
 Rapport/Rapport.tex
 Rapport/Rapport.pdf
+Rapport/Rapport.aux
+*.bbl
+Rapport/Rapport.blg
+Rapport/Rapport.synctex.gz
+*.thm
+Rapport/Rapport.toc
