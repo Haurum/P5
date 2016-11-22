@@ -12,7 +12,9 @@ This chapter will describe some of the software choices made, as well as the rob
 \section{Software choices}
 \label{sec:Software choices}
 %Hviket software vi bruger til at udvikle robotten og hvilke libraries vi bruger? SKal vi evt. have en section om Hardware choices? Skal vi skrive her at vi bruger Arduino's ide og at vi bruger 1.0.3??
+
 In this section the software choices made for the Arduino IDE will be described. Also, the libraries used for making the program will be described as well. 
+
 \subsection{Arduino IDE}
 \label{sec:Arduino IDE}
 After testing the Arduino IDE 1.6.12 with the code defined on the Arduino website's Wifi-guide \citep{wg}, it was discovered that the Wifi library was not compatible in the IDE in a series of newer versions. The library was supported in version 1.0.3, which is why this particular IDE version is used in this project. The newer IDE's has increased security, which would actively refuse any TCP connection from the computer.
@@ -27,7 +29,7 @@ The Motor.h library is needed to be able the control the two wheel independently
 
 \subsubsection{Wifi.h}
 \label{sec:Wifi.h}
-
+The choice of using the Arduino Wifi shield forced the choice of using the Arduino Wifi library, which is used to create the connection between the Wifi shield and the router. This library has methods for creating a server, where clients can both read from and write to the server. The subsection \ref{sec:Arduino IDE} explains complications between the versions of the Arduino IDE, and why the Arduino IDE 1.0.3 is used for this project.
 
 
 \section{Robot design}
@@ -42,9 +44,9 @@ The purpose of the robot is to catch the thrown object, by driving to the impact
 	\label{robot}
 \end{figure}
 
-The robot uses two LEGO NXT Servo motors with corresponding wheels, which will act as the front wheels. The back wheel can slide from side to side, which is important, since the wheel will be dragged sideways when the robots turns, a normal rubber wheel would have coursed a lot of friction. 
-The robot are build around the NXT Servo motors, and ends with a platform at the top. This platform is for the Arduino and its shield to be stripped onto and for the batteries for the motor shield. 
-The robot was build with  the arduino at the top, for easy access to the different pins if needed. 
+The robot uses two LEGO NXT Servo motors with corresponding wheels, which will act as the front wheels. The back wheel can slide from side to side, which is important, since the wheel will be dragged sideways when the robots turns, whereas a normal rubber wheel would have caused a lot of friction. 
+The robot is build around the NXT Servo motors, and ends with a platform at the top. The Arduino is stripped to the platform, with the shields ontop. This ensures that the Arduino does not slide off the robots platform.
+The robot was build with the arduino at the top, for easy access to the different pins if needed. 
 
 \section{Arduino program design}
 \label{sec:Arduino program design}

@@ -34,13 +34,13 @@ The requirement marked with blue will be considered throughout this chapter.
 \end{itemize}
 
 \section{System design}
- \label{sec:i2System design} 
+\label{sec:i2System design} 
 In this section, the marked requirements should be fulfilled and will be described and explained.  
 
 \subsection{Wifi Shield}
 \label{sec:Wifi Shield SD}
 When the Kinect have found the coordinates for the collision point of the thrown object, these coordinates should be sent to the robot, for it to be able to move to the collision point and catch the object. 
-The data should be sent, as earlier mentioned in section \ref{sec: Arduino Wifi Shield}, by the Arduino wifi shield. The Arduino and the computer running the Kinect program, should be connected to their own network, with the computer sending data to the wifi shields IP-address.
+The data should be sent, as earlier mentioned in section \ref{sec: Arduino Wifi Shield}, to the Arduino wifi shield. The Arduino and the computer running the Kinect program should be connected to their own network, with the computer sending data to the wifi shields IP-address.
 
 \subsection{Robot positioning}
 \label{sec:Robot positioning System Design}
@@ -57,21 +57,21 @@ To implement the Wifi Shield as part of the Arduino, the router connecting the W
 
 \begin{lstlisting}[caption={Connecting the Wifi shield to the network}, label={ws}]
 void setup() {
-  Serial.begin(9600);
+Serial.begin(9600);
 
-  Serial.println("Attempting to connect to WPA network...");
-  status = WiFi.begin(ssid, pass);
+Serial.println("Attempting to connect to WPA network...");
+status = WiFi.begin(ssid, pass);
 
-  if ( status != WL_CONNECTED) { 
-    Serial.println("Couldn't get a wifi connection");
-    while(true);
-  } 
-  else {
-    server.begin();
-    Serial.println("Connected to network");
-  }
-  ip = WiFi.localIP();
-  Serial.println(ip);
+if ( status != WL_CONNECTED) { 
+Serial.println("Couldn't get a wifi connection");
+while(true);
+} 
+else {
+server.begin();
+Serial.println("Connected to network");
+}
+ip = WiFi.localIP();
+Serial.println(ip);
 }
 \end{lstlisting}
 
@@ -93,14 +93,14 @@ When both the computer and the Wifi shield has made the connection, and the comp
 \begin{lstlisting}[caption={Receiving data from the computer}, label={rdc}]
 client = server.available();
 while (client.connected()){
-  if (client.available()) {
-    char c = client.read(); 
-    readString += c;
-  }
+if (client.available()) {
+char c = client.read(); 
+readString += c;
+}
 }
 if(readString != ""){
-  Serial.println(readString);
-  readString = "";
+Serial.println(readString);
+readString = "";
 }
 \end{lstlisting}
 
@@ -150,44 +150,44 @@ In lines 9-12 the difference of the desired coordinate and the current coordinat
 In lines 14 - 23 the if-else statement checks if the robot is on the right heading. If the robot's heading is less than -0.1 it will release the right motor and drive forward with the left, making the robot turn right. The robot will do the same check for 0.1 and will release the left motor and drive forward on the right, making the robot turn left. If the robot is on its right heading, it will drive forward, towards it desired point. \newline
 In lines 25-35 two new integers, currentLeft and currentRight, are assigned the values of leftTotal and rightTotal. Then the distance of how much the wheels have moved since last time it was looped through is calculated. This is done by taking the difference of currentLeft and leftTemp times DISTPRDEGREE, which was defined at the beginning of the program, the same is done with currentRight and tempRight. Then leftTemp and rightTemp are assigned the values of currentLeft and currentRight. \newline
 The distance the robot have moved is the average of how much the two motors have moved, so the the distances of the two motors are added together and divided by two. With the distance, the robots new current position is calculated assigned to the values posX and posY, and the new heading for the robot.
- 
+
 
 \begin{lstlisting}[caption={The loop function}, label={loop}]
 void loop() {
-  if(round(posX) <= goalX + margin && round(posX) >= goalX - margin &&     round(posY) <= goalY + margin && round(posY) >= goalY - margin){
-    motorLeft.run(RELEASE);
-    motorRight.run(RELEASE);
-    delay(50);
-    exit(0);
-  }
-  
-  double deltaX = goalX - posX;
-  double deltaY = goalY - posY;
-  double goalHeading = atan(deltaX/deltaY);
-  double deltaHeading = goalHeading - heading;
+if(round(posX) <= goalX + margin && round(posX) >= goalX - margin &&     round(posY) <= goalY + margin && round(posY) >= goalY - margin){
+motorLeft.run(RELEASE);
+motorRight.run(RELEASE);
+delay(50);
+exit(0);
+}
 
-  if(deltaHeading < -0.1){
-    motorLeft.run(FORWARD);
-    motorRight.run(RELEASE);
-  }else if(deltaHeading > 0.1){
-    motorLeft.run(RELEASE);
-    motorRight.run(FORWARD);
-  }else{
-    motorLeft.run(FORWARD);
-    motorRight.run(FORWARD);
-  }
-  
-  delay(10);
-  int currentLeft = leftTotal;
-  int currentRight = rightTotal;
-  double deltaLeft = (currentLeft - leftTemp) * DISTPRDEGREE;
-  double deltaRight = (currentRight - rightTemp) * DISTPRDEGREE;
-  leftTemp = currentLeft;
-  rightTemp = currentRight;
-  double dist = (deltaLeft + deltaRight) / 2.0;
-  posX += (dist * sin(heading));
-  posY += (dist * cos(heading));
-  heading += (atan((deltaRight - deltaLeft) / WHEELDIST));
+double deltaX = goalX - posX;
+double deltaY = goalY - posY;
+double goalHeading = atan(deltaX/deltaY);
+double deltaHeading = goalHeading - heading;
+
+if(deltaHeading < -0.1){
+motorLeft.run(FORWARD);
+motorRight.run(RELEASE);
+}else if(deltaHeading > 0.1){
+motorLeft.run(RELEASE);
+motorRight.run(FORWARD);
+}else{
+motorLeft.run(FORWARD);
+motorRight.run(FORWARD);
+}
+
+delay(10);
+int currentLeft = leftTotal;
+int currentRight = rightTotal;
+double deltaLeft = (currentLeft - leftTemp) * DISTPRDEGREE;
+double deltaRight = (currentRight - rightTemp) * DISTPRDEGREE;
+leftTemp = currentLeft;
+rightTemp = currentRight;
+double dist = (deltaLeft + deltaRight) / 2.0;
+posX += (dist * sin(heading));
+posY += (dist * cos(heading));
+heading += (atan((deltaRight - deltaLeft) / WHEELDIST));
 }
 \end{lstlisting}
 
@@ -195,4 +195,4 @@ void loop() {
 
 \section{Evaluation}
 \label{sec:i2Evaluation}
-This section will include a short summary of the chapter and conclude with an updated requirement list, showing changes from the first requirement list in the chapter. 
+This section will include a short summary of the chapter and conclude with an updated requirement list, showing changes from the first requirement list in the chapter.
