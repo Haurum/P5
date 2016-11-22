@@ -11,6 +11,7 @@
 \section{Software choices}
 \label{sec:Software choices}
 %Hviket software vi bruger til at udvikle robotten og hvilke libraries vi bruger? SKal vi evt. have en section om Hardware choices? Skal vi skrive her at vi bruger Arduino's ide og at vi bruger 1.0.3??
+The choice of using the Arduino Wifi shield forced the choice of using the Arduino Wifi library, which is used to create the connection between the Wifi shield and the router. This library has methods for creating a server, where clients can both read from and write to the server. The subsection \ref{sec:Arduino IDE} explains complications between the versions of the Arduino IDE, and why the Arduino IDE 1.0.3 is used for this project.
 \subsection{Arduino IDE}
 \label{sec:Arduino IDE}
 After testing the Arduino IDE 1.6.12 with the code defined on the Arduino website's Wifi-guide \citep{wg}, it was discovered that the Wifi library was not compatible in the IDE in a series of newer versions. The library was supported in version 1.0.3, which is why this particular IDE version is used in this project. The newer IDE's has increased security, which would actively refuse any TCP connection from the computer.
