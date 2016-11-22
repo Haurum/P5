@@ -23,42 +23,45 @@
 \contentsline {section}{\numberline {3.2}Delimitations}{8}{section.3.2}
 \contentsline {chapter}{\chapternumberline {4}System design}{9}{chapter.4}
 \contentsline {section}{\numberline {4.1}Software choices}{9}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}Arduino IDE}{9}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {4.1.2}Libraries}{9}{subsection.4.1.2}
+\contentsline {subsubsection}{Motor.h}{9}{section*.11}
+\contentsline {subsubsection}{Wifi.h}{9}{section*.12}
 \contentsline {section}{\numberline {4.2}Robot design}{9}{section.4.2}
-\contentsline {section}{\numberline {4.3}Arduino program design}{9}{section.4.3}
-\contentsline {section}{\numberline {4.4}Robot positioning and movement}{10}{section.4.4}
-\contentsline {section}{\numberline {4.5}Connecting Arduino and Kinect}{10}{section.4.5}
-\contentsline {section}{\numberline {4.6}Scheduling}{10}{section.4.6}
-\contentsline {chapter}{\chapternumberline {5}Increment one}{11}{chapter.5}
-\contentsline {section}{\numberline {5.1}Requirements}{11}{section.5.1}
-\contentsline {section}{\numberline {5.2}System design}{12}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}Predefined area}{12}{subsection.5.2.1}
-\contentsline {subsection}{\numberline {5.2.2}Throwing}{12}{subsection.5.2.2}
-\contentsline {subsection}{\numberline {5.2.3}Microsoft Kinect}{12}{subsection.5.2.3}
-\contentsline {subsection}{\numberline {5.2.4}Trajectory prediction}{12}{subsection.5.2.4}
-\contentsline {subsection}{\numberline {5.2.5}Gyroscope and Accelerometer}{13}{subsection.5.2.5}
-\contentsline {subsection}{\numberline {5.2.6}Movement}{14}{subsection.5.2.6}
-\contentsline {section}{\numberline {5.3}Implementation}{14}{section.5.3}
-\contentsline {subsection}{\numberline {5.3.1}Gyroscope and Accelerometer in use}{14}{subsection.5.3.1}
-\contentsline {subsection}{\numberline {5.3.2}Predefined area}{14}{subsection.5.3.2}
-\contentsline {subsection}{\numberline {5.3.3}Throwing}{14}{subsection.5.3.3}
-\contentsline {subsection}{\numberline {5.3.4}Microsoft Kinect}{15}{subsection.5.3.4}
-\contentsline {subsection}{\numberline {5.3.5}Movement}{15}{subsection.5.3.5}
-\contentsline {section}{\numberline {5.4}Evaluation}{16}{section.5.4}
-\contentsline {chapter}{\chapternumberline {6}Increment two}{19}{chapter.6}
-\contentsline {section}{\numberline {6.1}Requirements}{19}{section.6.1}
-\contentsline {section}{\numberline {6.2}System design}{19}{section.6.2}
-\contentsline {subsection}{\numberline {6.2.1}Wifi Shield}{20}{subsection.6.2.1}
-\contentsline {subsection}{\numberline {6.2.2}Robot positioning}{20}{subsection.6.2.2}
-\contentsline {section}{\numberline {6.3}Implementation}{20}{section.6.3}
-\contentsline {subsection}{\numberline {6.3.1}Wifi Shield}{20}{subsection.6.3.1}
-\contentsline {subsection}{\numberline {6.3.2}Robot positioning}{21}{subsection.6.3.2}
-\contentsline {section}{\numberline {6.4}Evaluation}{23}{section.6.4}
-\contentsline {chapter}{\chapternumberline {7}Increment three}{25}{chapter.7}
-\contentsline {section}{\numberline {7.1}Connecting Arduino and Kinect}{25}{section.7.1}
-\contentsline {chapter}{\chapternumberline {8}Implementation}{27}{chapter.8}
-\contentsline {chapter}{\chapternumberline {9}Tests}{29}{chapter.9}
-\contentsline {chapter}{\chapternumberline {10}Discussion}{31}{chapter.10}
-\contentsline {chapter}{\chapternumberline {11}Conclusion}{33}{chapter.11}
-\contentsline {chapter}{\chapternumberline {12}Future work}{35}{chapter.12}
-\contentsline {chapter}{Bibliography}{37}{section*.12}
-\contentsline {appendix}{\chapternumberline {A}Appendix}{39}{appendix.A}
+\contentsline {section}{\numberline {4.3}Arduino program design}{10}{section.4.3}
+\contentsline {section}{\numberline {4.4}Robot positioning and movement}{11}{section.4.4}
+\contentsline {section}{\numberline {4.5}Connecting Arduino and Kinect}{11}{section.4.5}
+\contentsline {section}{\numberline {4.6}Scheduling}{11}{section.4.6}
+\contentsline {chapter}{\chapternumberline {5}Implementation}{13}{chapter.5}
+\contentsline {chapter}{\chapternumberline {6}Tests}{15}{chapter.6}
+\contentsline {chapter}{\chapternumberline {7}Discussion}{17}{chapter.7}
+\contentsline {chapter}{\chapternumberline {8}Conclusion}{19}{chapter.8}
+\contentsline {chapter}{\chapternumberline {9}Future work}{21}{chapter.9}
+\contentsline {chapter}{Bibliography}{23}{section*.14}
+\contentsline {appendix}{\chapternumberline {A}Increment one}{25}{appendix.A}
+\contentsline {section}{\numberline {A.1}Requirements}{25}{section.A.1}
+\contentsline {section}{\numberline {A.2}System design}{26}{section.A.2}
+\contentsline {subsection}{\numberline {A.2.1}Predefined area}{26}{subsection.A.2.1}
+\contentsline {subsection}{\numberline {A.2.2}Throwing}{26}{subsection.A.2.2}
+\contentsline {subsection}{\numberline {A.2.3}Microsoft Kinect}{26}{subsection.A.2.3}
+\contentsline {subsection}{\numberline {A.2.4}Trajectory prediction}{26}{subsection.A.2.4}
+\contentsline {subsection}{\numberline {A.2.5}Gyroscope and Accelerometer}{27}{subsection.A.2.5}
+\contentsline {subsection}{\numberline {A.2.6}Movement}{28}{subsection.A.2.6}
+\contentsline {section}{\numberline {A.3}Implementation}{28}{section.A.3}
+\contentsline {subsection}{\numberline {A.3.1}Gyroscope and Accelerometer in use}{28}{subsection.A.3.1}
+\contentsline {subsection}{\numberline {A.3.2}Predefined area}{28}{subsection.A.3.2}
+\contentsline {subsection}{\numberline {A.3.3}Throwing}{28}{subsection.A.3.3}
+\contentsline {subsection}{\numberline {A.3.4}Microsoft Kinect}{29}{subsection.A.3.4}
+\contentsline {subsection}{\numberline {A.3.5}Movement}{29}{subsection.A.3.5}
+\contentsline {section}{\numberline {A.4}Evaluation}{30}{section.A.4}
+\contentsline {appendix}{\chapternumberline {B}Increment two}{33}{appendix.B}
+\contentsline {section}{\numberline {B.1}Requirements}{33}{section.B.1}
+\contentsline {section}{\numberline {B.2}System design}{33}{section.B.2}
+\contentsline {subsection}{\numberline {B.2.1}Wifi Shield}{34}{subsection.B.2.1}
+\contentsline {subsection}{\numberline {B.2.2}Robot positioning}{34}{subsection.B.2.2}
+\contentsline {section}{\numberline {B.3}Implementation}{34}{section.B.3}
+\contentsline {subsection}{\numberline {B.3.1}Wifi Shield}{34}{subsection.B.3.1}
+\contentsline {subsection}{\numberline {B.3.2}Robot positioning}{35}{subsection.B.3.2}
+\contentsline {section}{\numberline {B.4}Evaluation}{37}{section.B.4}
+\contentsline {appendix}{\chapternumberline {C}Increment three}{39}{appendix.C}
+\contentsline {section}{\numberline {C.1}Connecting Arduino and Kinect}{39}{section.C.1}

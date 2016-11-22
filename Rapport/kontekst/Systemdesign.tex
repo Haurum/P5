@@ -7,13 +7,28 @@
 %Hvordan vores schedule skal fungere? Teorien bag det også kan det blive forklaret i implementationen.
 %I system design skal vi også snakke om memory management evt ?? 
 %Skal vi skirve om den billede analyse som kinecten laver??
+This chapter will describe some of the software choices made, as well as the robot design. The program design, the robots positioning and movement and how the Arduino and Kinect are connected, will also be described in this chapter. 
 
 \section{Software choices}
 \label{sec:Software choices}
 %Hviket software vi bruger til at udvikle robotten og hvilke libraries vi bruger? SKal vi evt. have en section om Hardware choices? Skal vi skrive her at vi bruger Arduino's ide og at vi bruger 1.0.3??
+In this section the software choices made for the Arduino IDE will be described. Also, the libraries used for making the program will be described as well. 
 \subsection{Arduino IDE}
 \label{sec:Arduino IDE}
 After testing the Arduino IDE 1.6.12 with the code defined on the Arduino website's Wifi-guide \citep{wg}, it was discovered that the Wifi library was not compatible in the IDE in a series of newer versions. The library was supported in version 1.0.3, which is why this particular IDE version is used in this project. The newer IDE's has increased security, which would actively refuse any TCP connection from the computer.
+
+\subsection{Libraries}
+\label{sec:Libraries}
+To be able to use the Motor- and Wifi shield, two libraries had to be included to the project. This gave some new functions, be to able to make the program. 
+
+\subsubsection{Motor.h}
+\label{sec:Motor.h}
+The Motor.h library is needed to be able the control the two wheel independently of each other. If the library was not included, it would only have been possible to give both the motors high or low simultaneously. The library makes it possible to control each motor independently. The motors can have set different speeds and can be stopped at different times and so on. 
+
+\subsubsection{Wifi.h}
+\label{sec:Wifi.h}
+
+
 
 \section{Robot design}
 \label{sec:Robot design}
@@ -57,8 +72,8 @@ The program have a setup and will loop the behavior of the robot. First the sets
 \section{Connecting Arduino and Kinect}
 \label{sec:Connecting Arduino and Kinect}
 %Kan indeholde hvordan vi har tænkt os at de skal kunne snakke sammen og hvilket data der skal blive sendt i mellem dem.
-For convenience, and as a part of the requirements for this project, the Arduino should receive wireless data from a computer, connected to the Kinect. The Arduino Wifi Shield makes this possible, with the Wifi library included in the Arduino IDE.
-The connection between the Arduino and the computer should be through a local router, with a set SSID and password. The computer should use the Kinect to calculate an impact point of the object, and send this in a specific format, so that the data can be easily read and translated to a set of coordinates for the robots movement. The computer should be able to send coordinates more than once, since the first impact point is not necessarily be precise enough to catch the object. The computer should calculate increasingly accurate impact points, which should be sent with a certain minimal inter-arrival time, to not hinder the robots movement, and yet still in time for the robot to correct itself.
+For convenience, and as a part of the requirements for this project, the Arduino should receive wireless data from a computer, connected to the Kinect. The Arduino Wifi Shield makes this possible, with the Wifi library included in the Arduino IDE. \newline
+The connection between the Arduino and the computer should be through a local router, with a set SSID and password. The computer should use the Kinect to calculate an impact point of the object, and send this in a specific format, so that the data can be easily read and translated to a set of coordinates for the robots movement. The computer should be able to send coordinates more than once, since the first impact point is not necessarily be precise enough to catch the object. The computer should calculate increasingly accurate impact points, which should be sent with a certain minimal inter-arrival time, to not hinder the robots movement, and yet still in time for the robot to correct itself. \newline
 The Arduino should receive this data and read whenever it has sufficient time to do so, and convert the data received to match the right coordinate in the predefined area. 
 
 \section{Scheduling}
