@@ -10,9 +10,9 @@ volatile int leftTotal = 0;
 volatile int rightTotal = 0;
 bool motorLeftRun = false;
 bool motorRightRun = false;
-double heading = 0.0, posX = 0.0, posY = 0.0, margin = 10.0, goalX = 230.0, goalY = 330.0;
+double heading = 0.0, posX = 0.0, posY = 0.0, margin = 10.0;
 unsigned int tid;
-int leftTemp, rightTemp, loopcount = 0, signalCount = 0;
+int leftTemp, rightTemp, goalX = 230, goalY = 330, loopcount = 0, signalCount = 0;
 
 #include <AFMotor.h>
 #include <Math.h>
