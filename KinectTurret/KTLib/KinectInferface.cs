@@ -81,7 +81,7 @@ namespace KTLib
 
             this.sensor.DepthFrameReady += new EventHandler<DepthImageFrameReadyEventArgs>(nui_DepthFrameReady);
             this.sensor.ColorFrameReady += new EventHandler<ColorImageFrameReadyEventArgs>(nui_ColorFrameReady);
-            this.sensor.ElevationAngle = 10;
+            this.sensor.ElevationAngle = 22;
             theta = this.sensor.ElevationAngle * Math.PI / 180;
             //theta = 10 * Math.PI / 180;
         }
