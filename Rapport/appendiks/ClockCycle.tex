@@ -1,0 +1,42 @@
+\chapter{Clock cycles}
+This appendix includes all the instructions from the Math.h and AFMotor.h libraries used to make the functions for the arduino program. These have all been counted by looking at the assembly code of the program. Many of the instructions have loops which is denoted with parentheses and a star, as such (7)* will be a loop of 7 clock cycles. 
+\begin{itemize}
+	\item \_\_fp\_Split3 = 41
+	\item \_\_fp\_round = 26
+	\item \_\_fp\_pscA = 11
+	\item \_\_fp\_pscB = 11
+	\item \_\_fp\_nan = 7
+	\item \_\_fp\_inf = 10
+	\item \_\_fp\_Zero = 11
+	\item \_\_fp\_szero = 10
+	\item \_\_addsf3x = 113 + (7)*
+	\item \_\_addsf3 = 147 + (7)*
+	\item \_\_fp\_cmp = 41
+	\item \_\_cmpsf2 = 53
+	\item \_\_subsf3 = 148 + (7)*
+	\item \_\_gesf2 = 53
+	\item digitalWrite = 82{\normalsize }
+	\item M.latch\_tx = 572 + (290 + (5)*)*
+	\item M.run = 634 + (5)* + (290 + (5)*)*
+	\item delay = 52 + (6) + (51 + (6)*)*
+	\item \_\_divsf3x = 229 + (17)* + (13)* + (33 + (17)*)* + (8)*
+	\item \_\_divsf3 = 261 + (17)* + (13)* + (33 + (17)*)* + (8)*
+	\item inverse = 269 + (17)* + (13)* + (33 + (17)*)* + (8)*
+	\item interrupt = 40
+	\item \_\_mulsf3x = 129 + (13)*
+	\item \_\_mulsf3 = 161 + (13)*
+	\item square = 163 + (13)*
+	\item Powser = 130 + (174 + (13)*)* + (231 + (13)*)*
+	\item atan = 989 + (13)* + (174 + (13)*)* + (231 + (13)*)* + (17)* + (8)* + (33 + (17)*)* + (7)*
+	\item floatisf = 46 + (11)*
+	\item \_\_fp\_splitA = 17
+	\item \_\_fp\_rempio2 = 91 + (24)* + (10)*
+	\item \_\_fp\_mpack = 22
+	\item \_\_fp\_powsodd = 461 + (13)* + (174 + (13)*)* + (231 + (13)*)*
+	\item \_\_fp\_sinus = 629 + (13)* + (174 + (13)*)* + (231 + (13)*)* + (7)*
+	\item sin = 734 + (13)* + (174 + (13)*)* + (231 + (13)*)* + (7)* + (10)* + (24)*
+	\item cos = 727 + (13)* + (174 + (13)*)* + (231 + (13)*)* + (17)* + (10)* + (24)*
+	\item StopIfAtGoal = 979 + (7)*
+	\item DriveTowardsGoal = 3206 + (13)* + (174 + (13)*)* + (231 + (13)*)* + (17)* + (8)* + (33 + (17)*)* + (7)* + (5)* + (290 + (5)*)*
+	\item UpdatePosAndHead = 3560 + (11)* + (13)* + (7)* + (174 + (13)*)* + (231 + (13)*)* (10)* + (24)* + (17)* + (33 + (17)*)*
+\end{itemize}
