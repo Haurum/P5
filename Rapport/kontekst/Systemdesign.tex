@@ -70,6 +70,8 @@ The program have a setup and will loop the behavior of the robot. First the sets
 \section{Robot positioning and movement}
 \label{sec:Robot positioning and movement}
 %Kan indeholde hvordan vi har tænkt os med robottens kordinatsystem og hvordan den skal bevæge sig op i mod det punkt som den får fra kinecten.
+The idea for moving the robot would be to send coordinates to the robot, which would be converted to explicit millimetre values of the distance from the starting point (0, 0). This starting point delimits a predefined area, as described in \ref{sec:i1Predefined areaImplementation}, which is the area in which the robot should catch the thrown object. This area is defined by the robots capabilities and limitation. This area would allow the robot to calculate the distance travelled, and compare that value to the distance of the received coordinate. The NXT Servo motor encoders should be used to calculate the distance travelled.
+If the robot has read a coordinate and started to move towards it, receiving a new coordinate would redirect the robot to the new coordinate instead. As described in \ref{sec:i1MovementImplementation}, the robots maximum speed was 25.5 cm/s, but it was significantly slower moving backwards than forwards. This resulted in the definition of the robot always starting at the coordinate (0, 0), and not considering any trash thrown behind the robot. The predefined area was determined to only be in front of the robot, to ensure that the robot does not move backwards. 
 
 \section{Connecting Arduino and Kinect}
 \label{sec:Connecting Arduino and Kinect}
