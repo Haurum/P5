@@ -81,21 +81,23 @@ The Arduino should receive this data and read whenever it has sufficient time to
 \section{Scheduling}
 \label{sec:Scheduling}
 %Snakke om de forskellige tasks, deres deadlines og hvliken metode vi vil bruge til at schedule?
-Cyclic Executive
 
-A cyclic executive is a model which assumes a fixed set of periodic tasks. The model is about designing an entirely static schedule in which the tasks are cyclically executed at their rate, since they are periodic, and must also meet their deadline. The model is cyclic since when the last task ends and the allotted time of a cycle ends, a new cycle begins, with all tasks placed in the same specific order as the previous cycle. The creation of such a schedule proves by construction that the tasks will always meet their deadlines at runtime, if the assumptions of the model are true.
+
+\subsection{Cyclic Executive}
+\label{sec:Cyclic Executive}
+
+A cyclic executive is a model which assumes a fixed set of periodic tasks. The model is about designing an entirely static schedule in which the tasks are cyclically executed at their rate, since they are periodic, and must also meet their deadline. The model is cyclic since when the last task ends and the allotted time of a cycle ends, a new cycle begins, with all tasks placed in the same specific order as the previous cycle. The creation of such a schedule proves by construction that the tasks will always meet their deadlines at runtime, if the assumptions of the model are true. \newline
 To ensure that the cyclic executive is in synchronization with real elapsed time, synchronization points are inserted into the code that implements it (maybe give an example of us doing so, or at least mention it)
 Once cyclic executives are constructed, the implementation is simple and efficient since there is little overhead since there is no scheduling at runtime. Cyclic executives can be constructed separately from the system, by hand or by a tool.
 
--cyclic executive “processes “ cannot be isolated from each other which can be a problem. And hard to include nonperiodic tasks.
+-Cyclic executive “processes “ cannot be isolated from each other which can be a problem. And hard to include nonperiodic tasks.
 
 This discussion will not feature concurrency correctness concerns with race conditions and deadlocks.
 
-Interrupts and their definition
-
-To talk about interrupts we first need to define what we are talking about, these definitions are taken from the source. The definition for an interrupt is twofold, as the first part is as follows: “a hardware-supported asynchronous transfer of control to an interrupt vector based on the signaling of some condition external to the processor core”. The second part of the definition is: “an interrupt is the execution of an interrupt handler : code that is reachable from an interrupt vector”. The definition for the introduced term interrupt vector: “a dedicated or configurable location in memory that specifies the address to which execution should jump when an interrupt occurs”. Interrupts often but not always return control flow to where, the interrupt disrupted control flow. Interrupts often change the state of main memory, and that of device drivers, but does not disturb the main processor context of the computation which was disturbed. Missing Interrupt controller, shared interrupts, i dont think we that.
+\subsection{Interrupts and their definition}
+\label{sec:Interrupts and their definition}
+To talk about interrupts we first need to define what we are talking about, these definitions are taken from the source. The definition for an interrupt is twofold, as the first part is as follows: “a hardware-supported asynchronous transfer of control to an interrupt vector based on the signaling of some condition external to the processor core”. The second part of the definition is: “an interrupt is the execution of an interrupt handler : code that is reachable from an interrupt vector”. The definition for the introduced term interrupt vector: “a dedicated or configurable location in memory that specifies the address to which execution should jump when an interrupt occurs”. Interrupts often but not always return control flow to where, the interrupt disrupted control flow. Interrupts often change the state of main memory, and that of device drivers, but does not disturb the main processor context of the computation which was disturbed. Missing Interrupt controller, shared interrupts, i don't think we that. \newline
 A interrupt is pending when it's firing condition has occurred, the interrupt controller has been updated and the interrupt handler has not started executing. A missed interrupt is when the firing condition occurs but it does not become pending, this is usually because the interrupt is currently pending. Most hardware platforms use a bit to distinguish whether an interrupt is pending or not, a queue could perhaps be implemented through software. Hardware support can be used to disable interrupts by manipulating bits in hardware registers either through the master interrupt enable bit, or the enable bits for each interrupt. 
-
 
 The following conditions decide when the firing condition for interrupt is true:
 
@@ -111,6 +113,3 @@ Another important part of interrupts is interrupt latency, which is the time bet
 
 
 Missing subjects: Stack Overflow. Interrupt overload. Real time deadlines.
-
-
-

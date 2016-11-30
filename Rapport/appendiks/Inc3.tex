@@ -1,5 +1,47 @@
 \chapter{Increment three}
 \label{chap:Increment three}
 
-\section{Connecting Arduino and Kinect}
-\label{sec:i3Connecting Arduino and Kinect}
+\section{Requirements}
+\label{sec:i3Requirements}
+
+\begin{itemize}
+	\item The trash bin should catch the trash if the user throws it towards the trash bin and within a predefined area
+	\begin{itemize}
+		\item {The robots predefined area should be calculated from the hardware limitations of the motors’ speed}
+	\end{itemize}
+	\item The robot should know where it is positioned
+	\begin{itemize}
+		\item {The robot should have a starting position, from where it should be able to calculate it's current position through calculations of the motor encoders}
+		\item {The robot's starting point should be placed outside its predefined area, such that it moves forward into the area}
+	\end{itemize}
+	\item The robot should be able to detect and track the thrown trash
+	\begin{itemize}
+		\item {The thrown trash should be detected and tracked by a Microsoft Kinect}
+		\item {The Kinect should send the coordinates of the impact point of the trash to the robot}
+	\end{itemize}
+	\item The robot should know where the the thrown trash will land
+	\begin{itemize}
+		\item {Trajectory prediction should be used to calculate impact point of the thrown trash}
+	\end{itemize}
+	\item The robot should be able to move the trash bin, such that the thrown trash lands inside the bin
+	\begin{itemize}
+		\item {The robot should be able to turn and drive forward}
+		\item\textcolor{blue}{The robot should be able to recognize the coordinates sent from the Kinect}
+	\end{itemize}
+	\item {The robot should be able to receive data from a computer, through a wireless network}
+\end{itemize}
+
+\section{System design}
+\label{sec:i3System design}
+
+\subsection{Connecting Arduino and Kinect}
+\label{sec:i3Connecting Arduino and Kinect system design}
+
+\section{Implementation}
+\label{sec:i3Implementation}
+
+\subsection{Connecting Arduino and Kinect}
+\label{sec:i3Connecting Arduino and Kinect implementation}
+
+\section{Evaluation}
+\label{sec:i3Evaluation}
