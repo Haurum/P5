@@ -48,6 +48,8 @@ The following sections will describe the hardware considerations for the project
 \label{sec:Sensors}
 Sensors were used to measure the environment around the arduino and enable the arduino to understand that environment. The sensors utilized are described in individual sections. 
 
+Both the LEGO NXT Gyroscope and Accelerometer were used in the Appendix \ref{chap:Increment one}, but were chosen not to be used in the evaluation of the increment. Even though they were not used for the final product, they are lightly explained in this section.
+
 \subsubsection{Microsoft Kinect}
 \label{sec:Microsoft Kinect}
 The Microsoft Kinect camera sensor enables the robot to gather information about thrown objects. The Kinect is a motion sensing device that is able to gather information about the location of an object, including the depth imaging, used to calculate the distance between the camera and the object, using a speckle pattern from an infrared camera. By using the depth information, the Kinect is able to locate the object in 3 dimensions.
@@ -98,7 +100,7 @@ The WifiShield was acquired to enable wifi communication between the Kinect sens
 The Arduino Motor Shield is needed for the project to control the two DC motors independently. Without the motor shield the robot would only be able to move forward and backwards with both wheels at the same time. 
 The motor shield needs an external power source, as the Arduino cannot provide enough power. To solve this issue, a serial circuit of two 9V batteries is attached to the shield. \citep{ams}
 
-\section{Problem statement \& requirements}
+\section{Problem statement}
 \label{sec:Problem statement}
 Based on the above analysis and the limitations of the project, a problem statement for the project has been constructed:
 

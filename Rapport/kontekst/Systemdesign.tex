@@ -87,7 +87,6 @@ The Arduino should receive this data and read whenever it has sufficient time to
 
 \subsection{Cyclic Executive}
 \label{sec:Cyclic Executive}
-
 A cyclic executive is a model which assumes a fixed set of periodic tasks. The model is about designing an entirely static schedule in which the tasks are cyclically executed at their rate, since they are periodic, and must also meet their deadline. The model is cyclic since when the last task ends and the allotted time of a cycle ends, a new cycle begins, with all tasks placed in the same specific order as the previous cycle. The creation of such a schedule proves by construction that the tasks will always meet their deadlines at runtime, if the assumptions of the model are true. \newline
 To ensure that the cyclic executive is in synchronization with real elapsed time, synchronization points are inserted into the code that implements it (maybe give an example of us doing so, or at least mention it)
 Once cyclic executives are constructed, the implementation is simple and efficient since there is little overhead since there is no scheduling at runtime. Cyclic executives can be constructed separately from the system, by hand or by a tool.
