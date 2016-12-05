@@ -25,12 +25,11 @@ To be able to use the Motor- and Wifi shield, two libraries had to be included t
 
 \subsubsection{Motor.h}
 \label{sec:Motor.h}
-The Motor.h library is needed to be able the control the two wheel independently of each other. If the library was not included, it would only have been possible to give both the motors high or low simultaneously. The library makes it possible to control each motor independently. The motors can have set different speeds and can be stopped at different times and so on. 
+The Motor.h library is being used for the project, making it possible to control the motors independently of each other, e.g. the motors can have set different speeds and can be stopped at different times. If the library was not included in this project, the group had to write their own code to control the motors and reading the motor encoders. 
 
 \subsubsection{Wifi.h}
 \label{sec:Wifi.h}
-The choice of using the Arduino Wifi shield forced the choice of using the Arduino Wifi library, which is used to create the connection between the Wifi shield and the router. This library has methods for creating a server, where clients can both read from and write to the server. The subsection \ref{sec:Arduino IDE} explains complications between the versions of the Arduino IDE, and why the Arduino IDE 1.0.3 is used for this project.
-
+Arduino Wifi library is used to create the connection between the Wifi shield and the router. This library has methods for creating a server, where clients can both read from and write to the server. The subsection \ref{sec:Arduino IDE} explains complications between the versions of the Arduino IDE, and why the Arduino IDE 1.0.3 is used for this project.
 
 \section{Robot design}
 \label{sec:Robot design}
@@ -45,20 +44,20 @@ The purpose of the robot is to catch the thrown object, by driving to the impact
 \end{figure}
 
 The robot uses two LEGO NXT Servo motors with corresponding wheels, which will act as the front wheels. The back wheel can slide from side to side, which is important, since the wheel will be dragged sideways when the robots turns, whereas a normal rubber wheel would have caused a lot of friction. 
-The robot is build around the NXT Servo motors, and ends with a platform at the top. The Arduino is stripped to the platform, with the shields ontop. This ensures that the Arduino does not slide off the robots platform.
+The robot is build around the NXT Servo motors, having a kind of platform at the top. The Arduino is stripped to the platform, with the shields on top of it. This ensures that the Arduino does not slide off the robot while moving.
 The robot was build with the arduino at the top, for easy access to the different pins if needed. 
 
 \section{Arduino program design}
 \label{sec:Arduino program design}
 %Dette kan indeholde hvad vores program skal kunne gøre og evt. en punktform over hvilke funktioner/tasks som programmet løber i gennem.
-As mentioned in section \ref{sec:Software choices}, the arduino program was developed in the Arduino IDE version 1.0.3. The program will be responsible to move the robot to the collision point, sent by the Kinect, of the object thrown at its predefined area. This is done by the program translating the coordinates from the Kinect, into coordinates know for the robot and move to that specific location
+As mentioned in section \ref{sec:Software choices}, the arduino program was developed in the Arduino IDE version 1.0.3. The program will be responsible to communicate to the robot where to move, to reach the collision point, sent by the Kinect of the object thrown at its predefined area. This is done by the program translating the coordinates from the Kinect, into coordinates know for the robot and move to that specific location
 
-The program have a setup and will loop the behavior of the robot. First the sets up the WiFi connection to the Kinect program, it then waits for the Kinect program to send coordinates for the impact point of the object thrown. When it have received a set of coordinates, it will then translate the coordinates to so it knows where to move to. The next steps, the arduino program will continuously loop through until the program are exited: First it will check if it is at the impact point, if it is, the program is done. Else the robot will start moving, while it keeps adjusting it direction relative to the robots heading. Finally in the loop it will update the robots current position and its heading. All this can be broken down into tasks:
+The program have a setup and will loop the behavior of the robot. First the setup function, sets up the WiFi connection to the Kinect program, it then waits for the Kinect program to send coordinates for the impact point of the object thrown. When it has received a set of coordinates, it will then translate the coordinates to so it knows where to move to. The next steps, the arduino program will continuously loop through until the program are exited: First it will check if it is at the impact point, if it is, the program is done. Else the robot will start moving, while it keeps adjusting it direction relative to the robots heading. Finally in the loop it will update the robots current position and its heading. All this can be broken down into tasks:
 
 \begin{itemize}
 	\item Make connection to the Kinect
 	\item Wait to receive coordinates from the Kinect
-	\item When the coordinates are received, it will translate these to useful coordinates and then enter the behavioral loop function:
+	\item When the coordinates are received, it will translate these to understandable coordinates for the arduino and then enter the behavioral loop function:
 	\begin{itemize}
 		\item Check if already at the collision point, if it is exit program
 		\item Start moving, adjust direction relative to heading
@@ -98,7 +97,28 @@ This discussion will not feature concurrency correctness concerns with race cond
 
 \subsection{Interrupts and their definition}
 \label{sec:Interrupts and their definition}
-To talk about interrupts we first need to define what we are talking about, these definitions are taken from the source. The definition for an interrupt is twofold, as the first part is as follows: “a hardware-supported asynchronous transfer of control to an interrupt vector based on the signaling of some condition external to the processor core”. The second part of the definition is: “an interrupt is the execution of an interrupt handler : code that is reachable from an interrupt vector”. The definition for the introduced term interrupt vector: “a dedicated or configurable location in memory that specifies the address to which execution should jump when an interrupt occurs”. Interrupts often but not always return control flow to where, the interrupt disrupted control flow. Interrupts often change the state of main memory, and that of device drivers, but does not disturb the main processor context of the computation which was disturbed. Missing Interrupt controller, shared interrupts, i don't think we that. \newline
+To talk about interrupts we first need to define what we are talking about, these definitions are taken from the source. The definition for an interrupt is twofold, as the first part is as follows:
+
+{\addtolength{\leftskip}{10 mm}
+	\enquote{A hardware-supported asynchronous transfer of control to an interrupt vector based on the signaling of some condition external to the processor core}\\*
+	
+}
+
+The second part of the definition is:
+
+{\addtolength{\leftskip}{10 mm}
+	\enquote{An interrupt is the execution of an interrupt handler: code that is reachable from an interrupt vector}\\*
+	
+}
+
+The definition for the introduced term interrupt vector:
+
+{\addtolength{\leftskip}{10 mm}
+	\enquote{A dedicated or configurable location in memory that specifies the address to which execution should jump when an interrupt occurs}\\*
+	
+}
+
+Interrupts often but not always return control flow to where, the interrupt disrupted control flow. Interrupts often change the state of main memory, and that of device drivers, but does not disturb the main processor context of the computation which was disturbed. Missing Interrupt controller, shared interrupts, i don't think we that. \newline
 A interrupt is pending when it's firing condition has occurred, the interrupt controller has been updated and the interrupt handler has not started executing. A missed interrupt is when the firing condition occurs but it does not become pending, this is usually because the interrupt is currently pending. Most hardware platforms use a bit to distinguish whether an interrupt is pending or not, a queue could perhaps be implemented through software. Hardware support can be used to disable interrupts by manipulating bits in hardware registers either through the master interrupt enable bit, or the enable bits for each interrupt. 
 
 The following conditions decide when the firing condition for interrupt is true:
@@ -112,6 +132,14 @@ The following conditions decide when the firing condition for interrupt is true:
 \end{itemize}
 
 Another important part of interrupts is interrupt latency, which is the time between the interrupt firing conditions become true, and the first instruction of the interrupt handler has begun executing. Nested interrupts is when an interrupt handler is preempted by another interrupt. An important distinction between threads and interrupts is that thread scheduling is through software, while interrupt scheduling is through hardware interrupt controller.
+
+\subsection{Stack Overflow}
+\label{sec:Stack Overflow}
+A stack overflow is when a stack grows beyond the confines of the memory allocated to it, thereby corrupting RAM and could cause system malfunction and crash. Allocating memory to a stack is about a balance between enough memory to prevent stack overflow from occurring and not assigning more memory than needed. There are two ways to approach this problem, analysis- and testing based. A significant advantage of analysis is that it can be performed quickly through tools, in contrast to testing which is much more laborious. \newline
+The testing approach is about running the system and observing how large the stack grows. This approach is a kind of black box testing, it doesn’t matter how or why memory is used, all that matters is how big the stacks becomes. A problem with the testing based approach is that it can miss some of the program paths, where it might have taken a shorter branch at some point during the execution of the program. \newline
+The analysis based approach is concerned with the control flow and its goal is to find the path which pushes the most data onto the stack. The problem with the analysis based approach is that it's often too optimistic about the maximum stack size to prevent stack overflow. \newline
+Stack overflow is a problem in embedded systems, but will not be a problem for this project. First of all, a common problem is that threads will have allocated memory and in a system with many interrupts, the interrupts can cause the memory which was allocated to the thread to overflow. The arduino mega2560 board used in this project is not using multiple threads, have relatively large memory and does not use more than one type of interrupt which cannot preempt itself. 
+
 
 
 Missing subjects: Stack Overflow. Interrupt overload. Real time deadlines.
