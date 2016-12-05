@@ -82,6 +82,8 @@ The Arduino should receive this data and read whenever it has sufficient time to
 \section{Scheduling}
 \label{sec:Scheduling}
 %Snakke om de forskellige tasks, deres deadlines og hvliken metode vi vil bruge til at schedule?
+The subsections Cyclic Executive, Interrupts and their definitions, Stack Overflow, Interrupt Overload and Real-Time analysis all uses the the article "Safe and Structured Use of Interrupts in Real-Time and
+Embedded Software" written by John Regehr. \citep{safe}
 
 
 \subsection{Cyclic Executive}
@@ -96,7 +98,7 @@ This discussion will not feature concurrency correctness concerns with race cond
 
 \subsection{Interrupts and their definition}
 \label{sec:Interrupts and their definition}
-To talk about interrupts we first need to define what we are talking about, these definitions are taken from the source. The definition for an interrupt is twofold, as the first part is as follows:
+To talk about interrupts we first need to define what we are talking about, these definitions are quotes from the John Regehr's article \citep{safe}. The definition for an interrupt is twofold, as the first part is as follows:
 
 {\addtolength{\leftskip}{10 mm}
 	\enquote{A hardware-supported asynchronous transfer of control to an interrupt vector based on the signaling of some condition external to the processor core}\\*
@@ -138,6 +140,21 @@ A stack overflow is when a stack grows beyond the confines of the memory allocat
 The testing approach is about running the system and observing how large the stack grows. This approach is a kind of black box testing, it doesn’t matter how or why memory is used, all that matters is how big the stacks becomes. A problem with the testing based approach is that it can miss some of the program paths, where it might have taken a shorter branch at some point during the execution of the program. \newline
 The analysis based approach is concerned with the control flow and its goal is to find the path which pushes the most data onto the stack. The problem with the analysis based approach is that it's often too optimistic about the maximum stack size to prevent stack overflow. \newline
 Stack overflow is a problem in embedded systems, but will not be a problem for this project. First of all, a common problem is that threads will have allocated memory and in a system with many interrupts, the interrupts can cause the memory which was allocated to the thread to overflow. The arduino mega2560 board used in this project is not using multiple threads, have relatively large memory and does not use more than one type of interrupt which cannot preempt itself. 
+
+\subsection{Interrupt overload}
+\label{sec:Interrupt overload}
+
+
+Interrupt overload is when interrupts occur so frequently they dominate the processor from performing its other computations, which in the worst case can end up starving other important processes. While it may be intuitive to think that large interrupt payloads are a natural cause of interrupt overload, but it is rather unexpectedly large interrupt loads which can cause interrupt overload. A reliable maximum interrupt request rate is a important thing to ensure is accurately evaluated to have a reliable real-time system.
+
+
+To discover if the interrupt overload can occur, it is possible to analyze how much cpu utilization can be spent handling interrupts. If the cpu utilization for handling interrupts is above 100% then the cpu might not be able to handle all interrupts, neglecting the rest of the system entirely. If the cpu utilization is below 100%, the rest of the system also needs cpu utilization which means the net utilization could become greater than 100% resulting in interrupt overloading starving other functions.
+To prevent the an interrupt overload to starve other functions,
+The maximum time spent in an interrupt handler can be calculated by the maximum execution time of a given interrupt multiplied by the worst-case arrival rate. 
+
+
+The maximum execution time of the in interrupt handler in our system is 40 clock cycles and the worst-case arrival rate is 1 occurrence per millisecond. The worst-case arrival rate is based on the maximum speed of the NXT servo motor and the motor encoder which reads it, which causes interrupts to be generated. \newline
+The maximum time spent in an interrupt handler in our system is \begin{math} \frac{40 \cdot 1}{16000} = 0.0025\% \end{math} of cpu spent dealing with interrupts, where the 16.000 comes from the cpu clock cycles per millisecond. The interrupts in this project listens to the motor encoders for change, each time a change happens(the change is between high and low voltage), it will interrupt the program and in this project it will increment a counter. Since only one type of interrupt with relatively low amount of cpu utilization is used, this type of problem doesn’t occur. 
 
 
 
