@@ -1,0 +1,62 @@
+  int currentLeft = leftTotal; 
+  int currentRight = rightTotal;
+  leftTemp = currentLeft;
+  rightTemp = currentRight;
+  fix_t distPrDeg = ftok(DISTPRDEGREE);
+  fix_t dltL = itok(currentLeft - leftTemp);
+  fix_t dltR = itok(currentRight - rightTemp);
+  fix_t deltaLeft = mulk(dltL, distPrDeg);
+  fix_t deltaRight = mulk(dltR, distPrDeg);
+  fix_t deltaSum = deltaLeft + deltaRight;
+  620
+  fix_t dist = divk(deltaSum,ftok(2.0));
+  272
+  fix_t sinHeading = sink(heading);
+  836
+  posX += mulk(dist, sinHeading);
+  314
+  fix_t cosHeading = cosk(heading);
+  836
+  posY += mulk(dist, cosHeading);
+  314
+  fix_t rel = divk((deltaRight - deltaLeft),ftok(WHEELDIST));
+  274
+  heading += atank(rel);
+  529
+  __________
+3995
+4035
+
+if statement, else if, else + 3 minus: 107
+fix_t deltaX = goalX - posX;
+  fix_t deltaY = goalY - posY;
+  fix_t rel = divk(deltaX,deltaY);
+  fix_t goalHeading = atank(rel);
+  fix_t deltaHeading = goalHeading - heading;
+  if(deltaHeading < ftok(-0.1)){
+    motorLeft.run(FORWARD);
+    motorRight.run(RELEASE);
+  }else if(deltaHeading > ftok(0.1)){
+    motorLeft.run(RELEASE);
+    motorRight.run(FORWARD);
+  }else{
+    motorLeft.run(FORWARD);
+    motorRight.run(FORWARD);
+  }
+____
+3.356 (run)
+x2
++908 (resten)
+_____________
+7620
+
+if(posX <= goalX + margin && posX >= goalX - margin && posY <= goalY + margin && posY >= goalY - margin) 133
+  {
+    motorLeft.run(RELEASE);
+    motorRight.run(RELEASE);
+    6845
+    delay(50);
+    exit(0);
+  }
+
+interupts: 20 

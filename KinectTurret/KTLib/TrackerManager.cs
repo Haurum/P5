@@ -97,16 +97,27 @@ namespace KTLib
                         Vector3 v3 = ActiveBall.ProjFit.PredictPos(tsamp).ToV3();
                         string data = "X: " + v3.X.ToString("0.00") + " Y: " + v3.Y.ToString("0.00") + " Z: " + (v3.Z-0.5).ToString("0.00");
                         Debug.WriteLine(data);
-                        string data2 = "Unproj: X: " + unproj.X.ToString("0.00") + " Y: " + unproj.Y.ToString("0.00");
-                        Debug.WriteLine(data2);
-                        //tcpClient = new TcpClient();
-                        //tcpClient.Connect("192.168.0.100", 9999);
-                        //stream = tcpClient.GetStream();
-                        //stream.Write(Encoding.UTF8.GetBytes(("X: " + v3.X).ToCharArray()), 0, ("X: " + v3.X).Length);
-                        //stream.Write(Encoding.UTF8.GetBytes(("Y: " + v3.Y).ToCharArray()), 0, ("Y: " + v3.Y).Length);
-                        //stream.Write(Encoding.UTF8.GetBytes(("Z: " + v3.Z).ToCharArray()), 0, ("Z: " + v3.Z).Length);
-                        //stream.Write(Encoding.UTF8.GetBytes(data.ToCharArray()), 0, data.Length);
-                        //tcpClient.Close();
+                        //string data2 = "Unproj: X: " + unproj.X.ToString("0.00") + " Y: " + unproj.Y.ToString("0.00");
+                        
+                        tcpClient = new TcpClient();
+                        tcpClient.Connect("192.168.0.100", 9999);
+                        stream = tcpClient.GetStream();
+                        double pos = Math.Pow(v3.Z-0.5, 2) - 1;
+                        Debug.WriteLine(pos.ToString());
+                        pos = Math.Sqrt(pos);
+                        Debug.WriteLine(pos.ToString());
+                        pos = pos - 0.94;
+                        Debug.WriteLine(pos.ToString());
+                        pos = pos * 1000;
+                        Debug.WriteLine(pos.ToString());
+                        //string data3 = (((Math.Sqrt(Math.Pow(v3.X, 2) - 1) - 0.94) * 1000).ToString() + ";" + "300");
+                        Debug.WriteLine(pos.ToString());
+
+                        stream.Write(Encoding.UTF8.GetBytes((pos.ToString() + ";" + "300").ToCharArray()), 0, (pos.ToString() + ";" + "300").Length);
+                        /*stream.Write(Encoding.UTF8.GetBytes(("Y: " + v3.Y).ToCharArray()), 0, ("Y: " + v3.Y).Length);
+                        stream.Write(Encoding.UTF8.GetBytes(("Z: " + v3.Z).ToCharArray()), 0, ("Z: " + v3.Z).Length);
+                        stream.Write(Encoding.UTF8.GetBytes(data.ToCharArray()), 0, data.Length);*/
+                        tcpClient.Close();
                         
                         System.Drawing.PointF pt = new System.Drawing.PointF(unproj.X, unproj.Y);
                         //depthMaskOverlay.Draw(new Cross2DF(pt, 10, 10), new Bgr(0, 0, 255), 3);

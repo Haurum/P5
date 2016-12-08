@@ -16,7 +16,7 @@ namespace WifiTest
         static void Main(string[] args)
         {
             tcpClient.Connect("192.168.0.100", 9999);
-            string data = "test";
+            string data = "0.0;0.0";
             const int IntSize = 4;
             byte[] bytedata;
             Stream stream = tcpClient.GetStream();
