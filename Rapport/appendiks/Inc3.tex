@@ -38,6 +38,48 @@
 \label{sec:i3Connecting Arduino and Kinect system design}
 For connecting the Arduino and Kinect, the Wifi library is used as explained in Appendix \ref{sec:Connecting Arduino and Kinect}. The Kinect should create a TCP-client, which should send the appropriate data to the Arduino. This TCP-client should connect when it can send data, and disconnect after sending the data, since the Arduino has a timer that closes the connection after 10 seconds of inactivity. The sent data should be of the form (x, z) expressing the distance from the kinect to the impact point of the object and the ground. The x-coordinate should express the horizontal position, and the z-coodinate should express the depth position. As the Kinect camera should be position and tilted so that the bottom angle of the cameras point of view is parallel to the ground, makes the y coordinate useless, as the impact point would always be at (x, (y = 0), z). This delimitation also gives the camera a sense of where the ground is, since it would not be able to see the ground, and therefore would calculate a different impact point, as the object would in a sense fall through the ground in the picture. 
 
+\subsection{Scheduling}
+\label{sec:i3Scheduling}
+To be able to schedule the systems functions, the worst-case execution time have to be known for the individual functions. The first attempt was to count the clock cycles in the assembly file of the complied arduino code. It was known that the Arduino mega 2560 has 16000 clock cycles per millisecond, so it will be possible to calculate the time for the functions. The purpose was to count the clock cycles for the two functions driveTowardsGoal and updatePosAndHead, to make that a possibility many of the functions in the different libraries used also had to be counted, the results of this can be found in Appendix \ref{chap:Clock cycles}.
+
+In the following list, the clock cycles counted of the two functions are shown:
+\begin{itemize}
+	\item driveTowardsGoal = \textbf{4185} + (13)* + (174 + (13)*)* + (231 + (13)*)* + (17)* + (8)* + (33 + (17)*)* + (7)* + (5)* + (290 + (5)*)*
+	\item updatePosAndHead = \textbf{3560} + (11)* + (13)* + (7)* + (174 + (13)*)* + (231 + (13)*)* (10)* + (24)* + (17)* + (33 + (17)*)*
+\end{itemize}
+The bold number is the worst-case of clock cycles counted in the function. The numbers in parentheses are loops, which bound is unknown, therefore it is not possible to make a count the exact worst-case execution time by counting the clock cycles.
+
+Since it was not possible to count the clock cycles from the assembly code, it was decided to use the tool Bound-T, which will calculate the worst-case execution time outputted with an output in clock cycles. \newline
+Bound-T was not able to calculate the worst-case execution time for the code. When Bound-T gets to calculating the floats, it is failing. It can't set an upper bound for the floating point numbers' worst-case execution time. 
+
+To be able to work around the float issues with Bound-T, a library called AVRFIX made by Maximilian Rosenblattl and Andreas Wolf \citep{AVRFIX}. 
+
+\begin{lstlisting}[caption={The function updatePosAndHead with AWRFIX library}, label={Update1}]
+void updatePosAndHead(){
+	int currentLeft = leftTotal;
+	int currentRight = rightTotal;
+	fix_t distPrDeg = ftok(DISTPRDEGREE);
+	fix_t dltL = itok(currentLeft - leftTemp);
+	fix_t dltR = itok(currentRight - rightTemp);
+	fix_t deltaLeft = mulk(dltL, distPrDeg);
+	fix_t deltaRight = mulk(dltR, distPrDeg);
+	leftTemp = currentLeft;
+	rightTemp = currentRight;
+	fix_t deltaSum = deltaLeft + deltaRight;
+	fix_t dist = divk(deltaSum,ftok(2.0));
+	fix_t sinHeading = sink(heading);
+	posX += mulk(dist, sinHeading);
+	fix_t cosHeading = cosk(heading);
+	posY += mulk(dist, cosHeading);
+	fix_t rel = divk((deltaRight - deltaLeft),ftok(WHEELDIST));
+	heading += atank(rel);
+}
+\end{lstlisting}
+
+\begin{lstlisting}[caption={The function updatePosAndHead from the Arduino IDE}, label={Update2}]
+
+\end{lstlisting}
+
 \section{Implementation}
 \label{sec:i3Implementation}
 
