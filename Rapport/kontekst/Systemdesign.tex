@@ -92,8 +92,6 @@ A cyclic executive is a model which assumes a fixed set of periodic tasks. The m
 To ensure that the cyclic executive is in synchronization with real elapsed time, synchronization points are inserted into the code that implements it (maybe give an example of us doing so, or at least mention it)
 Once cyclic executives are constructed, the implementation is simple and efficient since there is little overhead since there is no scheduling at runtime. Cyclic executives can be constructed separately from the system, by hand or by a tool.
 
-This discussion will not feature concurrency correctness concerns with race conditions and deadlocks.
-
 \subsection{Interrupts and their definition}
 \label{sec:Interrupts and their definition}
 To talk about interrupts we first need to define what we are talking about, these definitions are quotes from the John Regehr's article \citep{safe}. The definition for an interrupt is twofold, as the first part is as follows:
@@ -155,7 +153,7 @@ The maximum time spent in an interrupt handler in our system is \begin{math} \fr
 
 Real-Time analysis 
 
-The previously addressed problems of stack overflow and interrupt overload are a subproblem of the real-time schedulability analysis, especially concerning interrupts, which will make sure that all computations will be met within their time constraints. 
+The previously addressed problems of stack overflow and interrupt overload are subproblems of the real-time schedulability analysis, especially concerning interrupts, which will make sure that all computations will be met within their time constraints. 
 To schedule the system a cyclic executive is used, which is mentioned in section \ref{sec:Cyclic Executive}, which handles many of the problems addressed, as long as its assumptions are true. 
-The strengths of using a cyclic executive include: execution schedule is predetermined, simple, efficient and fast, low jitter, race-conditions (not sure if true, seems true). 
+The strengths of using a cyclic executive include: execution schedule is predetermined, simple, efficient and fast, low jitter, prevents race-conditions and deadlock(not sure if true, seems true). 
 The very existence of a cyclic executive is a proof by construction that the real-time analysis will hold, and the problems which arise from interrupts have also been addressed in this chapter.
