@@ -138,6 +138,13 @@ The function updatePosAndHead is calculated to use 3995 clock cycles, but when t
 
 Because using the AVRFIX library with Bound-T also failed, the group decided to use the function micros() on the functions to measure the time spent on the function, run them several times and use highest result as WCET. 
 
+The WCET for the two functions using the Micros() function, is listed below:
+\begin{itemize}
+	\item updatePosAndHead = 1076 microseconds
+	\item driveTowardsGoal = 732 microseconds
+\end{itemize}
+
+The above results is what is used for the project.
 \section{Implementation}
 \label{sec:i3Implementation}
 
