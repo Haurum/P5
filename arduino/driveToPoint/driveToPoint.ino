@@ -12,7 +12,7 @@
 
 //AF_DCMotor motorLeft(1);
 //AF_DCMotor motorRight(2);
-
+unsigned long t;
 char ssid[] = "Dumpsty";     //  your network SSID (name) 
 char pass[] = "test1234";    // your network password
 int status = WL_IDLE_STATUS;     // the Wifi radio's status
@@ -61,6 +61,7 @@ void loop() {
   // Reading available data from the server
   
   if (!shouldDrive) {
+    t = micros();
     client = server.available();
     if (client.connected()){
       while (client.available()) {
@@ -69,14 +70,15 @@ void loop() {
       }
     }
     if (dataString != "") {
-      Serial.println(dataString);
+      //Serial.println(dataString);
       
-      Serial.println(dataString.substring(0,dataString.indexOf(';')));
+      //Serial.println(dataString.substring(0,dataString.indexOf(';')));
       goalX = dataString.substring(0,dataString.indexOf(';')).toInt();
-      Serial.println(dataString.substring(dataString.indexOf(';')+1));
+      //Serial.println(dataString.substring(dataString.indexOf(';')+1));
       goalY = dataString.substring(dataString.indexOf(';')+1).toInt();
       shouldDrive = true;
-      
+      Serial.println(micros() - t);
+      dataString = "";
     }
   } else {
     
@@ -105,8 +107,8 @@ void loop() {
     if(posX <= goalX + margin && posX >= goalX - margin && posY <= goalY + margin && posY >= goalY - margin){
       motorLeft.run(RELEASE);
       motorRight.run(RELEASE);
-      //delay(50);
-      //exit(0);
+      delay(50);
+      exit(0);
       shouldDrive = false;
       dataString = "";
     } else {
@@ -131,7 +133,9 @@ void loop() {
     }
     delay(10);
   
+    //t = micros();
     updatePosAndHead();
+    //Serial.println(micros() - t );
   }
 }
 
