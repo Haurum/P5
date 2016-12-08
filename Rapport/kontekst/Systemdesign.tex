@@ -155,5 +155,6 @@ Real-Time analysis
 
 The previously addressed problems of stack overflow and interrupt overload are subproblems of the real-time schedulability analysis, especially concerning interrupts, which will make sure that all computations will be met within their time constraints. 
 To schedule the system a cyclic executive is used, which is mentioned in section \ref{sec:Cyclic Executive}, which handles many of the problems addressed, as long as its assumptions are true. 
+Since the cyclic executive has predetermined behaviour it will have low jitter for the execution of each of the periodic tasks. Although jitter has not been a particular concern in this project.\newline Jitter is the concept of time variation in a computed output being messaged to external environment from period to period.
 The strengths of using a cyclic executive include: execution schedule is predetermined, simple, efficient and fast, low jitter, prevents race-conditions and deadlock(not sure if true, seems true). 
 The very existence of a cyclic executive is a proof by construction that the real-time analysis will hold, and the problems which arise from interrupts have also been addressed in this chapter.
