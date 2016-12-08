@@ -36,6 +36,7 @@
 
 \subsection{Connecting Arduino and Kinect}
 \label{sec:i3Connecting Arduino and Kinect system design}
+For connecting the Arduino and Kinect, the Wifi library is used as explained in Appendix \ref{sec:Connecting Arduino and Kinect}. The Kinect should create a TCP-client, which should send the appropriate data to the Arduino. This TCP-client should connect when it can send data, and disconnect after sending the data, since the Arduino has a timer that closes the connection after 10 seconds of inactivity. The sent data should be of the form (x, z) expressing the distance from the kinect to the impact point of the object and the ground. The x-coordinate should express the horizontal position, and the z-coodinate should express the depth position. As the Kinect camera should be position and tilted so that the bottom angle of the cameras point of view is parallel to the ground, makes the y coordinate useless, as the impact point would always be at (x, (y = 0), z). This delimitation also gives the camera a sense of where the ground is, since it would not be able to see the ground, and therefore would calculate a different impact point, as the object would in a sense fall through the ground in the picture. 
 
 \section{Implementation}
 \label{sec:i3Implementation}
