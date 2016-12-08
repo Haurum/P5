@@ -1,5 +1,48 @@
 \chapter{Increment three}
 \label{chap:Increment three}
 
-\section{Connecting Arduino and Kinect}
-\label{sec:i3Connecting Arduino and Kinect}
+\section{Requirements}
+\label{sec:i3Requirements}
+
+\begin{itemize}
+	\item The trash bin should catch the trash if the user throws it towards the trash bin and within a predefined area
+	\begin{itemize}
+		\item {The robots predefined area should be calculated from the hardware limitations of the motors’ speed}
+	\end{itemize}
+	\item The robot should know where it is positioned
+	\begin{itemize}
+		\item {The robot should have a starting position, from where it should be able to calculate it's current position through calculations of the motor encoders}
+		\item {The robot's starting point should be placed outside its predefined area, such that it moves forward into the area}
+	\end{itemize}
+	\item The robot should be able to detect and track the thrown trash
+	\begin{itemize}
+		\item {The thrown trash should be detected and tracked by a Microsoft Kinect}
+		\item {The Kinect should send the coordinates of the impact point of the trash to the robot}
+	\end{itemize}
+	\item The robot should know where the the thrown trash will land
+	\begin{itemize}
+		\item {Trajectory prediction should be used to calculate impact point of the thrown trash}
+	\end{itemize}
+	\item The robot should be able to move the trash bin, such that the thrown trash lands inside the bin
+	\begin{itemize}
+		\item {The robot should be able to turn and drive forward}
+		\item\textcolor{blue}{The robot should be able to recognize the coordinates sent from the Kinect}
+	\end{itemize}
+	\item {The robot should be able to receive data from a computer, through a wireless network}
+\end{itemize}
+
+\section{System design}
+\label{sec:i3System design}
+
+\subsection{Connecting Arduino and Kinect}
+\label{sec:i3Connecting Arduino and Kinect system design}
+For connecting the Arduino and Kinect, the Wifi library is used as explained in Appendix \ref{sec:Connecting Arduino and Kinect}. The Kinect should create a TCP-client, which should send the appropriate data to the Arduino. This TCP-client should connect when it can send data, and disconnect after sending the data, since the Arduino has a timer that closes the connection after 10 seconds of inactivity. The sent data should be of the form (x, z) expressing the distance from the kinect to the impact point of the object and the ground. The x-coordinate should express the horizontal position, and the z-coodinate should express the depth position. As the Kinect camera should be position and tilted so that the bottom angle of the cameras point of view is parallel to the ground, makes the y coordinate useless, as the impact point would always be at (x, (y = 0), z). This delimitation also gives the camera a sense of where the ground is, since it would not be able to see the ground, and therefore would calculate a different impact point, as the object would in a sense fall through the ground in the picture. 
+
+\section{Implementation}
+\label{sec:i3Implementation}
+
+\subsection{Connecting Arduino and Kinect}
+\label{sec:i3Connecting Arduino and Kinect implementation}
+
+\section{Evaluation}
+\label{sec:i3Evaluation}

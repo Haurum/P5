@@ -196,3 +196,35 @@ heading += (atan((deltaRight - deltaLeft) / WHEELDIST));
 \section{Evaluation}
 \label{sec:i2Evaluation}
 This section will include a short summary of the chapter and conclude with an updated requirement list, showing changes from the first requirement list in the chapter.
+
+This increment focused on two things: The robot's positioning and movement and connecting the robot with the Kinect program. \newline
+Using the Motor encoders it is now possible to calculate the heading and the distance moved, making it possible for the robot to drive to a known location, which is the coordinate point sent by the Kinect. \newline
+The connecting between the robot and the Kinect program have been established on their own private network. The robot will connect to the network and will wait for the Kinect program to sent data to its IP address.  
+
+This is the requirements after finalizing increment two: 
+\begin{itemize}
+	\item The trash bin should catch the trash if the user throws it towards the trash bin and within a predefined area
+	\begin{itemize}
+		\item {The robots predefined area should be calculated from the hardware limitations of the motors’ speed}
+	\end{itemize}
+	\item The robot should know where it is positioned
+	\begin{itemize}
+		\item \textcolor{green}{The robot should have a starting position, from where it should be able to calculate it's current position through calculations of the motor encoders}
+		\item {The robot's starting point should be placed outside its predefined area, such that it moves forward into the area}
+	\end{itemize}
+	\item The robot should be able to detect and track the thrown trash
+	\begin{itemize}
+		\item {The thrown trash should be detected and tracked by a Microsoft Kinect}
+		\item \textcolor{green}{The Kinect should send the coordinates of the impact point of the trash to the robot}
+	\end{itemize}
+	\item The robot should know where the the thrown trash will land
+	\begin{itemize}
+		\item {Trajectory prediction should be used to calculate impact point of the thrown trash}
+	\end{itemize}
+	\item The robot should be able to move the trash bin, such that the thrown trash lands inside the bin
+	\begin{itemize}
+		\item {The robot should be able to turn and drive forward}
+		\item {The robot should be able to recognize the coordinates sent from the Kinect}
+	\end{itemize}
+	\item \textcolor{green}{The robot should be able to receive data from a computer, through a wireless network}
+\end{itemize}
