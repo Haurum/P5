@@ -65,6 +65,12 @@ The program have a setup and will loop the behavior of the robot. First the setu
 	\end{itemize}
 \end{itemize}
  
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.25]{billeder/flowgraph.png}
+	\caption{The flowgraph of the program}
+	\label{figure:flowgraph}
+\end{figure}
 
 \section{Robot positioning and movement}
 \label{sec:Robot positioning and movement}
@@ -82,15 +88,16 @@ The Arduino should receive this data and read whenever it has sufficient time to
 \section{Scheduling}
 \label{sec:Scheduling}
 %Snakke om de forskellige tasks, deres deadlines og hvliken metode vi vil bruge til at schedule?
-The subsections Cyclic Executive, Interrupts and their definitions, Stack Overflow, Interrupt Overload and Real-Time analysis all uses the the article "Safe and Structured Use of Interrupts in Real-Time and
+The subsection Cyclic Executive details the model used in this project to schedule tasks and discussion will conclude in the subsection real-time analysis with information about how the scheduling was achieved. 
+The subsections Interrupts and their definitions, Stack Overflow and Interrupt Overload use the article "Safe and Structured Use of Interrupts in Real-Time and
 Embedded Software" written by John Regehr. \citep{safe}
 
 
 \subsection{Cyclic Executive}
 \label{sec:Cyclic Executive}
-A cyclic executive is a model which assumes a fixed set of periodic tasks. The model is about designing an entirely static schedule in which the tasks are cyclically executed at their rate, since they are periodic, and must also meet their deadline. The model is cyclic since when the last task ends and the allotted time of a cycle ends, a new cycle begins, with all tasks placed in the same specific order as the previous cycle. The creation of such a schedule proves by construction that the tasks will always meet their deadlines at runtime, if the assumptions of the model are true. \newline
-To ensure that the cyclic executive is in synchronization with real elapsed time, synchronization points are inserted into the code that implements it (maybe give an example of us doing so, or at least mention it)
-Once cyclic executives are constructed, the implementation is simple and efficient since there is little overhead since there is no scheduling at runtime. Cyclic executives can be constructed separately from the system, by hand or by a tool.
+A cyclic executive is a model which assumes a fixed set of periodic tasks\citep{rtsbog}. The model is about designing an entirely static schedule in which the tasks are cyclically executed at their rate, since they are periodic, and must also meet their deadline. The model is cyclic since when the last task ends and the allotted time of a cycle ends, a new cycle begins, with all tasks placed in the same specific order as the previous cycle. The creation of such a schedule proves by construction that the tasks will always meet their deadlines at runtime, if the assumptions of the model are true\citep{rtsbog}. \newline
+To ensure that the cyclic executive is in synchronization with real elapsed time, synchronization points are inserted into the code that implements it.
+Once cyclic executives are constructed, the implementation is simple and efficient since there is little overhead since there is no scheduling at runtime\citep{rtsbog}. Cyclic executives can be constructed separately from the system, by hand or by a tool.
 
 \subsection{Interrupts and their definition}
 \label{sec:Interrupts and their definition}
@@ -115,8 +122,8 @@ The definition for the introduced term interrupt vector:
 	
 }
 
-Interrupts often but not always return control flow to where, the interrupt disrupted control flow. Interrupts often change the state of main memory, and that of device drivers, but does not disturb the main processor context of the computation which was disturbed.\newline
-A interrupt is pending when it's firing condition has occurred, the interrupt controller has been updated and the interrupt handler has not started executing. A missed interrupt is when the firing condition occurs but it does not become pending, this is usually because the interrupt is currently pending. Most hardware platforms. including the atmega2560, use a bit to distinguish whether an interrupt is pending or not. Hardware support can be used to disable interrupts by manipulating bits in hardware registers either through the master interrupt enable bit, or the enable bits for each interrupt. 
+Interrupts often but not always return control flow to where, the interrupt disrupted control flow\citep{safe}. Interrupts often change the state of main memory, and that of device drivers, but does not disturb the main processor context of the computation which was disturbed.\newline
+A interrupt is pending when it's firing condition has occurred, the interrupt controller has been updated and the interrupt handler has not started executing. A missed interrupt is when the firing condition occurs but it does not become pending, this is usually because the interrupt is currently pending\citep{safe}. Most hardware platforms. including the atmega2560, use a bit to distinguish whether an interrupt is pending or not. Hardware support can be used to disable interrupts by manipulating bits in hardware registers either through the master interrupt enable bit, or the enable bits for each interrupt. 
 
 The following conditions decide when the firing condition for an interrupt is true:
 
@@ -128,12 +135,12 @@ The following conditions decide when the firing condition for an interrupt is tr
 	\item There exists no higher priority interrupt which fulfills 1-4.
 \end{itemize}
 
-Another important part of interrupts is interrupt latency, which is the time between the interrupt firing conditions become true, and the first instruction of the interrupt handler has begun executing. Nested interrupts is when an interrupt handler is preempted by another interrupt. An important distinction between threads and interrupts is that thread scheduling is through software, while interrupt scheduling is through hardware interrupt controller.
+Another important part of interrupts is interrupt latency, which is the time between the interrupt firing conditions become true, and the first instruction of the interrupt handler has begun executing. Nested interrupts is when an interrupt handler is preempted by another interrupt. An important distinction between threads and interrupts is that thread scheduling is through software, while interrupt scheduling is through hardware interrupt controller\citep{safe}.
 
 \subsection{Stack Overflow}
 \label{sec:Stack Overflow}
-A stack overflow is when a stack grows beyond the confines of the memory allocated to it, thereby corrupting RAM and could cause system malfunction and crash. Allocating memory to a stack is about a balance between enough memory to prevent stack overflow from occurring and not assigning more memory than needed. There are two ways to approach this problem, analysis- and testing based. A significant advantage of analysis is that it can be performed quickly through tools, in contrast to testing which is much more laborious. \newline
-The testing approach is about running the system and observing how large the stack grows. This approach is a kind of black box testing, it doesn’t matter how or why memory is used, all that matters is how big the stacks becomes. A problem with the testing based approach is that it can miss some of the program paths, where it might have taken a shorter branch at some point during the execution of the program. \newline
+A stack overflow is when a stack grows beyond the confines of the memory allocated to it, thereby corrupting RAM and could cause system malfunction and crash\citep{safe}. Allocating memory to a stack is about a balance between enough memory to prevent stack overflow from occurring and not assigning more memory than needed. There are two ways to approach this problem, analysis- and testing based. A significant advantage of analysis is that it can be performed quickly through tools, in contrast to testing which is much more laborious. \newline
+The testing approach is about running the system and observing how large the stack grows\citep{safe}. This approach is a kind of black box testing, it doesn’t matter how or why memory is used, all that matters is how big the stacks becomes. A problem with the testing based approach is that it can miss some of the program paths, where it might have taken a shorter branch at some point during the execution of the program. \newline
 The analysis based approach is concerned with the control flow and its goal is to find the path which pushes the most data onto the stack. The problem with the analysis based approach is that it's often too optimistic about the maximum stack size to prevent stack overflow. \newline
 Stack overflow is a general problem in embedded systems, but will not be a problem for this project. A common factor that leads to this, is that threads will have allocated memory and in a system with many interrupts, the interrupts can cause the memory which was allocated to the thread to overflow. The arduino mega2560 board used in this project is not using multiple threads, have relatively large memory and does not use more than one type of interrupt which cannot preempt itself. 
 
@@ -141,7 +148,7 @@ Stack overflow is a general problem in embedded systems, but will not be a probl
 \label{sec:Interrupt overload}
 
 
-Interrupt overload is when interrupts occur so frequently they dominate the processor from performing its other computations, which in the worst case can end up starving other important processes. While it may be intuitive to think that large interrupt payloads are a natural cause of interrupt overload, but it is rather unexpectedly large interrupt loads which can cause interrupt overload. A reliable maximum interrupt request rate is a important thing to ensure that it is accurately evaluated to have a reliable real-time system.
+Interrupt overload is when interrupts occur so frequently they dominate the processor from performing its other computations, which in the worst case can end up starving other important processes\citep{safe}. While it may be intuitive to think that large interrupt payloads are a natural cause of interrupt overload, but it is rather unexpectedly large interrupt loads which can cause interrupt overload. A reliable maximum interrupt request rate is a important thing to ensure that it is accurately evaluated to have a reliable real-time system.
 
 
 To discover if the interrupt overload can occur, it is possible to analyze how much cpu utilization can be spent handling interrupts. If the cpu utilization for handling interrupts is above 100% then the cpu might not be able to handle all interrupts, neglecting the rest of the system entirely. If the cpu utilization is below 100%, the rest of the system also needs cpu utilization which means the net utilization could become greater than 100% resulting in interrupt overloading starving other functions.
