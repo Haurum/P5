@@ -26,19 +26,17 @@ The user requirements of the project have been conducted from the section \ref{s
 \label{sec:System capabilities}
 This section will define the required capabilities of the system, which will include the functionality and hardware needed to fulfill the tasks of the embedded system. This is divided into three different categories, which are the subsections of the section. These categories, along with the user requirements, will define the system requirements for the project.
 
-\subsection{Throwing}
-\label{sec:ThrowingAnalysis}
+\textbf{Throwing}\newline
 When considering the process of throwing the trash, certain requirements must be met, which will be simplified for this project:
-The trash, from here on referred to as "an object", must be round, and have a predefined and identifiable color, in our case: red.  \newline
-The ball should be thrown in a high arc, to give the sensor and trash bin more time to detect, track and calculate a point, at which the robot should move to, in order to catch the object.
+The trash, from here on referred to as "an object", must be a round object of some sort, where in this project a table tennis ball will be used.  \newline
+The ball will be bounced on the ground, to give the sensor and robot more time to detect, track and calculate a point, at which the robot should move to, in order to catch the object.
 
-\subsection{Detecting and tracking}
-\label{sec:Detecting and trackingAnalysis}
-Detecting and tracking the object are two very essential tasks, but are considered as one phase. For detecting the object, a sensor should be able to recognize the specific object. \newline When the object has been detected, it should then be tracked by the same sensor. The sensor should track the speed of the object and the direction it is heading. This should be used to calculate the point of impact between the object and the ground.
+\textbf{Detecting and tracking}\newline
+Detecting and tracking the object are two very essential tasks, but are considered as one. For detecting the object, a sensor should be able to recognize the specific object. \newline
+When the object has been detected, it will then be tracked by the same sensor. The sensor is going to track the direction the object is heading. This will be used to calculate the point of impact between the object and the ground.
 
-\subsection{Catching}
-\label{sec:CatchingAnalysis}
-The catching phase is the phase in which the trash bin calculates the impact point, and moves to that specific point. The trash bin gets information about the thrown object, in this case the impact point, from the sensor and uses the given information to calculate the impact point. What data the trash bin gets from the sensor and how the calculation is done, will be explained in later chapters. 
+\textbf{Catching}\newline
+The catching phase is in which the robot calculates the impact point, and moves to that specific point. The robot gets information about the thrown object, in this case the impact point, from the sensor and uses the given information to calculate the impact point. What data the robot gets from the sensor and how the calculation is done, will be explained in later chapters. 
 
 \section{Hardware}
 \label{sec:Hardware} 
@@ -73,7 +71,8 @@ The diameter of the wheel: 56mm \newline
 The circumference of the wheel: 56 \begin{math}\cdot \pi \end{math} = 175.929mm
 
 The robot was programmed to drive forward for 10 seconds and was observed to travel a distance of 2550mm, which means it travels with a speed of 255mm/s. \newline
-The motor’s RPM is: (2230 \begin{math} \cdot \end{math} 175.929) \begin{math} \cdot \end{math} 6 = 86.966 RPM.
+The motor’s RPM is: (2230 \begin{math} \cdot \end{math} 175.929) \begin{math} \cdot \end{math} 6 = 86.966 RPM. 
+This calculation was calculated with fresh batteries, since this might affect the speed of the motors.
 
 %The travel time of a normal underhand throw have been measured, and the same for a throw where the object bounces on the ground.\newline
 %The travel time of a thrown object from when it leaves the hand to impact in the predefined area, is about 1.1second. This means that the robot will only be able to catch an object about 280mm away from its start position. \newline
@@ -81,14 +80,15 @@ The motor’s RPM is: (2230 \begin{math} \cdot \end{math} 175.929) \begin{math} 
 
 \subsection{Arduino}
 \label{sec:Arduino}
-The Arduino Mega 2560 was chosen for this project, as it has limited computational power, which will introduce intereting problems, as well as real-time constraints. \citep{a}
+The Arduino Mega 2560 was chosen for this project, as it has limited computational power, which will introduce interesting problems, as well as real-time constraints. \citep{a}
 
 Arduino Mega 2560 Specifications:\newline
 Flash memory: 256KB (8 used by bootloader)\newline
 SRAM: 8KB\newline
 EEPROM: 4KB\newline
 Clock Speed: 16 MHz\newline
-Weight: 37g
+
+Especially the Clock speed is important, since the arduino mega 2560  will give 16000 clock cycles per millisecond to do the necessary tasks.
 
 \subsubsection{Arduino Wifi Shield}
 \label{sec: Arduino Wifi Shield}
@@ -104,5 +104,5 @@ The motor shield needs an external power source, as the Arduino cannot provide e
 \label{sec:Problem statement}
 Based on the above analysis and the limitations of the project, a problem statement for the project has been constructed:
 
-\textit{How can an embedded system control a trash bin to detect, track and catch a thrown object within a designated area?}
+\textbf{\textit{How can an embedded system control a trash bin to detect, track and catch a thrown object within a designated area?}}
 

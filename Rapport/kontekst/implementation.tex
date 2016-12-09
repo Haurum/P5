@@ -10,6 +10,17 @@ This chapter will describe the implementation of the systems components. It will
 
 \section{Scheduling}
 \label{sec:Scheduling implementation}
+To calculate the worst-case execution time(WCET) for the systems tasks, several methods were tried out, which is described in Appendix \ref{chap:Increment three} in section \ref{sec:i3Scheduling}. 
+The method used in this project to get the WCET for the system tasks, is to use the micros() function in the arduino IDE. \newline
+Each task running time is measured with the micros() function, by running the function several time at using the highest time value as WCET. This was done for the functions updatePosAndHead(), driveTowardsGoal() and for when the Kinect program sends data till the arduino have received it via WiFi.
+
+The results of the WCET of the tasks using the micros() function:
+\begin{itemize}
+	\item updatePosAndHead = 1076 microseconds
+	\item driveTowardsGoal = 732 microseconds
+	\item WiFi = 8433 microseconds
+\end{itemize}
+These results was used to make a schedulability analysis in the UPPAAL program, which will be described in the following section.
 
 \subsection{UPPAAL schedulability analysis}
 \label{sec:UPPAAL schedulability}
@@ -27,7 +38,7 @@ Figure 5.1 depicts the automatas created in UPPAAL from two declared classes. Th
 
 \begin{figure}[h]
 	\centering
-	\fbox{\includegraphics[scale=0.60]{billeder/UPPAALPr}}
+	\includegraphics[scale=1]{billeder/UPPAALPr}
 	\caption{Automata in UPPAAL}
 	\label{robot}
 \end{figure}

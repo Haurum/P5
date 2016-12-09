@@ -43,7 +43,7 @@ For connecting the Arduino and Kinect, the Wifi library is used as explained in 
 
 \subsection{Scheduling}
 \label{sec:i3Scheduling}
-To be able to schedule the systems functions(also called tasks), the worst-case execution time(WCET) have to be known for the individual functions. The first attempt was to count the clock cycles in the assembly file of the complied arduino code. It was known that the Arduino mega 2560 has 16000 clock cycles per millisecond, so it will be possible to calculate the time for the functions. The purpose was to count the clock cycles for the two functions driveTowardsGoal and updatePosAndHead, to make that a possibility many of the functions in the different libraries used also had to be counted, the results of this can be found in Appendix \ref{chap:Clock cycles}.
+To be able to schedule the systems functions(also called tasks), the worst-case execution time(WCET) have to be known for the individual functions. The first attempt was to count the clock cycles in the assembly file of the complied arduino code. It was known that the Arduino mega 2560 has 16000 clock cycles per millisecond, so it will be possible to calculate the time for the functions. The purpose was to count the clock cycles for the two functions driveTowardsGoal() and updatePosAndHead(), to make that a possibility many of the functions in the different libraries used also had to be counted, the results of this can be found in Appendix \ref{chap:Clock cycles}.
 
 In the following list, the clock cycles counted of the two functions are shown:
 \begin{itemize}
@@ -95,17 +95,18 @@ heading += (atan((deltaRight - deltaLeft) / WHEELDIST));
 \end{lstlisting}
 
 The program was rewritten with the AVRFIX library and then using Bound-T again to calculate the worst-case execution time for the functions. The AVRFIX library came with a .txt file from the GitHub download, which included the clock cycles for the AVRFIX functions. \newline
-The function updatePosAndHead is calculated to use 3995 clock cycles, but when trying to calculate the function driveTowardsGoal another problem occurred. When a division by 0 took place, the program will enter an infinite loop, making it impossible to set an upper bound on the WCET. With this problem it is not possible to calculate the WCET for driveTowardsPoint.
+The function updatePosAndHead() is calculated to use 3995 clock cycles, but when trying to calculate the function driveTowardsGoal() another problem occurred. When a division by 0 took place, the program will enter an infinite loop, making it impossible to set an upper bound on the WCET. With this problem it is not possible to calculate the WCET for driveTowardsPoint().
 
-Because using the AVRFIX library with Bound-T also failed, the group decided to use the function micros() on the functions to measure the time spent on the function, run them several times and use highest result as WCET. 
+Because using the AVRFIX library with Bound-T also failed, the group decided to use the function micros() on the functions to measure the time spent on the function, run them several times and use highest result as WCET. Besides the functions updatePosAndHead() and dirveTowardsGoal() the WCET, when the Kinect program sends data till the arduino received it via the WiFi, was also measured. 
 
 The WCET for the two functions using the Micros() function, is listed below:
 \begin{itemize}
 	\item updatePosAndHead = 1076 microseconds
 	\item driveTowardsGoal = 732 microseconds
+	\item WiFi = 8433 microseconds
 \end{itemize}
 
-The above results will be used for a schedulability analysis made in UPPAAL in section \ref{sec:i3UPPALL model}. 
+The above results will be used for a schedulability analysis made in UPPAAL in section \ref{sec:i3UPPAAL model}. 
 \section{Implementation}
 \label{sec:i3Implementation}
 This section will describe if the requirements were fulfilled through implementation.
@@ -131,7 +132,7 @@ When describing these tasks in UPPAAL, two different classes were declared: One 
 	\centering
 	\fbox{\includegraphics[scale=0.60]{billeder/UPPAALPr}}
 	\caption{Automata in UPPAAL}
-	\label{robot}
+	\label{UppaalModel}
 \end{figure}
 
 When the automata of the tasks has been created, every task has to be declared with an ID, a deadline and a period. The deadline has been declared for every task to be within the MIT of coordinates from the Kinect sensor, which is 33 milliseconds.
@@ -159,3 +160,34 @@ After verifying both queries it is possible to say whether the tasks can be sche
 Many different methods were used to try to calculate the WCET for the systems functions. At first it was tried to count the clock cycles from the complied assembly code, which proved to be very difficult, since the bounds of the libraries was unknown. Because of these problems third party software and libraries was used to calculate the WCET, but the once again without any success. The method used to calculate the WCET was to use the micros() function, available in the arduino IDE, to measure the time used on the function, which would give close to a WCET of the functions. The tasks all had a significant margin to improve the possibility of hitting actual WCET. \newline
 The WCET's were used with the software UPPALL, as described in section \ref{sec:i3UPPAAL model}. This concluded that the tasks was easily schedulable within the defined deadlines.
 
+EVALUERE PÅ CONNECTING ARDUINO AND KINECT!!!!!!!!!!!!!!
+
+After finalizing increment three the requirements in the following list will be the final requirements for the system:
+
+\begin{itemize}
+	\item The trash bin should catch the trash if the user throws it towards the trash bin and within a predefined area
+	\begin{itemize}
+		\item {The robots predefined area should be calculated from the hardware limitations of the motors’ speed}
+	\end{itemize}
+	\item The robot should know where it is positioned
+	\begin{itemize}
+		\item {The robot should have a starting position, from where it should be able to calculate it's current position through calculations of the motor encoders}
+		\item {The robot's starting point should be placed outside its predefined area, such that it moves forward into the area}
+	\end{itemize}
+	\item The robot should be able to detect and track the thrown trash
+	\begin{itemize}
+		\item {The thrown trash should be detected and tracked by a Microsoft Kinect}
+		\item {The Kinect should send the coordinates of the impact point of the trash to the robot}
+	\end{itemize}
+	\item The robot should know where the the thrown trash will land
+	\begin{itemize}
+		\item {Trajectory prediction should be used to calculate impact point of the thrown trash}
+	\end{itemize}
+	\item The robot should be able to move the trash bin, such that the thrown trash lands inside the bin
+	\begin{itemize}
+		\item {The robot should be able to turn and drive forward}
+		\item\textcolor{green}{The robot should be able to recognize the coordinates sent from the Kinect}
+	\end{itemize}
+	\item {The robot should be able to receive data from a computer, through a wireless network}
+	\item \textcolor{green}{The system tasks should be able to be scheduled and verified}
+\end{itemize}
