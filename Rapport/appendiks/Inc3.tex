@@ -132,7 +132,7 @@ When describing these tasks in UPPAAL, two different classes were declared: One 
 	\centering
 	\fbox{\includegraphics[scale=0.60]{billeder/UPPAALPr}}
 	\caption{Automata in UPPAAL}
-	\label{UppaalModel}
+	\label{UppaalModelAutomata}
 \end{figure}
 
 When the automata of the tasks has been created, every task has to be declared with an ID, a deadline and a period. The deadline has been declared for every task to be within the MIT of coordinates from the Kinect sensor, which is 33 milliseconds.
@@ -146,7 +146,7 @@ The tasks are declared as:
 
 After creating the automata and declaring the tasks, the UPPAAL schedulability analysis can be done. This is done through the verifier in UPPAAL, with two different queries:
 
-\begin{lstlisting}[caption={Queries for UPPAAL}, label={Queries}]
+\begin{lstlisting}[caption={Queries for UPPAAL}, label={QueriesAppendix}]
 	E<> PrA.Ready and PrB.Ready and PrC.Ready and PrA.t==0 and PrB.t==0 and PrC.t==0 and time>0
 	E[] not (PrA.ERR or PrB.ERR or PrC.ERR)
 \end{lstlisting}
