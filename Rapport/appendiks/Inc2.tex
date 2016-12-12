@@ -1,6 +1,6 @@
 \chapter{Increment two}
 \label{chap:Increment two}
-This chapter is just like the chapter above. The results from increment one will be discussed and implemented and this should result in the same, new or changed requirements as well.  
+This chapter is made with the same procedure as Increment one. The results from increment one will be discussed and implemented, this should result in the same, new or changed requirements.  
 
 \section{Requirements}
 \label{sec:i2Requirements}
@@ -31,11 +31,12 @@ The requirement marked with blue will be considered throughout this chapter.
 		\item {The robot should be able to recognize the coordinates sent from the Kinect}
 	\end{itemize}
 	\item \textcolor{blue}{The robot should be able to receive data from a computer, through a wireless network}
+	\item {The system tasks should be able to be scheduled and verified}
 \end{itemize}
 
 \section{System design}
 \label{sec:i2System design} 
-In this section, the marked requirements should be fulfilled and will be described and explained.  
+The following section will describe and explain how the marked requirements from section \ref{sec:i2Requirements} will be fulfilled. 
 
 \subsection{Wifi Shield}
 \label{sec:Wifi Shield SD}
@@ -57,21 +58,21 @@ To implement the Wifi Shield as part of the Arduino, the router connecting the W
 
 \begin{lstlisting}[caption={Connecting the Wifi shield to the network}, label={ws}]
 void setup() {
-Serial.begin(9600);
+	Serial.begin(9600);
 
-Serial.println("Attempting to connect to WPA network...");
-status = WiFi.begin(ssid, pass);
+	Serial.println("Attempting to connect to WPA network...");
+	status = WiFi.begin(ssid, pass);
 
-if ( status != WL_CONNECTED) { 
-Serial.println("Couldn't get a wifi connection");
-while(true);
-} 
-else {
-server.begin();
-Serial.println("Connected to network");
-}
-ip = WiFi.localIP();
-Serial.println(ip);
+	if ( status != WL_CONNECTED) { 
+		Serial.println("Couldn't get a wifi connection");
+		while(true);
+	} 
+	else {
+		server.begin();
+		Serial.println("Connected to network");
+	}
+	ip = WiFi.localIP();
+	Serial.println(ip);
 }
 \end{lstlisting}
 
@@ -93,14 +94,14 @@ When both the computer and the Wifi shield has made the connection, and the comp
 \begin{lstlisting}[caption={Receiving data from the computer}, label={rdc}]
 client = server.available();
 while (client.connected()){
-if (client.available()) {
-char c = client.read(); 
-readString += c;
-}
+	if (client.available()) {
+		char c = client.read(); 
+		readString += c;
+	}
 }
 if(readString != ""){
-Serial.println(readString);
-readString = "";
+	Serial.println(readString);
+	readString = "";
 }
 \end{lstlisting}
 
@@ -154,40 +155,40 @@ The distance the robot have moved is the average of how much the two motors have
 
 \begin{lstlisting}[caption={The loop function}, label={loop}]
 void loop() {
-if(round(posX) <= goalX + margin && round(posX) >= goalX - margin &&     round(posY) <= goalY + margin && round(posY) >= goalY - margin){
-motorLeft.run(RELEASE);
-motorRight.run(RELEASE);
-delay(50);
-exit(0);
-}
+	if(round(posX) <= goalX + margin && round(posX) >= goalX - margin &&     round(posY) <= goalY + margin && round(posY) >= goalY - margin){
+		motorLeft.run(RELEASE);
+		motorRight.run(RELEASE);
+		delay(50);
+		exit(0);
+	}
 
-double deltaX = goalX - posX;
-double deltaY = goalY - posY;
-double goalHeading = atan(deltaX/deltaY);
-double deltaHeading = goalHeading - heading;
+	double deltaX = goalX - posX;
+	double deltaY = goalY - posY;
+	double goalHeading = atan(deltaX/deltaY);
+	double deltaHeading = goalHeading - heading;
 
-if(deltaHeading < -0.1){
-motorLeft.run(FORWARD);
-motorRight.run(RELEASE);
-}else if(deltaHeading > 0.1){
-motorLeft.run(RELEASE);
-motorRight.run(FORWARD);
-}else{
-motorLeft.run(FORWARD);
-motorRight.run(FORWARD);
-}
+	if(deltaHeading < -0.1){
+		motorLeft.run(FORWARD);
+		motorRight.run(RELEASE);
+	}else if(deltaHeading > 0.1){
+		motorLeft.run(RELEASE);
+		motorRight.run(FORWARD);
+	}else{
+		motorLeft.run(FORWARD);
+		motorRight.run(FORWARD);
+	}
 
-delay(10);
-int currentLeft = leftTotal;
-int currentRight = rightTotal;
-double deltaLeft = (currentLeft - leftTemp) * DISTPRDEGREE;
-double deltaRight = (currentRight - rightTemp) * DISTPRDEGREE;
-leftTemp = currentLeft;
-rightTemp = currentRight;
-double dist = (deltaLeft + deltaRight) / 2.0;
-posX += (dist * sin(heading));
-posY += (dist * cos(heading));
-heading += (atan((deltaRight - deltaLeft) / WHEELDIST));
+	delay(10);
+	int currentLeft = leftTotal;
+	int currentRight = rightTotal;
+	double deltaLeft = (currentLeft - leftTemp) * DISTPRDEGREE;
+	double deltaRight = (currentRight - rightTemp) * DISTPRDEGREE;
+	leftTemp = currentLeft;
+	rightTemp = currentRight;
+	double dist = (deltaLeft + deltaRight) / 2.0;
+	posX += (dist * sin(heading));
+	posY += (dist * cos(heading));
+	heading += (atan((deltaRight - deltaLeft) / WHEELDIST));
 }
 \end{lstlisting}
 
@@ -227,4 +228,5 @@ This is the requirements after finalizing increment two:
 		\item {The robot should be able to recognize the coordinates sent from the Kinect}
 	\end{itemize}
 	\item \textcolor{green}{The robot should be able to receive data from a computer, through a wireless network}
+	\item {The system tasks should be able to be scheduled and verified}
 \end{itemize}

@@ -1,12 +1,24 @@
 \chapter{Implementation}
 \label{chap:Implementation}
-This chapter will describe the implementation of the system. It will cover the description of the Microsoft Kinect, the robot's code and how the scheduling is done. 
+This chapter will describe the implementation of the systems components. It will cover the description of the Microsoft Kinect, the robot's code and how the scheduling is done. 
 
 \section{Microsoft Kinect}
 \label{sec:Microsoft Kinect Implementation}
 
 \section{Robot}
 \label{sec:Robot}
+This section will describe arduino code for the robot. This will include how the arduino connects to the Kinect and how behaviour and calculations done by the arduino. 
 
 \section{Scheduling}
 \label{sec:Scheduling implementation}
+To calculate the worst-case execution time(WCET) for the systems tasks, several methods were tried out, which is described in Appendix \ref{chap:Increment three} in section \ref{sec:i3Scheduling}. 
+The method used in this project to get the WCET for the system tasks, is to use the micros() function in the arduino IDE. \newline
+Each task running time is measured with the micros() function, by running the function several time at using the highest time value as WCET. This was done for the functions updatePosAndHead(), driveTowardsGoal() and for when the Kinect program sends data till the arduino have received it via WiFi.
+
+The results of the WCET of the tasks using the micros() function:
+\begin{itemize}
+	\item updatePosAndHead = 1076 microseconds
+	\item driveTowardsGoal = 732 microseconds
+	\item WiFi = 8433 microseconds
+\end{itemize}
+These results was used to make a schedulability analysis in the UPPAAL program, which will be described in the following section.

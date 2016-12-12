@@ -29,7 +29,7 @@ Thank the people who should be thanked for helping making the project, here.
 
 \chapter*{Reading guide}
 Throughout the report sources are referred to by the Harvard citation method. When a source is listed in the report, the last name of the author and a publication year is listed. The sources are all listed alphabetically in  the \textit{\textbf{Bibliography}} section. \newline
-\textit{This is an example of a source listed in the report: \textbf{\citep{kw}}.} \newline
+\textit{This is an example of a source listed in the report: \textbf{\citep{safe}}.} \newline
 The source may refer to either the whole section or to only that sentence. The way this differs depends on the placement of the dot. If the dot is after the source, then that source refers to the sentence and if the dot is before the source, then the source refers to the whole section. 
 
 
@@ -43,10 +43,11 @@ Throughout the report requirements are split into four colours with four differe
 
 
 \chapter*{Process model}
+\label{Process model}
 The process model is a meld of elements from both plan driven and agile development. The process is plan driven in so far as to include a clear goal of what the initial requirements of the system are. The process model is very agile in that, although there is a clear outline as to what the requirements are, these are incrementally approached, with a simple starting point becoming increasingly covering of the project vision through the subsequent increments. The reason the group approached this project with our 'own' process model is to better explain what we're actually doing, rather than forcing ourselves into picking a development method and try to explain what we're doing according to that method.
 
 The increments will be split up into four sections. Initially some of the already known requirements will be considered from previous increments and for the first increment from the analysis and hardware chapters, and these requirements will be the topic of the increment.
-After the initial requirement consideration, a design phase follows which details the design and problem considerations preceding the implementation. The design phase is then followed by an implementation phase which will explain the implementation process. The final phase is an evaluation of the increment and will concern whether the requirements were fulfilled, or an requirement needs to be altered, or if an requirement will be continued in the following increment. The evaluation will also include several tests of the implementation, in order to see what works and what doesn't. The evaluated requirements from an increment will then become the starting point of the next increment. 
+After the initial requirement consideration, a design phase follows which details the design and problem considerations preceding the implementation. The design phase is then followed by an implementation phase which will explain the implementation process. The final phase is an evaluation of the increment and will concern whether the requirements were fulfilled, if an requirement needs to be altered, or if an requirement will be continued in the following increment. The evaluation will also include several tests of the implementation, in order to see what works and what doesn't work. The evaluated requirements from an increment will then become the starting point of the next increment. 
 
 The process includes emphasis on a small group of individuals with tasks usually undertaken by two group members or more, which is to promote cooperation and attempt to avoid having a single individual involved in a task beyond their capabilities and to get a second opinion. This is also to ensure that information is quickly communicated and exchanged by group members. The process uses pair programming because it promotes better programming and is usually very motivating in socially engaging issues with cooperation of project members.
 
@@ -66,11 +67,13 @@ The following tools has been used to create the report and the product of the pr
 	\item Visual Studio C\#
 	\item Arduino IDE 1.0.3
 	\item BoundT
+	\item UPPAAL
 \end{itemize}
 
-\section{Use of tools}
-GitHub is used with the intention of merging and sharing documents. This tool is also used here to verify each version of the documentation and code, to ensure that everyone has the latest update of the project.
-TeX Studio is used as a writing environment, as this after some experience has proven to be a great tool for creating a report. This tool in concoction with GitHub makes it possible to work on the project in pairs or alone, with little merging conflicts.
-Visual Studio C\# is used in this project to create the C\# code for the Kinect.
-Arduino IDE 1.0.3 is used in this project to code the Arduino. Any later IDE is not suitable for this project, which will be explained in the report.
-BoundT is used to calculate the bounds of the code, which will be used in a WCET-analysis.
+\section*{Use of tools}
+\textbf{GitHub} is used with the intention of merging and sharing documents. This tool is also used here to verify each version of the documentation and code, to ensure that everyone has the latest update of the project.\newline
+\textbf{TeX Studio} is used as a writing environment when writing with the markup language LaTeX. After some experience it has proven to be a great tool for creating a report. This tool in concoction with GitHub makes it possible to work on the project in pairs or alone, with little merging conflicts. \newline
+\textbf{Visual Studio C\#} is used in this project to create the C\# code for the Kinect. \newline
+\textbf{Arduino IDE 1.0.3} is used in this project to code the Arduino. Any later IDE is not suitable for this project, which will be explained in the report. \newline
+\textbf{BoundT} is used to calculate the bounds of the code, which will be used in a WCET-analysis. \citep{boundt} \newline
+\textbf{UPPAAL} is an integrated tool environment for modeling, validation and verification of real-time system. \citep{uppaal}

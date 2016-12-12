@@ -1,5 +1,6 @@
 \chapter{Clock cycles}
-This appendix includes all the instructions from the Math.h and AFMotor.h libraries used to make the functions for the arduino program. These have all been counted by looking at the assembly code of the program. Many of the instructions have loops which is denoted with parentheses and a star, as such (7)* will be a loop of 7 clock cycles. 
+\label{chap:Clock cycles}
+This appendix includes all the instructions from the Math.h and AFMotor.h libraries used to make the functions for the arduino program. These have all been counted by looking at the assembly code of the program. Many of the instructions have loops which is denoted with parentheses and a star, such as (7)* will be a loop of 7 clock cycles. 
 \begin{itemize}
 	\item \_\_fp\_Split3 = 41
 	\item \_\_fp\_round = 26
@@ -36,7 +37,6 @@ This appendix includes all the instructions from the Math.h and AFMotor.h librar
 	\item \_\_fp\_sinus = 629 + (13)* + (174 + (13)*)* + (231 + (13)*)* + (7)*
 	\item sin = 734 + (13)* + (174 + (13)*)* + (231 + (13)*)* + (7)* + (10)* + (24)*
 	\item cos = 727 + (13)* + (174 + (13)*)* + (231 + (13)*)* + (17)* + (10)* + (24)*
-	\item StopIfAtGoal = 979 + (7)*
-	\item DriveTowardsGoal = 3206 + (13)* + (174 + (13)*)* + (231 + (13)*)* + (17)* + (8)* + (33 + (17)*)* + (7)* + (5)* + (290 + (5)*)*
-	\item UpdatePosAndHead = 3560 + (11)* + (13)* + (7)* + (174 + (13)*)* + (231 + (13)*)* (10)* + (24)* + (17)* + (33 + (17)*)*
+	\item driveTowardsGoal = 4185 + (13)* + (174 + (13)*)* + (231 + (13)*)* + (17)* + (8)* + (33 + (17)*)* + (7)* + (5)* + (290 + (5)*)*
+	\item updatePosAndHead = 3560 + (11)* + (13)* + (7)* + (174 + (13)*)* + (231 + (13)*)* (10)* + (24)* + (17)* + (33 + (17)*)*
 \end{itemize}
