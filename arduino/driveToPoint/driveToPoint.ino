@@ -61,7 +61,7 @@ void loop() {
   // Reading available data from the server
   
   if (!shouldDrive) {
-    t = micros();
+    //t = micros();
     client = server.available();
     if (client.connected()){
       while (client.available()) {
@@ -74,10 +74,12 @@ void loop() {
       
       //Serial.println(dataString.substring(0,dataString.indexOf(';')));
       goalX = dataString.substring(0,dataString.indexOf(';')).toInt();
+      Serial.println(goalX);
       //Serial.println(dataString.substring(dataString.indexOf(';')+1));
       goalY = dataString.substring(dataString.indexOf(';')+1).toInt();
+      Serial.println(goalY);
       shouldDrive = true;
-      Serial.println(micros() - t);
+      //Serial.println(micros() - t);
       dataString = "";
     }
   } else {
@@ -107,8 +109,8 @@ void loop() {
     if(posX <= goalX + margin && posX >= goalX - margin && posY <= goalY + margin && posY >= goalY - margin){
       motorLeft.run(RELEASE);
       motorRight.run(RELEASE);
-      delay(50);
-      exit(0);
+      //delay(50);
+      //exit(0);
       shouldDrive = false;
       dataString = "";
     } else {

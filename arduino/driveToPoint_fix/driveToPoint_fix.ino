@@ -44,9 +44,7 @@ void setup() {
   motorRight.setSpeed(255);
 
   motorLeft.run(RELEASE);
-  motorLeftRun = false;
   motorRight.run(RELEASE);
-  motorRightRun = false;
 
   leftTemp = leftTotal;
   rightTemp = rightTotal;
@@ -54,13 +52,12 @@ void setup() {
 
 void loop() {
   
-  stopIfAtGoal();
-  
   driveTowardsGoal();
   
   delay(10);
-  
+  unsigned long t = micros();
   updatePosAndHead();
+  Serial.println( micros() - t);
   
 }
 
@@ -88,6 +85,9 @@ void driveTowardsGoal(){
   if(posX <= goalX + margin && posX >= goalX - margin && posY <= goalY + margin && posY >= goalY - margin){
     motorLeft.run(RELEASE);
     motorRight.run(RELEASE);
+    Serial.println("HAHAHHA");
+    delay(50);
+    exit(0);
   }else{
     fix_t deltaX = goalX - posX;
     fix_t deltaY = goalY - posY;
