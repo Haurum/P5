@@ -10,7 +10,7 @@ extern "C"{
 #define LEFTENCODERPIN 20
 #define RIGHTENCODERPIN 21
 #define WHEELDIST 124
-#define DISTPRDEGREE 0.48869219055
+#define DISTPRDEGREE 0.48869
 
 volatile int leftTotal = 0;
 volatile int rightTotal = 0;
@@ -36,7 +36,7 @@ void setup() {
   posX = itok(0);
   posY = itok(0);
   margin = itok(10);
-  goalX = itok(-250);
+  goalX = itok(250);
   goalY = itok(300);
   
   // turn on motor
@@ -66,36 +66,43 @@ void loop() {
 void getNewGoal(){
   delay(9);
   if((millis() - t) > 33 && counter < 50){
-    goalX = itok(10) + goalX;
+    goalX = goalX - itok(2);
+    goalY = goalY - itok(5);
     counter++;
     atGoal = false; 
     t = millis();
   }else if (counter == 50){
+    /*Serial.print(ktod(goalX));
+    Serial.print(", ");
+    Serial.println(ktod(goalY));
+    Serial.print(ktod(posX));
+    Serial.print(", ");
+    Serial.println(ktod(posY));
     motorLeft.run(RELEASE);
     motorRight.run(RELEASE);
     delay(50);
-    exit(0);
+    exit(0);*/
   }
 }
 
 void updatePosAndHead(){
   int currentLeft = leftTotal;
   int currentRight = rightTotal;
-  fix_t distPrDeg = ftok(DISTPRDEGREE);
-  fix_t dltL = itok(currentLeft - leftTemp);
-  fix_t dltR = itok(currentRight - rightTemp);
-  fix_t deltaLeft = mulk(dltL, distPrDeg);
-  fix_t deltaRight = mulk(dltR, distPrDeg);
-  leftTemp = currentLeft;
+  fix_t distPrDeg = ftok(DISTPRDEGREE);               
+  fix_t dltL = itok(currentLeft - leftTemp);          
+  fix_t dltR = itok(currentRight - rightTemp);        
+  fix_t deltaLeft = mulk(dltL, distPrDeg);            
+  fix_t deltaRight = mulk(dltR, distPrDeg);           
+  leftTemp = currentLeft;     
   rightTemp = currentRight;
-  fix_t deltaSum = deltaLeft + deltaRight;
-  fix_t dist = divk(deltaSum,ftok(2.0));
-  fix_t sinHeading = sink(heading);
-  posX += mulk(dist, sinHeading);
-  fix_t cosHeading = cosk(heading);
-  posY += mulk(dist, cosHeading);
+  fix_t deltaSum = deltaLeft + deltaRight;            
+  fix_t dist = divk(deltaSum,ftok(2.0));              
+  fix_t sinHeading = sink(heading);                   
+  posX += mulk(mulk(dist, sinHeading), itok(-1));     
+  fix_t cosHeading = cosk(heading);                   
+  posY += mulk(dist, cosHeading);                     
   fix_t rel = divk((deltaRight - deltaLeft),ftok(WHEELDIST));
-  heading += atank(rel);
+  heading += atank(rel); 
 }
 
 void driveTowardsGoal(){
@@ -106,9 +113,21 @@ void driveTowardsGoal(){
   }else{
     fix_t deltaX = goalX - posX;
     fix_t deltaY = goalY - posY;
-    fix_t rel = divk(deltaX,deltaY);
-    fix_t goalHeading = atank(rel);
-    fix_t deltaHeading = goalHeading - heading;
+    fix_t actualGoalHeading;
+    if(deltaX == itok(0) && deltaY > itok(0))
+      actualGoalHeading = itok(0);
+    else if(deltaX == itok(0) && deltaY < itok(0))
+      actualGoalHeading = PIk;
+    else{
+      fix_t rel = divk(deltaY,deltaX);
+      fix_t goalHeading = atank(rel);
+      actualGoalHeading = deltaX >= itok(0) ? goalHeading-(PIk/2) : goalHeading+(PIk/2);
+    }
+    fix_t deltaHeading = actualGoalHeading - heading;
+    if(deltaHeading > PIk)
+      deltaHeading -= 2*PIk;
+    else if(deltaHeading < -PIk)
+      deltaHeading += 2*PIk;
     if(deltaHeading < ftok(-0.1)){
       motorLeft.run(FORWARD);
       motorRight.run(RELEASE);
