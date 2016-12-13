@@ -120,7 +120,7 @@ Robot to impact: The distance from the robot after it has stopped moving, to the
 	\begin{center}
 		\begin{tabular}{ | p{5cm} | p{5cm} | p{5cm} |}
 			\hline
-			\textbf{Distance: Predicted to impact} & \textbf{Predicted to robot} & \textbf{Robot to impact} \\ \hline
+			\textbf{Predicted to impact} & \textbf{Predicted to robot} & \textbf{Robot to impact} \\ \hline
 			23 & 11 & 34 \\ \hline
 			11.5 & 6.5 & 14 \\ \hline
 			19.5 & 8 & 26 \\ \hline
@@ -137,3 +137,5 @@ Robot to impact: The distance from the robot after it has stopped moving, to the
 		\label{table:FuncTest}
 	\end{center}
 \end{table}
+
+As one can see, Dumpsty is consistently close to 10 cm from the predicted coordinates, which could be caused by the servo motors drift after the motors has been released in the code. The fact that the prediction has a range of misprediction of 10 - 50 cm is either due to miscalculations in the Kinect code, or the Kinect having hardware issues, creating a distorted depth-picture.
