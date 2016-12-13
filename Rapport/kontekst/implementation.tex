@@ -10,10 +10,10 @@ This chapter will describe the implementation of the systems components. It will
 This section will describe arduino code for the robot. This will include how the arduino connects to the Kinect and the robots behaviour and calculations done by the arduino. If there was any comments in the original code, they have been removed in the listings for this chapter. \newline
 A problem occurred when both the WiFi shield and the motor shield should work together. When the WiFi shield is trying to connect to the network and if any of the motor shield components are initialized at the beginning of the program, it isn't possible to connect to the network. If it is connected to the network before the motor shield components are initialized, it is possible to receive data and use the motor shield components.
 
-The arduino setup function, is a function run once at the beginning of the running program, to setup the program as the name implies. In listing \ref{setup} the setup function is shown, which in this project will connect to the private network, using the guide from arduinos own website \citep{wg}. \newline
+The arduino setup function, is a function run once at the beginning of the running program, to setup the program as the name implies. In listing \ref{lst:setup} the setup function is shown, which in this project will connect to the private network, using the guide from arduinos own website \citep{wg}. \newline
 Basically it will try to connect to the specific network by passing the network name and password to the function WiFi.begin(), given by the WiFi library. If the arduino can't connect to the network "Couldn't get a wifi connection" will be printed to the console and it will exit the program with the while(true) loop. Else the arduino will call the function server.begin() and is now connected to the network.
 
-\begin{lstlisting}[caption={The arduino setup function}, label={setup}]
+\begin{lstlisting}[caption={The arduino setup function}, label={lst:setup}]
 void setup() {
 	Serial.begin(9600);           
 	Serial.println("Attempting to connect to WPA network...");
@@ -32,11 +32,11 @@ void setup() {
 }
 \end{lstlisting}
 
-The arduino loop function is where the arduino's behaviour is programmed, since it will loop over the code in this function. In listing \ref{loop} lines 2-15, the arduino is to receive data from the Kinect. The boolean \textbf{shouldDrive} is initialized to false, therefore it will enter the first if-statement. The client will be initialized to server.available(), which will make the arduino ready to receive data. The if-statement at line 4 it will receive the data from the Kinect and append the chars to the string \textbf{dataString}, which will contains the coordinate set for the objects impact position. \newline
+The arduino loop function is where the arduino's behaviour is programmed, since it will loop over the code in this function. In listing \ref{lst:loop} lines 2-15, the arduino is to receive data from the Kinect. The boolean \textbf{shouldDrive} is initialized to false, therefore it will enter the first if-statement. The client will be initialized to server.available(), which will make the arduino ready to receive data. The if-statement at line 4 it will receive the data from the Kinect and append the chars to the string \textbf{dataString}, which will contains the coordinate set for the objects impact position. \newline
 At the if-statement at line 10, it will get the goalX and goalY coordinates from the string \textbf{dataString} and convert them to integers. Then setting the boolean \textbf{shouldDrive} = true, and set the string \textbf{dataString} = "". \newline
 Since \textbf{shouldDrive} is now true, it will enter the else-statement at line 16. Lines 17-33 are setting up the arduino to get ready to drive to the received coordinate point. First it will initialize the motors, setting the attaching the interrupts for the motor encoders, setting the motorspeed and releaseing the motors so it won't drive. Also it will initialized two new integers \textbf{leftTemp} and \textbf{rightTemp} to the value of the integers of \textbf{leftTotal} and \textbf{rightTotal} at the given time in the program.
 
-\begin{lstlisting}[caption={The arduino loop function}, label={loop}]
+\begin{lstlisting}[caption={The arduino loop function}, label={lst:loop}]
 void loop() {
 	if (!shouldDrive) {
 		client = server.available();
