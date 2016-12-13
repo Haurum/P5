@@ -32,14 +32,12 @@ unsigned int tid;
 int leftTemp, rightTemp, loopcount = 0, signalCount = 0;
 
 void setup() {
-  Serial.begin(9600);           
   // set up Serial library at 9600 bps
+  Serial.begin(9600);           
 
   // attempt to connect using WPA2 encryption:
-  Serial.println(status);
   Serial.println("Attempting to connect to WPA network...");
   status = WiFi.begin(ssid, pass);
-  Serial.println(status);
   
   // if you're not connected, stop here:
   if ( status != WL_CONNECTED) { 
@@ -59,7 +57,6 @@ void loop() {
 
   // Reading available data from the server 
   if (!shouldDrive) {
-    //t = micros();
     client = server.available();
     if (client.connected()){
       while (client.available()) {
@@ -77,7 +74,6 @@ void loop() {
       goalY = dataString.substring(dataString.indexOf(';')+1).toInt();
       Serial.println(goalY);
       shouldDrive = true;
-      //Serial.println(micros() - t);
       dataString = "";
     }
   } else {
