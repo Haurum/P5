@@ -27,7 +27,7 @@ namespace KTLib
         public bool Ready = false;
 
         public BallTrackData ActiveBall;
-        Stopwatch stopwatch = new Stopwatch();
+        //Stopwatch stopwatch = new Stopwatch();
 
         public TrackerManager(KinectInterface kinect)
         {
@@ -35,7 +35,7 @@ namespace KTLib
             kinect.OnDepthFrame += new Action(kinect_OnDepthFrame);
             //tcpClient.Connect("192.168.0.100", 9999);
             //stream = tcpClient.GetStream();
-            stopwatch.Start();
+            //stopwatch.Start();
 
             detector = new BallDetector();
             tracker = new BallTracker();
@@ -84,7 +84,7 @@ namespace KTLib
             {
                 List<System.Drawing.Point> line = new List<System.Drawing.Point>();
                 double predictSec = 2;
-                for (double t = 2; t <= predictSec; t += 0.5 /*0.01*/)
+                for (double t = 0; t <= predictSec; t += 0.5 /*0.01*/)
                 {
 
                     var tsamp = DateTime.Now.AddSeconds(t);
@@ -95,28 +95,57 @@ namespace KTLib
                         && unproj.Y >= 0 && unproj.Y < KinectInterface.h
                         )
                     {
-                        Console.WriteLine("Time elapsed: {0}", stopwatch.Elapsed);
+                        //Console.WriteLine("Time elapsed: {0}", stopwatch.Elapsed);
                         unproj *= 0.5f;
                         Vector3 v3 = ActiveBall.ProjFit.PredictPos(tsamp).ToV3();
                         string data = "X: " + v3.X.ToString("0.00") + " Y: " + v3.Y.ToString("0.00") + " Z: " + (v3.Z-0.5).ToString("0.00");
                         Debug.WriteLine(data);
-                        string data2 = "Unproj: X: " + unproj.X.ToString("0.00") + " Y: " + unproj.Y.ToString("0.00");
-                        Debug.WriteLine(data2);
+                        //string data2 = "Unproj: X: " + unproj.X.ToString("0.00") + " Y: " + unproj.Y.ToString("0.00");
+                        //118.5
+                        double as1 = (Math.Sin(2.06821516));
+                        double as2 = as1 * Math.Abs(v3.X);
+                        double as3 = (v3.Z - 0.5);
+                        double as4 = as2 / as3;
+                        double A = Math.Asin(as4);
+                        A = A * 180 / Math.PI;
+                        //double A = Math.Asin((as2) / (v3.Z - 0.5));
+                        //Debug.WriteLine(A);
+
+                        double B = 180 - A - 118.5;
+                        Debug.WriteLine(B);
+
+                        double b = ((Math.Sin(B * Math.PI / 180)) * Math.Abs(v3.X)) / (Math.Sin(A * Math.PI / 180));
+
+
+                        double A2 = 90 - B;
+
+                        double XSquare = ((Math.Sin(A2 * Math.PI / 180)) * (v3.Z - 0.5)) / (Math.Sin(90 * Math.PI / 180));
+                        Debug.WriteLine("X trekant: " + XSquare);
+
+                        double YSquare = ((Math.Sin(B * Math.PI / 180)) * (v3.Z - 0.5)) / (Math.Sin(90 * Math.PI / 180));
+                        Debug.WriteLine("Y trekant: " + YSquare);
+
+                        double finalx = (1 - XSquare) * 1000;
+                        double finaly = (1.2 - YSquare) * 1000;
+
+                        //Debug.WriteLine(data2);
                         tcpClient = new TcpClient();
                         tcpClient.Connect("192.168.0.100", 9999);
                         stream = tcpClient.GetStream();
-                        double pos = Math.Pow(v3.Z-0.5, 2) - 1;
-                        pos = Math.Sqrt(pos);
-                        pos = pos - 0.94;
-                        pos = pos * 1000;
-                        //string data3 = (((Math.Sqrt(Math.Pow(v3.X, 2) - 1) - 0.94) * 1000).ToString() + ";" + "300");
+                        //double pos = Math.Pow(v3.Z-0.5, 2) - 1;
+                        //pos = Math.Sqrt(pos);
+                        //pos = pos - 0.94;
+                        //pos = pos * 1000;
+                        string data3 = (finalx.ToString() + ";" + finaly.ToString());
+                        Debug.WriteLine(data3);
 
-                        stream.Write(Encoding.UTF8.GetBytes((pos.ToString() + ";" + "300").ToCharArray()), 0, (pos.ToString() + ";" + "300").Length);
+                        //stream.Write(Encoding.UTF8.GetBytes((pos.ToString() + ";" + "300").ToCharArray()), 0, (pos.ToString() + ";" + "300").Length);
+                        stream.Write(Encoding.UTF8.GetBytes((finalx.ToString() + ";" + finaly.ToString()).ToCharArray()), 0, (finalx.ToString() + ";" + finaly.ToString()).Length);
                         /*stream.Write(Encoding.UTF8.GetBytes(("Y: " + v3.Y).ToCharArray()), 0, ("Y: " + v3.Y).Length);
                         stream.Write(Encoding.UTF8.GetBytes(("Z: " + v3.Z).ToCharArray()), 0, ("Z: " + v3.Z).Length);
                         stream.Write(Encoding.UTF8.GetBytes(data.ToCharArray()), 0, data.Length);*/
                         tcpClient.Close();
-                        Console.WriteLine("Time elapsed: {0}", stopwatch.Elapsed);
+                        //Console.WriteLine("Time elapsed: {0}", stopwatch.Elapsed);
                         
                         System.Drawing.PointF pt = new System.Drawing.PointF(unproj.X, unproj.Y);
                         //depthMaskOverlay.Draw(new Cross2DF(pt, 10, 10), new Bgr(0, 0, 255), 3);

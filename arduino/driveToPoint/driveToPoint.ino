@@ -10,8 +10,6 @@
 #include <Math.h>
 #include <WiFi.h>
 
-//AF_DCMotor motorLeft(1);
-//AF_DCMotor motorRight(2);
 unsigned long t;
 char ssid[] = "Dumpsty";     //  your network SSID (name) 
 char pass[] = "test1234";    // your network password
@@ -34,7 +32,8 @@ unsigned int tid;
 int leftTemp, rightTemp, loopcount = 0, signalCount = 0;
 
 void setup() {
-  Serial.begin(9600);           // set up Serial library at 9600 bps
+  Serial.begin(9600);           
+  // set up Serial library at 9600 bps
 
   // attempt to connect using WPA2 encryption:
   Serial.println(status);
@@ -58,10 +57,9 @@ void setup() {
 
 void loop() {
 
-  // Reading available data from the server
-  
+  // Reading available data from the server 
   if (!shouldDrive) {
-    t = micros();
+    //t = micros();
     client = server.available();
     if (client.connected()){
       while (client.available()) {
@@ -74,18 +72,18 @@ void loop() {
       
       //Serial.println(dataString.substring(0,dataString.indexOf(';')));
       goalX = dataString.substring(0,dataString.indexOf(';')).toInt();
+      Serial.println(goalX);
       //Serial.println(dataString.substring(dataString.indexOf(';')+1));
       goalY = dataString.substring(dataString.indexOf(';')+1).toInt();
+      Serial.println(goalY);
       shouldDrive = true;
-      Serial.println(micros() - t);
+      //Serial.println(micros() - t);
       dataString = "";
     }
   } else {
     
     AF_DCMotor motorLeft(1);
     AF_DCMotor motorRight(2);
-    //goalX = 230.0; 
-    //goalY = 330.0;
     pinMode(LEFTENCODERPIN, INPUT);
     attachInterrupt(3, incrementLeft, CHANGE);
     pinMode(RIGHTENCODERPIN, INPUT);
@@ -103,39 +101,13 @@ void loop() {
     leftTemp = leftTotal;
     rightTemp = rightTotal;
     
-    //stopIfAtGoal();
     if(posX <= goalX + margin && posX >= goalX - margin && posY <= goalY + margin && posY >= goalY - margin){
-      motorLeft.run(RELEASE);
-      motorRight.run(RELEASE);
-      delay(50);
-      exit(0);
-      shouldDrive = false;
-      dataString = "";
+      stopIfAtGoal();
     } else {
-      //driveTowardsGoal();
-      
-      
-      double deltaX = goalX - posX;
-      double deltaY = goalY - posY;
-      double goalHeading = atan(deltaX/deltaY);
-      
-      double deltaHeading = goalHeading - heading;
-      if(deltaHeading < -0.1){
-        motorLeft.run(FORWARD);
-        motorRight.run(RELEASE);
-      }else if(deltaHeading > 0.1){
-        motorLeft.run(RELEASE);
-        motorRight.run(FORWARD);
-      }else{
-        motorLeft.run(FORWARD);
-        motorRight.run(FORWARD);
-      }
+      driveTowardsGoal();  
     }
     delay(10);
-  
-    //t = micros();
     updatePosAndHead();
-    //Serial.println(micros() - t );
   }
 }
 
@@ -153,7 +125,7 @@ void updatePosAndHead(){
 }
 
 void driveTowardsGoal(){
-  /*double deltaX = goalX - posX;
+  double deltaX = goalX - posX;
   double deltaY = goalY - posY;
   double goalHeading = atan(deltaX/deltaY);
   
@@ -167,16 +139,14 @@ void driveTowardsGoal(){
   }else{
     motorLeft.run(FORWARD);
     motorRight.run(FORWARD);
-  }*/
+  }
 }
 
 void stopIfAtGoal(){
-  /*if(posX <= goalX + margin && posX >= goalX - margin && posY <= goalY + margin && posY >= goalY - margin){
-    motorLeft.run(RELEASE);
-    motorRight.run(RELEASE);
-    delay(50);
-    exit(0);
-  }*/
+  motorLeft.run(RELEASE);
+  motorRight.run(RELEASE);
+  shouldDrive = false;
+  dataString = "";
 }
 
 void incrementLeft(){

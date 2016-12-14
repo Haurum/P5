@@ -16,8 +16,8 @@ volatile int leftTotal = 0;
 volatile int rightTotal = 0;
 bool atGoal = false;
 fix_t heading, posX, posY, margin, goalX, goalY; 
-int leftTemp, rightTemp, counter;
-unsigned long t, startTime;
+int leftTemp, rightTemp;
+
 #include <AFMotor.h>
 #include <Math.h>
 
@@ -32,12 +32,12 @@ void setup() {
   pinMode(RIGHTENCODERPIN, INPUT);
   attachInterrupt(2, incrementRight, CHANGE);
 
-  heading = itok(0);
-  posX = itok(0);
-  posY = itok(0);
-  margin = itok(10);
-  goalX = itok(-250);
-  goalY = itok(300);
+  heading = ftok(0.0);
+  posX = ftok(0.0);
+  posY = ftok(0.0);
+  margin = ftok(10.0);
+  goalX = ftok(230.0);
+  goalY = ftok(330.0);
   
   // turn on motor
   motorLeft.setSpeed(255);
@@ -48,34 +48,17 @@ void setup() {
 
   leftTemp = leftTotal;
   rightTemp = rightTotal;
-
-  t = millis();
-  startTime = t;
 }
 
 void loop() {
   
-  getNewGoal();
-  
-  updatePosAndHead();
-  
   driveTowardsGoal();
   
-}
-
-void getNewGoal(){
-  delay(9);
-  if((millis() - t) > 33 && counter < 50){
-    goalX = itok(10) + goalX;
-    counter++;
-    atGoal = false; 
-    t = millis();
-  }else if (counter == 50){
-    motorLeft.run(RELEASE);
-    motorRight.run(RELEASE);
-    delay(50);
-    exit(0);
-  }
+  delay(10);
+  unsigned long t = micros();
+  updatePosAndHead();
+  Serial.println( micros() - t);
+  
 }
 
 void updatePosAndHead(){
@@ -99,10 +82,12 @@ void updatePosAndHead(){
 }
 
 void driveTowardsGoal(){
-  if(atGoal || (posX <= goalX + margin && posX >= goalX - margin && posY <= goalY + margin && posY >= goalY - margin)){
+  if(posX <= goalX + margin && posX >= goalX - margin && posY <= goalY + margin && posY >= goalY - margin){
     motorLeft.run(RELEASE);
     motorRight.run(RELEASE);
-    atGoal = true;
+    Serial.println("HAHAHHA");
+    delay(50);
+    exit(0);
   }else{
     fix_t deltaX = goalX - posX;
     fix_t deltaY = goalY - posY;
