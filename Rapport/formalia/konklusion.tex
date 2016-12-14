@@ -1,34 +1,38 @@
 \chapter{Conclusion}
 \label{chap:Conclusion}
-Based on the analysis chapter concerning a userstory, system capabilities and the hardware's capabilities and limitations, lead to the projects problem statement: 
+Based on chapter \ref{chap:Analysis} concerning a user story, system capabilities and the hardware's capabilities and limitations, lead to the project’s problem statement: 
 
 \textbf{\textit{How can an embedded system control a trash bin to detect, track and catch a thrown object within a designated area?}}
 
+The final system partially solves the problem statement. It is capable of detecting and tracking the object thrown towards the robot, but not consistently catch it, because of the hardware limitations for the project, these limitations are mentioned in the discussion \ref{chap:Discussion}. 
 
-The final system partially solves the problem statement. It is capable of detecting and tracking the object thrown towards the robot, but it is not able to catch it, because of the hardware limitations for the project. SKAL DER VÆRE MERE HER?????
+To solve the problem statement, a list of general requirements with related sub requirements were constructed. In the following paragraphs each of the general requirements will be evaluated. 
 
-To solve the problem statement, a list of general requirements with related subrequirements were constructed. In the following paragraphs each of the general requirements will be evaluated. 
-
-\textbf{The trash bin should catch the trash if the user throws it towards the trash bin and within a predefined area}\newline
-
-
-\textbf{The robot should know where it is positioned}\newline
-
-
-\textbf{The robot should be able to detect and track the thrown trash}\newline
+\subsubsection{The trash bin should catch the trash if the user throws it towards the trash bin and within a predefined area}
+\label{sub:1}
+This requirement was not accomplished, since the robot was not reliably able to move to the impact point of the thrown object. Even though no trash bin has been attached on top of the robot, which would determine the area in which it is able to catch the object, it is still considerably inaccurate by 10-50 cm from the actual impact point to the robot’s final position. If the estimated coordinate sent by the Kinect was true, it would consistently be 11 cm inaccurate. \newline
+We ended up not taking the predefined area into account, it was used in the design phase to measure where the robot would be able to catch a thrown object, but it was not useable because its movement was too slow and the time used in data transfer compared to object flight time a greater obstacle than expected. Thus it was not useful in the final product.
 
 
-\textbf{The robot should know where the the thrown trash will land}\newline
+\subsubsection{The robot should know where it is positioned}
+This requirement is fulfilled. The robot has variables of its current position as a X and Y coordinate set and its heading. These values are updated in the arduino loop function using the encoders of the motors. When the robot reaches its destination the robot shuts down, but the electric servo motors drift, usually 11 cm, which is not considered to the current position of the robot. This would accumulate if the robot is not reset, and placed on the position (0, 0) after every run.
 
+\subsubsection{The robot should be able to detect and track the thrown trash}
+As the Kinect is used as a sensor for the robot, this requirement is fulfilled. The reason this requirement is fulfilled is because the Kinect is able to both detect and track the object. It is not able to detect every object thrown, and some times it detects other objects such as a human head or something in the distortion in the room. \newline
+When the first impact point of the thrown object has been sent from the Kinect, it will keep tracking the object, but the robot will not receive further data, therefore the robot is not continuously tracking the object after the first impact point is received.  
 
-\textbf{The robot should be able to move the trash bin, such that the thrown trash lands inside the bin}\newline
+\subsubsection{The robot should be able to calculate the impact point for the object}
+The Kinect sends the predicted impact point of the object to the robot. This impact point is not accurate, as mentioned before the robot is stopping 10-50 cm away from the predicted impact point. We would say that this requirement is partially fulfilled, because it can calculate an impact point, but not a precise impact point. This requirements success is scaled from how big of a bin is placed on top of the robot, and the size of the thrown object.
 
+\subsubsection{The robot should be able to move the trash bin, such that the thrown trash lands inside the bin} 
+No trash bin has been attached to the robot, so this requirement is not fulfilled. If a trash bin had been attached to the robot, it should have a radius greater than 11 cm to catch the object, since 11 cm was the closest the robot was to the impact point.
 
-\textbf{The robot should be able to receive data from a computer, through a wireless network}\newline
+\subsubsection{The robot should be able to receive data from a computer, through a wireless network} This requirement is fulfilled. The computer connected to the Kinect is able to send the recorded data to the robot. 
 
+\subsubsection{The system tasks should be able to be scheduled and verified}
+This requirement is fulfilled by the UPPAAL schedulability analysis as described in section \ref{sec:UPPAAL schedulability} in the test chapter.
 
-\textbf{The system tasks should be able to be scheduled and verified}\newline
-
-
-\textbf{Conclusion}\newline
-
+\subsubsection{Conclusion}
+When considering the success of this project, the final product is somewhat a success. One can conclude that the hardware does not meet the time constraints of the problem, and the prediction is not reliable. When a user throws an object towards the robot, it is not able to catch the object, but it is able to give a prediction of the impact point, it is able to move the robot to the coordinates of the prediction, but will drift past the coordinates. The robot is able to position itself in according to the starting point, but it will not be able to continuously position itself after stopping at the impact point. The drift makes the robot unable to position correctly, so the robot has to be repositioned to the correct starting point after every run.\newline
+The robot is able to receive data from the Kinect sensor through a wireless network, and all the tasks for the system are schedulable, and the fact that this embedded system provides a basis for a solution to the problem concludes this as a successful system in our opinion.
+The biggest objective in this project was to learn about embedded systems and real time problems. Although this project did not concern many of the classical embedded systems problems, a cyclic executive was constructed and the analysis involved. Although considerations of memory management and cpu speed was not present, some considerations were performed. Many of the initial preconceived notions of the platform, motors and Kinect alot of unexpected problems arose, some of which were solved and others would need different hardware to solve the problem statement.  
