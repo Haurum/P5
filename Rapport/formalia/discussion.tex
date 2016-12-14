@@ -2,29 +2,14 @@
 \label{chap:Discussion}
 The discussion chapter will describe some of the choices made through the project and problems that have occurred. The problem and choices will be described and discussed, what happened and what could have been done differently. 
 
-
 \subsubsection{Scheduling}
 For the schedulability analysis, the WCET of the Arduino code had to be calculated. In the course, we learned that this could be done either with a language constructed timer, by counting clock cycles in the assembly code, or by using a tool. In our case, we used the tool Bound-T, without success. Our first idea was that a tool could provide WCET calculations for a piece of code, but because we were using libraries and loops which are not supported by Bound-T, it reported errors without a usable output. So our next idea was to calculate the WCET by analyzing the assembler code, but yet again the libraries proved to be a problem, since some libraries were inaccessible and contained unbounded loops. We tried counting the clock cycles, as shown in Appendix \ref{sec:i3Scheduling}. The next much coarser solution we tried was to estimate a worst-case running time for entire pieces of code, by using the timer implemented in the Arduino IDE. This is not a provable WCET estimate, since the odds of ever hitting the worst run time would be close to nonexistent in the little sample-size we provided. This lead to us almost doubling the WCET estimate in the UPPAAL model, as we already knew that the tasks were schedulable, even with a far greater WCET than what was estimated by the timer.
 
-
-%Worst-case execution time analysis
-%Hvordan vi har talt clock cycles og den process. - Tools vi har brugt til WCET?
-\subsubsection{Process analysis}
-The process model used for this project, which is described in section \ref{Process model}, is a reflection on how our perspective on the processes we usually follow. It is inspired by XP, including pair programming and agile development with incrementally changing requirements. If the solution to our problem would be a safety critical solution, a more test-driven process model would be more suitable. Catching regular trash is not a hard real-time, safety critical task, unless the trash is a threat to human life or mission critical.\newline
-The process model itself has worked out rather well since it isn’t restrictive and provides a very large degree of freedom when working with the project compared to a rigid adherence to a well established model such as the waterfall model. \newline
-Even though a lot of freedom might be a good thing, it can also be a bad thing for a process model. When working with the process model, it might not have been a good way to structure the work and it has been very experimental at times. \newline
-After experimenting with the process model throughout this project it has come to our attention that some changes should be made to the structure of the process model. A more explicit test section should be implemented to test all interdependent components, and ensure that all increments implementations work as intended. This will in turn also increase the coherence between each increment. This test section will also include tests across each increment, to check that no new errors has been introduced to earlier implementation.
-
-
-%Har vores process model virket? Hvad har virket/hvad har ikke virket? Hvad kan laves om ? Generel reflektion.
 \subsubsection{Hardware choices}
 
 
 %Valg af de forskellige shields, arduino board, sensor. Godt/dårligt, ændringer.
-
-
 \subsubsection{Object detection}
-
 
 %Er der ting vi kunne have gjort anderledes for at få bedre resultater her ?
 \subsubsection{Delimitations}
@@ -39,14 +24,11 @@ Instead the predefined area should not be considered and the robot should have a
 	\label{figure:graph}
 \end{figure}
 
-
-
-
-%Skulle vi have lavet nogle noget før, om de var nødvendige, om vi skulle have lavet andre, projektets delimitations står som kommentarer herunder:
-%The group have made two delimitations for the project. First the group have decided that multiple object thrown should not be considered, so only one object should be thrown at a time. \newline
-%It have also been decided that the robot should not drive backwards. The robot starts outside its predefined area and will only drive forward into that. This means that if the robot is already heading towards a point in its predefined area and the Kinect sends a new point, which is behind the robot, it will not be able to drive to the new point given by the Kinect.
-
-
+\subsubsection{Process analysis}
+The process model used for this project, which is described in section \ref{Process model}, is a reflection on how our perspective on the processes we usually follow. It is inspired by XP, including pair programming and agile development with incrementally changing requirements. If the solution to our problem would be a safety critical solution, a more test-driven process model would be more suitable. Catching regular trash is not a hard real-time, safety critical task, unless the trash is a threat to human life or mission critical.\newline
+The process model itself has worked out rather well since it isn’t restrictive and provides a very large degree of freedom when working with the project compared to a rigid adherence to a well established model such as the waterfall model. \newline
+Even though a lot of freedom might be a good thing, it can also be a bad thing for a process model. When working with the process model, it might not have been a good way to structure the work and it has been very experimental at times. \newline
+After experimenting with the process model throughout this project it has come to our attention that some changes should be made to the structure of the process model. A more explicit test section should be implemented to test all interdependent components, and ensure that all increments implementations work as intended. This will in turn also increase the coherence between each increment. This test section will also include tests across each increment, to check that no new errors has been introduced to earlier implementation.
 
 
 %Kunne vi generelt have gjort det til et mere real time problem eller er det overhovedet et godt projekt område til realtids problemer????

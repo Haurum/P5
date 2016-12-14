@@ -83,7 +83,7 @@ test(pos300_250Head075Left12Right5){
 \end{lstlisting}
 
 Table \ref{table:Unit tests} includes all the unit tests made for the arduino code. The table consists of a description of the unit test and if the test passed or failed. 
-\begin{table}
+\begin{table}[H]
 \begin{center}
 	\begin{tabular}{ | p{10cm} | p{5cm} |}
 		\hline
@@ -116,7 +116,7 @@ Predicted to impact: The distance from the predicted coordinate from the Kinect,
 Predicted to robot: The distance from the predicted coordinate to the robot, after the robot has stopped moving.\newline
 Robot to impact: The distance from the robot after it has stopped moving, to the actual impact point of the ball.
 
-\begin{table}
+\begin{table}[H]
 	\begin{center}
 		\begin{tabular}{ | p{5cm} | p{5cm} | p{5cm} |}
 			\hline
@@ -137,3 +137,7 @@ Robot to impact: The distance from the robot after it has stopped moving, to the
 		\label{table:FuncTest}
 	\end{center}
 \end{table}
+
+\section{Summary}
+\label{sec:summary}
+The scheduling is rather simple since the tasks are small and the platform to perform the tasks is faster and has more memory than needed, as shown in the schedulability analysis. The unit tests are implying that the robot should be working as intended, since it passed most of the tests and the tests which failed were corrected. The functionality test shows that the Kinect didn’t correctly predict where the impact point of the object is, and the robot doesn’t drive to the coordinate point sent by the Kinect. 
