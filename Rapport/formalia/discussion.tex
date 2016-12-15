@@ -10,9 +10,14 @@ For the schedulability analysis, the WCET of the Arduino code had to be calculat
 \subsubsection{Hardware choices}
 To introduce other classical real-time concerns such as memory and execution time into this project, another platform smaller and slower than the Arduino Mega 2560 should’ve been chosen, since we only partly utilized the Arduino Mega 2560’s processor power. 
 
+<<<<<<< HEAD
 
 The two shields and their libraries for this project, the Arduino Motor Shield and the Arduino WiFi Shield, are helping us writing code to control the NXT servo motors and connecting to the network. When using both shields at the same time, some complications occurred. This is because the shields are using some of the same pins on the Arduino board. To work around this problem, it was decided to change the Arduino code such that it first connect to the network which will change a boolean to true and then initialize the motor shield components for use. This also means that it is not possible to continuously get new data from the Kinect, as it will send the first coordinate it captures and predicts of the thrown object. \newline
+=======
+Using the two shields and their libraries for this project, the Arduino Motor Shield and the Arduino WiFi Shield, are helping us controlling the NXT servo motors and connecting to the network. When using both shields at the same time, some complications occurred. This is because the shields are using some of the same pins on the arduino board. To work around this problem, it was decided to change the arduino code such that it first connect to the network which will change a boolean to true and then initialize the motor shield components for use. This also means that it is not possible to continuously get new data from the Kinect, where it will send the first coordinate it captures and predicts of the thrown object. \newline
+>>>>>>> origin/master
 The motor shield should be used to control the motors, but an other solution to send the Kinect data to the arduino shield could be used. Either we should look for another WiFi component for the arduino, a bluetooth component or the robot should just be connected to the computer controlling the Kinect via a USB cable. 
+
 
 
 As mentioned in chapter \ref{chap:tests} about tests, the Kinect doesn’t reliably predict where the thrown object lands. In this project the depth sensor of the Kinect has been used, to calculate the impact point of the thrown object. Since the Kinect didn’t predict the impact point reliably, either the calculations made in the code should be revised or another way of using the Kinect should be taken into consideration. It is also possible that the Kinect didn’t function properly. 
