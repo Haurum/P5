@@ -83,7 +83,7 @@ test(pos300_250Head075Left12Right5){
 \end{lstlisting}
 
 Table \ref{table:Unit tests} includes all the unit tests made for the arduino code. The table consists of a description of the unit test and if the test passed or failed. 
-\begin{table}
+\begin{table}[H]
 \begin{center}
 	\begin{tabular}{ | p{10cm} | p{5cm} |}
 		\hline
@@ -107,3 +107,40 @@ Table \ref{table:Unit tests} includes all the unit tests made for the arduino co
 \end{table}
 
 All the failed test have been corrected and is now working as expected. 
+
+\section{Functional test}
+\label{sec:LasseSucks}
+Now that the unit tests for Dumpsty are successful, the functionality of Dumpsty must be tested as well. This is done through a functional test, where Dumpsty is placed in an appropriate environment, and then the entire system will be tested. This is done through throwing a ball in front of the Kinect sensor, and having the Kinect print the sent coordinates, and having the robot moving to the point. The actual impact point of the ball will also be marked on the ground, and the distance between all three points will be measured in cm, shown in table \ref{table:FuncTest}. \newline
+The three columns depicts the following:\newline
+Predicted to impact: The distance from the predicted coordinate from the Kinect, to the actual impact point of the ball.\newline
+Predicted to robot: The distance from the predicted coordinate to the robot, after the robot has stopped moving.\newline
+Robot to impact: The distance from the robot after it has stopped moving, to the actual impact point of the ball.
+
+\begin{table}[H]
+	\begin{center}
+		\begin{tabular}{ | p{5cm} | p{5cm} | p{5cm} |}
+			\hline
+			\textbf{Predicted to impact} & \textbf{Predicted to robot} & \textbf{Robot to impact} \\ \hline
+			23 & 11 & 34 \\ \hline
+			11.5 & 6.5 & 14 \\ \hline
+			19.5 & 8 & 26 \\ \hline
+			19 & 10.5 & 26.5 \\ \hline
+			36 & 8.5 & 43.5 \\ \hline
+			48 & 11 & 56 \\ \hline
+			9.5 & 11 & 21 \\ \hline
+			16 & 5.5 & 11 \\ \hline
+			49.5 & 11 & 48.5 \\ \hline
+			13 & 11 & 19 \\ \hline
+			
+		\end{tabular}
+		\caption{Table of conducted functional tests}
+		\label{table:FuncTest}
+	\end{center}
+\end{table}
+
+\section{Summary}
+\label{sec:summary}
+The scheduling is rather simple since the tasks are small and the platform to perform the tasks is faster and has more memory than needed, as shown in the schedulability analysis. The unit tests are implying that the robot should be working as intended, since it passed most of the tests and the tests which failed were corrected. The functionality test shows that the Kinect didn’t correctly predict where the impact point of the object is, and the robot doesn’t drive to the coordinate point sent by the Kinect. 
+
+As one can see, Dumpsty is consistently close to 10 cm from the predicted coordinates, which could be caused by the servo motors drift after the motors has been released in the code. The fact that the prediction has a range of misprediction of 10 - 50 cm is either due to miscalculations in the Kinect code, or the Kinect having hardware issues, creating a distorted depth-picture.
+

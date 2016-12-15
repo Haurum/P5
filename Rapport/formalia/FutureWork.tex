@@ -1,7 +1,12 @@
 \chapter{Future work}
 \label{chap:FutureWork}
-\textbf{Hardware}\newline
-%Vi ville have andre og mere kraftfulde hjul, hvad vi vil gøre for at få de to shields til at virke sammen, eller evt. bruge andre dele til at få funktionaliteten til at virke?
-\textbf{}\newline
+When the robot is at the impact point sent by the Kinect, it would release both motors and then drift further in the direction it was heading. The robot drifting should be avoided by making a brake function, making the robot stop at the exact point the Kinect sent.
 
-\textbf{}\newline
+An improvement to the current build would be to enable the robot to reset its position by returning to its initial position and be aware of its heading, this could be done by implementing a function which achieves the described behaviour, and must also take drift into consideration.
+
+Further improvements would be to acquire new motors and wheels and this could introduce scheduling problems since positioning is done through motor encoder interrupts, which could occur too often to schedule the tasks, if the motors are too fast.
+This is one of the problems of a cyclic executive, it is a very rigid construct which breaks if any of its scheduled tasks change, or new tasks are introduced.
+
+If we were to introduce more real-time scheduling theories, the next step would be to implement graceful degradation for the Wifi code. This would create the possibility of receiving data continuously, but the Wifi code may not be scheduled to receive the data, if there is not enough time for the other tasks to execute. This is a possibility since it would only reduce accuracy of the prediction, since more data from the Kinect sensor leads to more precise prediction of the impact point. This would still introduce the problem of dual-shield compatibility, since the Wifi and motor shield cannot operate at the same time, due to them using the same pins.
+
+The fact that both shields cannot operate at the same time could be eliminated by rerouting the pins on the Wifi shield, or using a cable to send the data, instead of having a wireless connection. With a cable instead of the wireless connection would also reduce the time used on sending the data, but also reduces the mobility of the robot.
