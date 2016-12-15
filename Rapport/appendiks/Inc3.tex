@@ -114,6 +114,59 @@ This section will describe if the requirements were fulfilled through implementa
 \subsection{Connecting Arduino and Kinect}
 \label{sec:i3Connecting Arduino and Kinect implementation}
 
+When the Kinect sensor has spotted the object in several frames, it returns a function that gives the objects position in relation to a given time in the future.
+The position given is in three dimensions, but only the x and y-coordinate are of interest, because the coordinate is only returned when we know the object must have hit the ground. The x-coordinate is given in meters, in relation to the Kinects left field of view. The y-coordinate is also given in meters, and is the distance between the balls impact spot with the ground, and the Kinect itself. This can be seen in \ref{FieldOfView}
+
+\begin{figure}[h]
+	\centering
+	\fbox{\includegraphics[scale=0.35]{billeder/FieldOfView11.png}}
+	\caption{Object impact in relation to Kinect}
+	\label{FieldOfView}
+\end{figure}
+
+This information is not useful to the Arduino as is, so the coordinate must be converted to a coordinate that is more useful to the Arduino.
+Looking at \ref{FieldOfView}, the length xdist represents the distance from the Kinects field of view to the impact point of the object, and the zdist represents the distance between the Kinect and the impact point of the object. This is the information given by the Kinect library.
+Since this coordinate system is not straight in relation to the Kinect and changes from impact to impact, depending on the depth, we first calculate the impact point as shown by a and b on \ref{FieldOfView2}.
+
+\begin{figure}[h]
+	\centering
+	\fbox{\includegraphics[scale=0.35]{billeder/FieldOfView3.png}}
+	\caption{Object impact in relation to Kinect with calculated a and b, and the Arduino}
+	\label{FieldOfView2}
+\end{figure}
+
+The code for calculating the coordinates using trigonometry, where XSquare is a and YSquare is b on figure:
+
+\begin{lstlisting}
+double as1 = (Math.Sin(2.06821516));
+double as2 = as1 * Math.Abs(Xdist);
+double as3 = (ZDist);
+double as4 = as2 / as3;
+double A = Math.Asin(as4);
+A = A * 180 / Math.PI;
+double B = 180 - A - 118.5;
+double b = ((Math.Sin(B * Math.PI / 180)) * Math.Abs(v3.X)) / (Math.Sin(A * Math.PI / 180));
+double A2 = 90 - B;
+double XSquare = ((Math.Sin(A2 * Math.PI / 180)) * (v3.Z - 0.5)) / (Math.Sin(90 * Math.PI / 180));
+double YSquare = ((Math.Sin(B * Math.PI / 180)) * (v3.Z - 0.5)) / (Math.Sin(90 * Math.PI / 180));
+\end{lstlisting}
+
+Using the calculated a and b, it is only a matter of addition and subtraction, to match the Arduinos coordinate system, based on its distance from the Kinect.
+
+The coordinate is the send to the Arduino, using a TCP connection.
+The code for this is shown here:
+\begin{lstlisting}
+tcpClient = new TcpClient();
+tcpClient.Connect("192.168.0.100", 9999);
+stream = tcpClient.GetStream();
+
+stream.Write(Encoding.UTF8.GetBytes((finalx.ToString() + ";" + finaly.ToString()).ToCharArray()), 0, (finalx.ToString() + ";" + finaly.ToString()).Length);
+tcpClient.Close();
+\end{lstlisting}
+
+A new TCP connection is opened by using the Arduinos IP-address, which is then used, by writing to its stream.
+When this code has executed, the Arduino has the information ready.
+
 \subsection{UPPAAL model of schedulability}
 \label{sec:i3UPPAAL model}
 To create the UPPAAL model and to check the schedulability of the tasks used for Dumpsty, every tasks WCET is calculated. This execution time is attained through running the code multiple times with a set timer, and writing the timer in a log after executing the specific task. There are three tasks for Dumpsty: Updating the position and heading (referred to as "PrA"), driving towards the goal position ("PrB") and the WiFi code that has to be looped ("PrC"). Here are the WCET attained through the tests, and to the right of the clock cycles is the WCET used in UPPAAL. The WCET used in UPPAAL has a significant margin greater than the WCET gained through the tests, since there is enough time to give each task a greater WCET, and the worst case tested is not necessarily the WCET of the tasks. 
