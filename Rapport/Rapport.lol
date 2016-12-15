@@ -11,5 +11,5 @@
 \contentsline {lstlisting}{\numberline {B.6}The loop function}{51}{lstlisting.B.6}
 \contentsline {lstlisting}{\numberline {C.1}The function updatePosAndHead with AWRFIX library}{55}{lstlisting.C.1}
 \contentsline {lstlisting}{\numberline {C.2}The function updatePosAndHead from the Arduino IDE}{55}{lstlisting.C.2}
-\contentsline {lstlisting}{\numberline {C.3}Queries for UPPAAL}{57}{lstlisting.C.3}
-\contentsline {lstlisting}{\numberline {E.1}Finished arduino code for the project}{61}{lstlisting.E.1}
+\contentsline {lstlisting}{\numberline {C.3}Queries for UPPAAL}{58}{lstlisting.C.3}
+\contentsline {lstlisting}{\numberline {E.1}Finished arduino code for the project}{63}{lstlisting.E.1}
