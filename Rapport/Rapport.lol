@@ -1,7 +1,7 @@
 \contentsline {lstlisting}{\numberline {5.1}The arduino setup function}{17}{lstlisting.5.1}
 \contentsline {lstlisting}{\numberline {5.2}The arduino loop function}{18}{lstlisting.5.2}
 \contentsline {lstlisting}{\numberline {6.1}Queries for UPPAAL}{22}{lstlisting.6.1}
-\contentsline {lstlisting}{\numberline {6.2}First type of Unit test}{22}{lstlisting.6.2}
+\contentsline {lstlisting}{\numberline {6.2}First type of Unit test}{23}{lstlisting.6.2}
 \contentsline {lstlisting}{\numberline {6.3}Second type of Unit test}{23}{lstlisting.6.3}
 \contentsline {lstlisting}{\numberline {B.1}Connecting the Wifi shield to the network}{48}{lstlisting.B.1}
 \contentsline {lstlisting}{\numberline {B.2}Connecting the computer to the Wifi Shield}{49}{lstlisting.B.2}
