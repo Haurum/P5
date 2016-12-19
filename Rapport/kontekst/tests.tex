@@ -4,14 +4,15 @@ The following chapter will describe the schedulability analysis made with UPPAAL
 
 \section{UPPAAL schedulability analysis}
 \label{sec:UPPAAL schedulability}
-As described in appendix \ref{chap:Increment three} section  \ref{sec:i3UPPAAL model}, Dumpsty contains three tasks: PrA, PrB and PrC. These three tasks are instances of the three tasks expressed in section \ref{sec:Scheduling implementation}, PrA being updatePosAndHead, PrB is driveTowardsGoal and PrC is WiFi.
+As described in appendix \ref{chap:Increment three} section  \ref{sec:i3UPPAAL model}, Dumpsty contains four tasks: PrA, PrB, PrC and PrD. These three tasks are instances of the three tasks expressed in section \ref{sec:Scheduling implementation}, PrA being updatePosAndHead, PrB is driveTowardsGoal, PrC is WiFi and PrD is the delay to not run all tasks seven times within the deadline.
 The tasks all have individual WCET, which is not calculated, but rather tested, since calculating these through assembly code proved to be impossible due to unbound loops in libraries. After testing the individual tasks WCET, the worst case found would be significantly faster than what is labelled in UPPAAL, since the probability of hitting the actual worst case is close to impossible with the amount of tests done. In the following bulletpoints, all three tasks tested WCET and the WCET used in UPPAAL for the specific task is expressed, which is the first step to verify the schedulability of Dumpsty's tasks.
 
 
 \begin{itemize}
 	\item PrA \tab Tested: 1076 microseconds \tab UPPAAL: 2 milliseconds
 	\item PrB \tab Tested: 732  microseconds \tab UPPAAL: 1 milliseconds
-	\item PrC \tab	Tested: 8433 microseconds \tab UPPAAL: 9 milliseconds
+	\item PrC \tab Tested: 8433 microseconds \tab UPPAAL: 9 milliseconds
+	\item PrD \tab Tested: 10000 microseconds \tab UPPAAL: 10 milliseconds
 \end{itemize}
 
 
@@ -36,6 +37,7 @@ In UPPAAL these automata might have more than one instance, defined by the amoun
 	\item PrA = TASK(1, 33, 2);
 	\item PrB = TASK(2, 33, 1);
 	\item PrC = TASK(3, 33, 9);
+	\item PrD = TASK(4, 33, 10);
 \end{itemize}
 
 

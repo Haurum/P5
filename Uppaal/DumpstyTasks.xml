@@ -89,24 +89,25 @@ t&lt;=T</label>
 		</transition>
 	</template>
 	<system>// Place template instantiations here.
-PrA = TASK(1,33,1);
+PrA = TASK(1,33,2);
 PrB = TASK(2,33,1);
 PrC = TASK(3,33,9);
+PrD = TASK(4,33,10);
 
 // List one or more processes to be composed into a system.
-system PrA, PrB, PrC, CPU;
+system PrA, PrB, PrC, PrD, CPU;
 
 
 </system>
 	<queries>
 		<query>
-			<formula>E&lt;&gt; PrA.Ready and PrB.Ready and PrC.Ready and  PrA.t==0 and PrB.t==0 and PrC.t==0 and time&gt;0
+			<formula>E&lt;&gt; PrA.Ready and PrB.Ready and PrC.Ready and PrD.Ready and  PrA.t==0 and PrB.t==0 and PrC.t==0 and PrD.t==0 and time&gt;0
 			</formula>
 			<comment>
 			</comment>
 		</query>
 		<query>
-			<formula>E[] not (PrA.ERR or PrB.ERR or PrC.ERR)
+			<formula>E[] not (PrA.ERR or PrB.ERR or PrC.ERR or PrD.ERR)
 			</formula>
 			<comment>
 			</comment>
