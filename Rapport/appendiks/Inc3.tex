@@ -63,7 +63,7 @@ This section will describe if the requirements were fulfilled through implementa
 When the Kinect sensor has spotted the object in several frames, it returns a function that gives the objects position in relation to a given time in the future.
 The position given is in three dimensions, but only the x and y-coordinate are of interest, because the coordinate is only returned when we know the object must have hit the ground. The x-coordinate is given in meters, in relation to the Kinects left field of view. The y-coordinate is also given in meters, and is the distance between the balls impact spot with the ground, and the Kinect itself. This can be seen in \ref{FieldOfView}
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\fbox{\includegraphics[scale=0.35]{billeder/FieldOfView11.png}}
 	\caption{Object impact in relation to Kinect}
@@ -74,7 +74,7 @@ This information is not useful to the Arduino as is, so the coordinate must be c
 Looking at \ref{FieldOfView}, the length xdist represents the distance from the Kinects field of view to the impact point of the object, and the zdist represents the distance between the Kinect and the impact point of the object. This is the information given by the Kinect library.
 Since this coordinate system is not straight in relation to the Kinect and changes from impact to impact, depending on the depth, we first calculate the impact point as shown by a and b on \ref{FieldOfView2}.
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\fbox{\includegraphics[scale=0.35]{billeder/FieldOfView3.png}}
 	\caption{Object impact in relation to Kinect with calculated a and b, and the Arduino}

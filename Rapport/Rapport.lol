@@ -16,7 +16,7 @@
 \contentsline {lstlisting}{\numberline {B.4}The defined and declared variables}{58}{lstlisting.B.4}
 \contentsline {lstlisting}{\numberline {B.5}The setup function}{58}{lstlisting.B.5}
 \contentsline {lstlisting}{\numberline {B.6}The loop function}{59}{lstlisting.B.6}
-\contentsline {lstlisting}{\numberline {C.1}Converting coordinates form Kinect}{63}{lstlisting.C.1}
-\contentsline {lstlisting}{\numberline {C.2}Sending data to the Arduino}{63}{lstlisting.C.2}
-\contentsline {lstlisting}{\numberline {C.3}Queries for UPPAAL}{65}{lstlisting.C.3}
-\contentsline {lstlisting}{\numberline {E.1}Finished arduino code for the project}{69}{lstlisting.E.1}
+\contentsline {lstlisting}{\numberline {C.1}Converting coordinates form Kinect}{64}{lstlisting.C.1}
+\contentsline {lstlisting}{\numberline {C.2}Sending data to the Arduino}{64}{lstlisting.C.2}
+\contentsline {lstlisting}{\numberline {C.3}Queries for UPPAAL}{66}{lstlisting.C.3}
+\contentsline {lstlisting}{\numberline {E.1}Finished arduino code for the project}{71}{lstlisting.E.1}
