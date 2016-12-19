@@ -137,7 +137,7 @@ Since this coordinate system is not straight in relation to the Kinect and chang
 
 The code for calculating the coordinates using trigonometry, where XSquare is a and YSquare is b on figure:
 
-\begin{lstlisting}
+\begin{lstlisting}[caption={Converting coordinates form Kinect}, label={convertCoordinate}]
 double as1 = (Math.Sin(2.06821516));
 double as2 = as1 * Math.Abs(Xdist);
 double as3 = (ZDist);
@@ -155,7 +155,7 @@ Using the calculated a and b, it is only a matter of addition and subtraction, t
 
 The coordinate is the send to the Arduino, using a TCP connection.
 The code for this is shown here:
-\begin{lstlisting}
+\begin{lstlisting}[caption={Sending data to the Arduino}, label={sendData}]
 tcpClient = new TcpClient();
 tcpClient.Connect("192.168.0.100", 9999);
 stream = tcpClient.GetStream();
@@ -213,7 +213,7 @@ After verifying both queries it is possible to say whether the tasks can be sche
 Many different methods were used to try to calculate the WCET for the systems functions. At first it was tried to count the clock cycles from the complied assembly code, which proved to be very difficult, since the bounds of the libraries was unknown. Because of these problems third party software and libraries was used to calculate the WCET, but the once again without any success. The method used to calculate the WCET was to use the micros() function, available in the arduino IDE, to measure the time used on the function, which would give close to a WCET of the functions. The tasks all had a significant margin to improve the possibility of hitting actual WCET. \newline
 The WCET's were used with the software UPPALL, as described in section \ref{sec:i3UPPAAL model}. This concluded that the tasks was easily schedulable within the defined deadlines.
 
-EVALUERE PÅ CONNECTING ARDUINO AND KINECT!!!!!!!!!!!!!!
+%EVALUERE PÅ CONNECTING ARDUINO AND KINECT!!!!!!!!!!!!!!
 
 After finalizing increment three the requirements in the following list will be the final requirements for the system:
 
