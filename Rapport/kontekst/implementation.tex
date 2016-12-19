@@ -85,14 +85,67 @@ void loop() {
 
 \section{Scheduling}
 \label{sec:Scheduling implementation}
-To calculate the worst-case execution time(WCET) for the systems tasks, several methods were tried out, which is described in Appendix \ref{chap:Increment three} in section \ref{sec:i3Scheduling}. 
-The method used in this project to get the WCET for the system tasks, is to use the micros() function in the arduino IDE. \newline
-Each task running time is measured with the micros() function, by running the function several time at using the highest time value as WCET. This was done for the functions updatePosAndHead(), driveTowardsGoal() and for when the Kinect program sends data till the arduino have received it via WiFi.
+To be able to schedule the systems functions(also called tasks), the worst-case execution time(WCET) have to be known for the individual functions. The first attempt was to count the clock cycles in the assembly file of the complied arduino code. It was known that the Arduino mega 2560 has 16000 clock cycles per millisecond, so it will be possible to calculate the time for the functions. The purpose was to count the clock cycles for the two functions driveTowardsGoal() and updatePosAndHead(), to make that a possibility many of the functions in the different libraries used also had to be counted, the results of this can be found in Appendix \ref{chap:Clock cycles}.
 
-The results of the WCET of the tasks using the micros() function:
+In the following list, the clock cycles counted of the two functions are shown:
+\begin{itemize}
+	\item driveTowardsGoal = \textbf{4185} + (13)* + (174 + (13)*)* + (231 + (13)*)* + (17)* + (8)* + (33 + (17)*)* + (7)* + (5)* + (290 + (5)*)*
+	\item updatePosAndHead = \textbf{3560} + (11)* + (13)* + (7)* + (174 + (13)*)* + (231 + (13)*)* (10)* + (24)* + (17)* + (33 + (17)*)*
+\end{itemize}
+The bold number is the worst-case of clock cycles counted in the function. The numbers in parentheses are loops, which bound is unknown, therefore it is not possible to make a count the exact WCET by counting the clock cycles.
+
+Since it was not possible to count the clock cycles from the assembly code, it was decided to use the tool Bound-T, which will calculate the WCET outputted with an output in clock cycles. \newline
+Bound-T was not able to calculate the WCET for the code. When Bound-T gets to calculating the floats, it is failing. It can't set an upper bound for the floating point numbers' WCET.
+
+To be able to work around the float issues with Bound-T, a library called AVRFIX made by Maximilian Rosenblattl and Andreas Wolf \citep{AVRFIX}. In the listings \ref{Update1} and \ref{Update2} a function written with the AVRFIX library and a function written normally for arduino can be compared. Be aware that the function in listing \ref{Update2} might not look exactly like this in the final code for the project. 
+
+\begin{lstlisting}[caption={The function updatePosAndHead with AWRFIX library}, label={Update1}]
+void updatePosAndHead(){
+int currentLeft = leftTotal;
+int currentRight = rightTotal;
+fix_t distPrDeg = ftok(DISTPRDEGREE);
+fix_t dltL = itok(currentLeft - leftTemp);
+fix_t dltR = itok(currentRight - rightTemp);
+fix_t deltaLeft = mulk(dltL, distPrDeg);
+fix_t deltaRight = mulk(dltR, distPrDeg);
+leftTemp = currentLeft;
+rightTemp = currentRight;
+fix_t deltaSum = deltaLeft + deltaRight;
+fix_t dist = divk(deltaSum,ftok(2.0));
+fix_t sinHeading = sink(heading);
+posX += mulk(dist, sinHeading);
+fix_t cosHeading = cosk(heading);
+posY += mulk(dist, cosHeading);
+fix_t rel = divk((deltaRight - deltaLeft),ftok(WHEELDIST));
+heading += atank(rel);
+}
+\end{lstlisting}
+
+\begin{lstlisting}[caption={The function updatePosAndHead from the Arduino IDE}, label={Update2}]
+void updatePosAndHead(){
+int currentLeft = leftTotal;
+int currentRight = rightTotal;
+double deltaLeft = (currentLeft - leftTemp) * DISTPRDEGREE;
+double deltaRight = (currentRight - rightTemp) * DISTPRDEGREE;
+leftTemp = currentLeft;
+rightTemp = currentRight;
+double dist = (deltaLeft + deltaRight) / 2.0;
+posX += (dist * sin(heading));
+posY += (dist * cos(heading));
+heading += (atan((deltaRight - deltaLeft) / WHEELDIST));
+}
+\end{lstlisting}
+
+The program was rewritten with the AVRFIX library and then using Bound-T again to calculate the worst-case execution time for the functions. The AVRFIX library came with a .txt file from the GitHub download, which included the clock cycles for the AVRFIX functions. \newline
+The function updatePosAndHead() is calculated to use 3995 clock cycles, but when trying to calculate the function driveTowardsGoal() another problem occurred. When a division by 0 took place, the program will enter an infinite loop, making it impossible to set an upper bound on the WCET. With this problem it is not possible to calculate the WCET for driveTowardsPoint().
+
+Because using the AVRFIX library with Bound-T also failed, the group decided to use the function micros() on the functions to measure the time spent on the function, run them several times and use highest result as WCET. Besides the functions updatePosAndHead() and dirveTowardsGoal() the WCET, when the Kinect program sends data till the arduino received it via the WiFi, was also measured. 
+
+The WCET for the two functions and the time spent on sending data from the Kinect via wifi, using the Micros() function, is listed below:
 \begin{itemize}
 	\item updatePosAndHead = 1076 microseconds
 	\item driveTowardsGoal = 732 microseconds
 	\item WiFi = 8433 microseconds
 \end{itemize}
-These results was used to make a schedulability analysis in the UPPAAL program, which will be described in the following section.
+
+These results will be used to make a schedulability analysis in the UPPAAL program, which will be described in the following chapter.
