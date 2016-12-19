@@ -5,11 +5,11 @@ This chapter will describe the implementation of the systems components. It will
 \section{Microsoft Kinect}
 \label{sec:Microsoft Kinect Implementation}
 This section will describe how the Kinect sends coordinates to the Arduino.
-The Kinect gives information about the balls predicted impact point, in relation to its field of view and the distance to the point. The coordinate has to be converted to fit in a coordinate system that has it’s 0,0 at the Kinect, X-axis out from the side of the Kinect, and Y-axis out perpendicular from the front of the Kinect.
-An detailed description of the conversion can be found in \ref{sec:i3Connecting Arduino and Kinect implementation}.
+The Kinect gives information about the object predicted impact point, in relation to its field of view and the distance to the point. The coordinate has to be converted to fit in a coordinate system that has it’s starting point at the Kinect, X-axis out from the side of the Kinect, and Y-axis out perpendicular from the front of the Kinect. \newline	
+A detailed description of the conversion can be found in \ref{sec:i3Connecting Arduino and Kinect implementation}.
 
-The coordinate can then be send to the Arduino, using its IP-address and a tcpClient. 
-When writing to the tcpClient’s stream, the information is send to the server on the Arduino, that should be waiting to retrieve it.
+The coordinate can then be sent to the Arduino, using its IP-address and a tcpClient. 
+When writing to the tcpClient’s stream, the information is sent to the server on the Arduino, that should be waiting to retrieve it.
 The code for this can be seen here:
 
 \begin{lstlisting}[caption={Sending data to the Arduino}, label={sendData}]
@@ -25,11 +25,11 @@ tcpClient.Close();
 \section{Robot}
 \label{sec:Robot}
 This section will describe arduino code for the robot. This will include how the arduino connects to the Kinect and the robots behaviour and calculations done by the arduino. If there was any comments in the original code, they have been removed in the listings for this chapter. \newline
-A problem occurred when both the WiFi shield and the motor shield should work together. When the WiFi shield is trying to connect to the network and if any of the motor shield components are initialized at the beginning of the program, it isn't possible to connect to the network. If it is connected to the network before the motor shield components are initialized, it is possible to receive data and use the motor shield components.
+A problem occurred when both the Wifi Shield and the Motor Shield should work together. When the Wifi Shield is trying to connect to the network and if any of the Motor Shield components are initialized at the beginning of the program, it isn't possible to connect to the network. If it is connected to the network before the Motor Shield components are initialized, it is possible to receive data and use the Motor Shield components.
 
-The arduino setup function, is a function run once at the beginning of the running program, to setup the program as the name implies. In listing \ref{lst:setup} the setup function is shown, which in this project will connect to the private network, using the guide from Arduinos own website, and get the first coordinate \citep{wg}. \newline
-It will try to connect to the specific network by passing the network name and password to the function WiFi.begin(), given by the WiFi library. If the arduino can't connect to the network, the program will exit. If it successfully connects, the arduino will call the function server.begin() to initialize a serve that can receive data, and is now connected to the network.
-The \textbf{dataString}  variable contains the data received, so the while loop makes sure that the program waits for the coordinates before continuing. A client variable will be initialized using server.available(), which will make the arduino ready to receive data. The function client.available(), returns true if the server has received any information. If true, the data is appended to the dataString, and execution of the program will continue.
+The arduino setup function, is a function executed once at the beginning of the running program, to setup the program as the name implies. In listing \ref{lst:setup} the setup function is shown, which in this project will connect to the private network, using the guide from Arduino’s own website, and get the first coordinate \citep{wg}. \newline
+It will try to connect to the specific network by passing the network name and password to the function WiFi.begin(), given by the Wifi library. If the Arduino can't connect to the network, the program will exit. If it successfully connects, the arduino will call the function server.begin() to initialize a server that can receive data, and is now connected to the network. \newline
+The \textbf{dataString}  variable contains the data received, so the while loop makes sure that the program waits for the coordinates before continuing. A client variable will be initialized using server.available(), which will make the Arduino ready to receive data. The function client.available(), returns true if the server has received any information. If true, the data is appended to the dataString, and execution of the program will continue.
 \newline
 goalX and goalY is then extracted from the \textbf{dataString} and converted to integers.
 
@@ -44,7 +44,7 @@ void setup() {
 		server.begin();
 	}
 	ip = WiFi.localIP();
-
+	
 	while(dataString == ""){
 		client = server.available();
 		if (client.connected()){
@@ -67,18 +67,17 @@ void setup() {
 }
 \end{lstlisting}
 
-
-
-Now that the robot knows it destination it needs to calculate how to get there, but before it does that it needs to know its own position and heading. The system used to determine position and heading is defined as follows:
+Now that the robot knows its destination, it needs to calculate how to get there, but before it does that it needs to know its own position and heading. The system used to determine position and heading is defined as follows:
 
 Position is defined as a x and y coordinate like so: (x,y). \newline
 Heading 0 is straight up parallel to the y axis \newline
 Headings clockwise from the y axis are negative and headings counterclockwise are positive. \newline
 Heading can range from -179deg to 180deg. \newline
 
-The robots motors each has an encoder that will give a high volt signal to the arduino for every 2 degrees the motor turns. The arduino is set up to interrupt on pin change, which means the interrupt handler for each motor will be executed for each degree the motor turns. Each interrupt handler increments an int, leftTotal for the left motor and rightTotal for the right motor. \newline
-Using these two variables, postition and heading of the robot can be calculated, or rather the delta postion and heading compared to the last time position and heading was calculated.
-First the values of leftTotal and rightTotal are saved to two new variables currentLeft and currentRight such that they dont change while using them in calculation. Now to find how far the robot has moved since last calculation, the last iterations degree count called temp(Left/Right) is subtracted from the current to get the delta degree count. To get the actual distance each wheel has moved, the delta degree count is multiplied by the amount of millimeters the wheel travels per degree. The position of the robot is set to be between the wheels, so to get how far the position has moved the two distances that the wheels have moved are added together and devided by 2. Next, to find the new position in coordinates the distance traveled is multiplied with sinus to the heading to get the change in the x direction and cosinus to the heading to get the change in the y direction. These two values are added to the current position to get the new position. Now to get the change in heading, the distance the right wheel traveled is subtracted by the distance the left wheel traveled to get the distance the 2 traveled compared to each other. Arctan to this value devided by the distance between the wheels gives the change in heading, which is added to the current heading to get the new one.
+The robots motors each have an encoder that will give a high volt signal to the Arduino for every 2 degrees the motor turns. The Arduino is set up to interrupt on pin change, which means the interrupt handler for each motor will be executed for each degree the motor turns. Each interrupt handler increments an int, leftTotal for the left motor and rightTotal for the right motor. \newline
+Using these two variables, position and heading of the robot can be calculated, or rather the delta position and heading compared to the last time position and heading was calculated.
+First the values of leftTotal and rightTotal are saved to two new variables currentLeft and currentRight such that they do not change while using them in calculation. To record how far the robot has moved since the last calculation, the last iterations degree count called temp(Left/Right) is subtracted from the current to get the delta degree count. To get the actual distance each wheel has moved, the delta degree count is multiplied by the amount of millimeters the wheel travels per degree. The position of the robot is set to be between the wheels, and to get how far the position has moved the two distances that the wheels have moved are added together and divided by 2. Next, to find the new position in coordinates the distance traveled is multiplied with sinus to the heading to get the change in the x direction and cosinus to the heading to get the change in the y direction. These two values are added to the current position to get the new position. To get the change in heading, the distance the right wheel traveled is subtracted by the distance the left wheel traveled to get the distance the two wheels traveled compared to each other. Arctan to this value divided by the distance between the wheels gives the change in heading, which is added to the current heading to get the new one. This is shown in listing \ref{lst:upah}
+
 \begin{lstlisting}[caption={updatePosAndHead function}, label={lst:upah}]
 void updatePosAndHead(){
 	int currentLeft = leftTotal;
@@ -94,7 +93,7 @@ void updatePosAndHead(){
 }
 \end{lstlisting}
 
-The robot now knows its destination plus its own position and heading. To get to the destination the robot can do 4 things: drive forward on one wheel and let the other stand still or vice versa, drive both wheels forward or stand still on both wheels. So basically left, right, forward or nothing. The arduino first determines if the robot is already at the goal position or it needs to move. To do this it simply compares its current position with the final destination and determines if this difference is within a give margin of error. If it is, it stops and exits the program.
+The robot now knows its destination, its own position and heading. To get to the destination, the robot can do 4 things: drive forward on one wheel and let the other stand still or vice versa, drive both wheels forward or stand still on both wheels. So basically left, right, forward or nothing. The Arduino first determines if the robot is already at the goal position or it needs to move. To do this it simply compares its current position with the final destination and determines if this difference is within a given margin of error. If it is, it stops and exits the program, this is shown in listing \ref{lst:stopplz}
 
 \begin{lstlisting}[caption={If-statement to check if the robot should stop}, label={lst:stopplz}]
 if(posX <= goalX + margin && posX >= goalX - margin && posY <= goalY + margin && posY >= goalY - margin){
@@ -105,11 +104,11 @@ if(posX <= goalX + margin && posX >= goalX - margin && posY <= goalY + margin &&
 } 
 \end{lstlisting}
 
-If it is not the robot needs to be moved. To figure out whether to go left, right or forward the arduino calculates the goal heading that is needed at the current postition to point directly (or almost directly) at the goal destination. Next this heading is compared to the current heading and the arduino determines whether a right, left or no turn is needed. This is done like this:
-First the goal position is subtracted by the current position to get how far the robot needs to travel in the x and y direction, from here called deltaX and deltaY. \newline
+If it is not at the goal position, the robot needs to be moved. To figure out whether to go left, right or forward the arduino calculates the goal heading that is needed at the current position to point directly (or almost directly) at the goal destination. Next this heading is compared to the current heading and the arduino determines whether a right, left or no turn is needed. This is done like this:
+First the goal position is subtracted by the current position to get how far the robot needs to travel in the x and y direction, from here on called deltaX and deltaY. \newline
 If deltaX is 0, the goal is either straight up parallel to the y axis at heading 0 or straight down parallel to the y axis at heading 180 or PI in radians. \newline
-If deltaX is bigger than 0, arctan is taken to deltaY devided by deltaX, this gives the angle to the positive x axis. This is subtracted by 90 degrees (PI/2 in radians) to get the angle to the positive y axis, which is the goal heading. \newline
-If deltaX is smaller than 0, almost the same thing as above happens. The only difference is that the angle from the arctan calculation will give en angle to the negative x axis, so the results is added to 90 degrees (PI/2 in radians) instead of substracted by it.
+If deltaX is bigger than 0, arctan is taken to deltaY divided by deltaX, this gives the angle to the positive x axis. This is subtracted by 90 degrees (PI/2 in radians) to get the angle to the positive y axis, which is the goal heading. \newline
+If deltaX is smaller than 0, almost the same thing as above happens. The only difference is that the angle from the arctan calculation will give en angle to the negative x axis, so the results is added to 90 degrees (PI/2 in radians) instead of subtracted by it. Shown in listing \ref{lst:calcGH}.
 
 \begin{lstlisting}[caption={Part of the driveTowardsGoal function to calculate the goalHeading}, label={lst:calcGH}]
 double deltaX = goalX - posX;
@@ -125,9 +124,9 @@ else
 
 
 The difference between the current heading and goal heading is then calculated by subctracting the current heading from the goal heading, this is from here on called the deltaHeading. \newline
-If deltaHeading is larger than 180 degrees (PI in radians) it whould be faster to go the other way around, so deltaHeading is subtracted by 360 degrees (2PI in radians). \newline
+If deltaHeading is larger than 180 degrees (PI in radians) it would be faster to go the other way around, so deltaHeading is subtracted by 360 degrees (2PI in radians). \newline
 if deltaHeading is smaller than -180 degrees (-PI in radians) the same thing aplies, but the other way so 360 degrees (2PI in radians) is added instead. \newline
-Lastly it is determined if the deltaheading calls for a left turn, a right turn or full speed ahead.
+Lastly it is determined if the deltaHeading calls for a left turn, a right turn or full speed ahead, as shown in listing \ref{lst:heading}.
 
 \begin{lstlisting}[caption={Check the difference of the actualGoalHeading and its current heading, and determines which motors to run}, label={lst:heading}]
 double deltaHeading = actualGoalHeading - heading;
@@ -144,6 +143,26 @@ if(deltaHeading < -0.1){
 }else{
 	motorLeft.run(FORWARD);
 	motorRight.run(FORWARD);
+}
+\end{lstlisting}
+
+In the loop, a dummy function has been put in to simulate the wifi part of the code, which should run every iteration, but because of shield incompatibility it cannot. Getting a string of coordinates from the sender takes less than 9 ms \ref{sec:i3Scheduling}, so the dummy function is simply a delay of 9 ms. After this updatePosAndHead() and driveTowardsGoal() are each executed once. Next a delay is inserted to let the robot drive briefly before calculating the change in position again. After the delay updatePosAndHead() and driveTowardsGoal() are run a second time, and then a while loop waits for the time since starting the loop to exceed 33ms. This is done because the expected minimum delay between receiving information from the kinect is 33ms as the framerate of the kinect is 30 frames pr. second. updatePosAndHead() and driveTowardsGoal() are run twice to make sure the difference between updates isn't too large. If the differences are to big the robot will get unprecise position and headings after a while.
+
+\begin{lstlisting}[caption={Loop function}, label={lst:loop}]
+
+void loop() {
+	t = millis();
+	wifi();
+	updatePosAndHead();
+	driveTowardsGoal();  
+	delay(10);
+	updatePosAndHead();
+	driveTowardsGoal();
+	while(micros()-t<33){}  
+}
+
+void wifi(){
+	delay(9);
 }
 \end{lstlisting}
 

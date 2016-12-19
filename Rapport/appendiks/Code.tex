@@ -58,9 +58,18 @@ void setup() {
 }
 
 void loop() {
+	t = millis();
+	wifi();
+	updatePosAndHead();
 	driveTowardsGoal();  
 	delay(10);
 	updatePosAndHead();
+	driveTowardsGoal();
+	while(micros()-t<33){}  
+}
+
+void wifi(){
+	delay(9);
 }
 
 void updatePosAndHead(){
