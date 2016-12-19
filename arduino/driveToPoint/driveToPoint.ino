@@ -98,7 +98,10 @@ void loop() {
     rightTemp = rightTotal;
     
     if(posX <= goalX + margin && posX >= goalX - margin && posY <= goalY + margin && posY >= goalY - margin){
-      stopIfAtGoal();
+      motorLeft.run(RELEASE);
+      motorRight.run(RELEASE);
+      shouldDrive = false;
+      dataString = "";
     } else {
       driveTowardsGoal();  
     }
@@ -123,9 +126,19 @@ void updatePosAndHead(){
 void driveTowardsGoal(){
   double deltaX = goalX - posX;
   double deltaY = goalY - posY;
-  double goalHeading = atan(deltaX/deltaY);
+  double actualGoalHeading;
+  if(deltaX == 0 && deltaY > 0)
+    actualGoalHeading = 0;
+  else if(deltaX == 0 && deltaY < 0)
+    actualGoalHeading = PI;
+  else
+    actualGoalHeading = deltaX >= 0 ? atan(deltaY/deltaX) - (PI/2) : atan(deltaY/deltaX) + (PI/2);
   
-  double deltaHeading = goalHeading - heading;
+  double deltaHeading = actualGoalHeading - heading;
+  if(deltaHeading > PI)
+    deltaHeading -= 2*PI;
+  else if(deltaHeading < -PI)
+    deltaHeading += 2*PI;
   if(deltaHeading < -0.1){
     motorLeft.run(FORWARD);
     motorRight.run(RELEASE);
@@ -136,13 +149,6 @@ void driveTowardsGoal(){
     motorLeft.run(FORWARD);
     motorRight.run(FORWARD);
   }
-}
-
-void stopIfAtGoal(){
-  motorLeft.run(RELEASE);
-  motorRight.run(RELEASE);
-  shouldDrive = false;
-  dataString = "";
 }
 
 void incrementLeft(){

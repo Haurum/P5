@@ -4,13 +4,14 @@ The following chapter will describe the schedulability analysis made with UPPAAL
 
 \section{UPPAAL schedulability analysis}
 \label{sec:UPPAAL schedulability}
-As described in appendix \ref{chap:Increment three} section  \ref{sec:i3UPPAAL model}, Dumpsty contains three tasks: PrA, PrB and PrC. These three tasks all have individual WCET, which is not calculated, but rather tested, since calculating these through assembly code proved to be impossible due to unbound loops in libraries. After testing the individual tasks WCET, the worst case found would be significantly faster than what is labelled in UPPAAL, since the probability of hitting the actual worst case is close to impossible with the amount of tests done. In the following bulletpoints, all three tasks tested WCET and the WCET used in UPPAAL for the specific task is expressed, which is the first step to verify the schedulability of Dumpsty's tasks.
+As described in appendix \ref{chap:Increment three} section  \ref{sec:i3UPPAAL model}, Dumpsty contains three tasks: PrA, PrB and PrC. These three tasks are instances of the three tasks expressed in section \ref{sec:Scheduling implementation}, PrA being updatePosAndHead, PrB is driveTowardsGoal and PrC is WiFi.
+The tasks all have individual WCET, which is not calculated, but rather tested, since calculating these through assembly code proved to be impossible due to unbound loops in libraries. After testing the individual tasks WCET, the worst case found would be significantly faster than what is labelled in UPPAAL, since the probability of hitting the actual worst case is close to impossible with the amount of tests done. In the following bulletpoints, all three tasks tested WCET and the WCET used in UPPAAL for the specific task is expressed, which is the first step to verify the schedulability of Dumpsty's tasks.
 
 
 \begin{itemize}
-	\item PrA \tab Tested: 1067 microseconds \tab UPPAAL: 2 milliseconds
+	\item PrA \tab Tested: 1076 microseconds \tab UPPAAL: 2 milliseconds
 	\item PrB \tab Tested: 732  microseconds \tab UPPAAL: 1 milliseconds
-	\item PrC \tab	Tested: 8469 microseconds \tab UPPAAL: 9 milliseconds
+	\item PrC \tab	Tested: 8433 microseconds \tab UPPAAL: 9 milliseconds
 \end{itemize}
 
 
@@ -38,7 +39,8 @@ In UPPAAL these automata might have more than one instance, defined by the amoun
 \end{itemize}
 
 
-The integers declared for every task have different meanings. These integers will be explained by the case task PrA. In task PrA, the integer 1 is the ID for the task, 33 is the deadline for the task in milliseconds, and 2 is the worst-case execution time for the task. The deadline for all tasks are the same, since this is the minimal interarrival-time(MIT) for coordinates from the Kinect sensor. All code has to be executed within the MIT of these coordinates, since a new coordinate will alter the path the robot choose. 
+The integers declared for every task have different meanings. These integers will be explained by the case task PrA. In task PrA, the integer 1 is the ID for the task, 33 is the deadline for the task in milliseconds, and 2 is the worst-case execution time for the task. The deadline for all tasks are the same, since this is the minimal interarrival-time(MIT) for coordinates from the Kinect sensor. This MIT is granted since the Kinect has a maximum FPS of 30, and each new frame can trigger a new prediction. There cannot be a new prediction without new frames, as the frames hold all the data for the Kinect prediction.
+All code has to be executed within the MIT of these coordinates, since a new coordinate will alter the path the robot choose. 
 
 
 The last step in the UPPAAL schedulability analysis is to use the verifier. This is done with two queries, found in listing \ref{Queries}. The first query checks if, after some amount of time, greater than zero, all tasks has been executed at least once and all tasks are in the ready state. The second query checks that no task ever hits an error-state. If these two queries both succeed, the tasks can all be executed within the deadline, and the schedulability analysis is successful, and in this case, with tasks PrA, PrB and PrC, the tasks are schedulable within the deadlines.
@@ -52,7 +54,7 @@ E[] not (PrA.ERR or PrB.ERR or PrC.ERR)
 
 \section{Unit test}
 \label{sec:Unit test}
-To make the unit test on the arduino code, the library ArduinoUnit has been used \citep{au}. For the arduino code there has been conducted 12 unit tests, which have been split up into two different kind of unit tests, testing the two functions driveTowardsGoal() and updatePosAndHead(). \newline
+To make the unit test on the arduino code, the library ArduinoUnit has been used \citep{au}. For the arduino code there has been conducted two different types of unit tests, testing the two functions driveTowardsGoal() and updatePosAndHead(). Both functions has six different cases of unit tests. Each unit test has a name expressing the different variables given in the test, in listing \ref{ut1} the unit test has the name curPos30\_150goalPos30\_150Head1 since the current position of the robot is (30, 150), the goal position is (30, 150) and the current heading of the robot is 1. \newline
 The coordinates sent to Dumpsty in the unit tests are simulated, since this is the best representation of how the robot would work under perfect conditions. These unit tests reflect how Dumpsty performs in an environment with instantaneous received data from a sensor with great precision, where the sensor will send new data every 33ms. 
 The first type will test the function driveTowardsGoal() and has 3 different inputs being starting position, goal position and the heading of the robot. The robot will start at its starting position with the given heading, and will then have to move towards the goal position. In the description of the test, if no heading is described, the heading is 0. For a code near perspective of this unit test type, check listing \ref{ut1}.
 
@@ -132,7 +134,7 @@ All the failed test have been corrected and is now working as expected.
 \section{Functional test}
 \label{sec:LasseSucks}
 Now that the unit tests for Dumpsty are successful, the functionality of Dumpsty must be tested as well. This is done through a functional test, where Dumpsty is placed in an appropriate environment, and then the entire system will be tested. This is done through throwing an object in front of the Kinect sensor, having the Kinect print the sent coordinates, and having the robot moving to the point. The actual impact point of the object will also be marked on the ground, and the distance between all three points will be measured in cm, shown in table \ref{table:FuncTest}. \newline
-The three columns depicts the following:\newline
+The three columns of table \ref{table:FuncTest} depicts the following:\newline
 Predicted to impact: The distance from the predicted coordinate from the Kinect, to the actual impact point of the object.\newline
 Predicted to robot: The distance from the predicted coordinate to the robot, after the robot has stopped moving.\newline
 Robot to impact: The distance from the robot after it has stopped moving, to the actual impact point of the object.
@@ -142,7 +144,7 @@ Robot to impact: The distance from the robot after it has stopped moving, to the
 	\begin{center}
 		\begin{tabular}{ | p{5cm} | p{5cm} | p{5cm} |}
 			\hline
-			\textbf{Predicted to impact} & \textbf{Predicted to robot} & \textbf{Robot to impact} \\ \hline
+			\textbf{Predicted to impact (cm)} & \textbf{Predicted to robot (cm)} & \textbf{Robot to impact (cm)} \\ \hline
 			23 & 11 & 34 \\ \hline
 			11.5 & 6.5 & 14 \\ \hline
 			19.5 & 8 & 26 \\ \hline
@@ -166,7 +168,7 @@ Robot to impact: The distance from the robot after it has stopped moving, to the
 The scheduling is rather simple since the tasks are small and the platform to perform the tasks is faster and has more memory than needed, as shown in the schedulability analysis. The unit tests are implying that the robot should be working as intended, since it passed most of the tests and the tests which failed were corrected. The functionality test shows that the Kinect didn’t correctly predict where the impact point of the object is, and the robot doesn’t stop at the exact coordinate point sent by the Kinect. 
 
 
-As one can see, Dumpsty is consistently close to 10 cm from the predicted coordinates, which could be caused by the servo motors drift after the motors has been released in the code. The fact that the prediction has a range of misprediction of 10 - 50 cm is either due to miscalculations in the Kinect code, or the Kinect having hardware issues, creating a distorted depth-picture.
+As one can see, Dumpsty is consistently close to 10 cm from the predicted coordinates, which could be caused by the servo motors drift after the power to the motors has been shut off. The fact that the prediction has a range of misprediction of 10 - 50 cm is either due to miscalculations in the Kinect code, or the Kinect having hardware issues, creating a distorted depth-picture.
 
 
 

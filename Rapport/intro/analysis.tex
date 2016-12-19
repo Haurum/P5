@@ -5,8 +5,6 @@ The analysis chapter will end up with a problem statement for the project.
 
 \section{User story}
 \label{sec:User story}
-As mentioned before, the user story should help make the user requirements for the project, one user story have been made that showcase the use of Dumpsty.
-
 Benjamin is a software engineer who is tired of wasting his precious time on the job with walking back and forth from the trash bin in his office, and therefore wants to be able to throw his trash in the general direction of the trash bin instead, without missing the trash bin. He often has to pick up the trash after throwing it at the trash bin. \newline
 Benjamin wishes that the trash bin could move and collect the trash for him, so that he can throw his trash in the general direction of the trash bin, and the trash bin could then place itself in a way, that allows it to catch the trash before it lands on the floor. This would optimize the time Benjamin uses each day on collecting the trash he did not land in the trash bin.\newline
 If Benjamin throws at the trash bin from a designated side of a sensory camera, the robotic trash bin should identify the trash, move the trash bin to a place where it would be able to catch the trash, before it hits the ground.\newline
@@ -29,11 +27,11 @@ This section will define the required capabilities of the system, which will inc
 \textbf{Throwing}\newline
 When considering the process of throwing the trash, certain requirements must be met, which will be simplified for this project:
 The trash, from here on referred to as an “object", must be a round object of some sort, in this project a table tennis ball will be used.  \newline
-The object will be bounced on the ground, to give the sensor and robot more time to detect, track and calculate a point, at which the robot should move to, in order to catch the object.
+
 
 \textbf{Detecting and tracking}\newline
 Detecting and tracking the object are two very essential tasks, but are considered as one. For detecting the object, a sensor should be able to recognize the specific object. \newline
-When the object has been detected, it will then be tracked by the same sensor. The sensor is going to track the direction the object is heading. This will be used to calculate the point of impact between the object and the ground.
+When the object has been detected, it will then be tracked by the same sensor. The sensor is going to track the direction the object is heading and the speed of the object. This will be used to calculate the point of impact between the object and the ground.
 
 \textbf{Catching}\newline
 The catching phase is when the robot calculates the impact point, and moves to that specific point. The robot gets information about the thrown object, in this case the impact point, from the sensor and uses the given information to calculate the impact point. What data the robot gets from the sensor and how the calculation is done, will be explained in later chapters. 
@@ -44,9 +42,7 @@ The following subsections will describe the hardware considerations for the proj
 
 \subsection{Sensors}
 \label{sec:Sensors}
-Sensors were used to measure the environment around the arduino and enable the arduino to understand that environment. The sensors in consideration are described in individual sections. 
-
-Both the LEGO NXT Gyroscope and Accelerometer were used in Appendix \ref{chap:Increment one}, but in the evaluation of the increment it was explained why these sensors are inadequate. Even though they were not used for the final product, they are cursorily explained in this section.
+Sensors were used to measure the environment around the Arduino. The sensors in consideration are described in individual sections. 
 
 \subsubsection{Microsoft Kinect}
 \label{sec:Microsoft Kinect}
@@ -61,9 +57,12 @@ A gyroscope can be used to measure the heading of the robot. A gyroscope is cons
 \label{sec:LEGO NXT Accelerometer}
 An Accelerometer is a device that measures the force affecting it. The Lego NXT Accelerometer measures this information, and sends it to the robot, to provide capability for the robot to calculate its acceleration. The gyroscope and the accelerometer can in combination be used to position the robot. 
 
+Both the LEGO NXT Gyroscope and Accelerometer were used in Appendix \ref{chap:Increment one}, but in the evaluation of the increment it was explained why these sensors are inadequate. Even though they were not used for the final product, they are cursorily explained in this section.
+
+
 \subsection{LEGO NXT Servo motor}
 \label{sec:LEGO NXT Servo motor}
-For the robot to be able to move, it would need wheels powered by motors. In this project the LEGO NXT 9v Servo motor has been used, which at full power with no load can reach 170 RPM. The motor has a gear range of 1:48 split on the gear train in the motor. \citep{Servo} The motor includes an optical fork to provide data of motor rotations within \(1^{\circ}\) precision.
+For the robot to be able to move, it will need wheels powered by motors. In this project the LEGO NXT 9v Servo motor has been used, which at full power with no load can reach 170 RPM. The motor has a gear range of 1:48 split on the gear train in the motor. \citep{Servo} The motor includes an optical fork to provide data of motor rotations within \(1^{\circ}\) precision.
 
 For precision, and to benchmark the specific motors used in this project, a series of tests and measurements has been done on these motors:
 
@@ -88,16 +87,11 @@ Especially the clock speed is important, since the Arduino Mega 2560 will give 1
 
 \subsubsection{Arduino Wifi Shield}
 \label{sec: Arduino Wifi Shield}
-The Wifi Shield was acquired to enable wifi communication between the Kinect sensor and the Arduino Mega. The intention was to send the coordinates of the objects impact point to the Arduino, without limiting the movement of the robot. The wifi connection is able to transmit data at a rate of 9600 bits a minute. 
+The Wifi Shield was acquired to enable wifi communication between the Kinect sensor and the Arduino Mega. The intention is to send the coordinates of the objects impact point to the Arduino, without limiting the movement of the robot. The wifi connection is able to transmit data at a rate of 9600 bits per second. 
 \citep{aws}
 
 \subsubsection{Arduino Motor Shield}
 \label{sec:Arduino Motor Shield}
-The Arduino Motor Shield is needed for the project to control the two DC motors independently. Without the motor shield the robot would only be able to move forward and backwards with both wheels at the same time. 
+The Arduino Motor Shield is needed for the project to control the two DC motors independently. Without the motor shield the robot will only be able to move forward and backwards with both wheels at the same time. 
 The motor shield needs an external power source, as the Arduino cannot provide enough power. To solve this issue, a serial circuit of two 9V batteries are attached to the shield. \citep{ams}
 
-\section{Problem statement}
-\label{sec:Problem statement}
-Based on the above analysis and the limitations of the project, a problem statement for the project has been constructed:
-
-\textbf{\textit{How can an embedded system control a trash bin to detect, track and catch a thrown object within a designated area?}}
